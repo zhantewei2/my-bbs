@@ -1,0 +1,3 @@
+<div class="main" [@SlideTopToggle2]="_as.state.hidPagination?'hidden':'show'">
+  <ztw-pagination (selectPage)="change($event)" [navSize]="5" [complete]="page.loadPage" [nowPage]="page.nowPage" [colles]="page.totals"></ztw-pagination>
+</div>

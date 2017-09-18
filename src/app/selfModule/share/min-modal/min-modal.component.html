@@ -1,0 +1,10 @@
+<div *ngIf="bgShow" class="center full abs" style="position:fixed;z-index:5;">
+<div (@Pop.done)="isClose?bgShow=false:0" [@Pop]="modalShow?'show':'hidden'" class="ztwBlock parent">
+      <b (click)="close()" class="closeBtn cb" >
+        <i class="fa fa-close"> </i>
+      </b>
+    <div  class="p-2 center context">
+      {{_value}}
+    </div>
+</div>
+</div>

@@ -1,0 +1,14 @@
+<div class="d-flex flex-column parent loadHid">
+  <canvas [width]="cvW" [height]="cvH" #canvas1></canvas>
+  <canvas [width]="cvW" [height]="cvH"  #canvas2 class="abs"></canvas>
+  <div  [style.height.px]="barH" class="parent">
+    <button #block  class="barBtn abs" [style.height.px]="barH" [style.width.px]="r">
+      <a>三</a>
+    </button>
+    <div [style.paddingLeft.px]="r+10" style="font-size:12px" class="full center text-muted">
+      <span *ngIf="!dragging"><i class="fa fa-hand-o-left mr-1"></i>拖动图块到空缺位置</span>
+    </div>
+  </div>
+</div>
+<ztw-loading color="info" pos="full" [bind]="loading"></ztw-loading>
+

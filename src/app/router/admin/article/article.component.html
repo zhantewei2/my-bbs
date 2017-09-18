@@ -1,0 +1,73 @@
+
+<div *ngIf="articleMsn">
+  <h5 class="parent">
+    Article Name：{{articleMsn.t}}
+  </h5>
+  <form [formGroup]="_msnFormGroup" class="parent">
+    <table class="full shadow-1 frame">
+    <thead>
+     <th>Article Attribute</th>
+    </thead>
+    <tr [class.bg-1]="o" align="center" *ngFor="let control of _msnForm;odd as o">
+      <td class="p-2">{{control.label}}</td>
+      <ng-container [ngSwitch]="control.type" *ngIf="!isArticleEdit;else inputTp">
+        <td *ngSwitchCase="'date'">{{control.value}}</td>
+        <td *ngSwitchDefault>{{control.value}}</td>
+      </ng-container>
+      <ng-template #inputTp>
+        <td>
+        <ng-container [ngSwitch]="control.type">
+          <ztw-date-pick *ngSwitchCase="'date'" [formControlName]="control.name"></ztw-date-pick>
+          <select class="btn0" [class.hasChange]="control.value!=control.control.value" style="height:40px;" *ngSwitchCase="'select'" [formControlName]="control.name">
+            <option *ngFor="let opt of articleStartArr">{{opt}}</option>
+          </select>
+          <input class="form-control" *ngSwitchDefault [class.hasChange]="control.value!=control.control.value" [class.invalid]="!control.control.valid&&!control.disabled"  [type]="control.type"  [formControlName]="control.name">
+        </ng-container>
+        </td>
+      </ng-template>
+    </tr>
+    </table>
+    <nav style="position:absolute;left:0;top:50%;transform:translate(-100%,-50%)" class="btn-group btn-group-vertical">
+      <button class="btn btn-outline-info">recommand</button>
+      <button [ngClass]="{'btn-outline-danger':!isArticleEdit,'btn-outline-success':isArticleEdit}" (click)="isArticleEdit=!isArticleEdit" class="btn">{{isArticleEdit?'Cancel Edit':'Edit Msn'}}</button>
+      <button [disabled]="_msnFormGroup.invalid" (click)="submitModify()" [hidden]="!isArticleEdit" class="btn btn-outline-warning" >Submit Modify</button>
+      <button (click)="reset()" [hidden]="!isArticleEdit" class="btn btn-outline-primary">Reset Form</button>
+    </nav>
+  </form>
+    <h5>handle:</h5>
+
+
+  <div *ngIf="breakPg.nowPage==1" class="d-flex flex-row box-1 frame ztwBlock p-3">
+    <dl class="text-sm">
+      <dd><dfn>楼主</dfn>{{hostUser.name}}</dd>
+      <dd><dfn>NickName</dfn>{{hostUser.nickN}}</dd>
+      <img [src]="putImg(hostUser.head)" class="img-thumbnail" style="border-radius:50%;width:120px">
+      <star-level [user]="hostUser"></star-level>
+    </dl>
+    <article style="flex:1" class="parent p-3 d-flex flex-column">
+      <div *ngIf="_admin.isEdit" class="close btn-group-vertical">
+        <button class="btn-sm btn btn-info">Forbid</button>
+        <button (click)="modifyContent()" class="btn-sm btn btn-warning" >Modify Content</button>
+
+      </div>
+      <div style="flex:1">{{_admin._compress.decode(articleMsn.c)}}
+      </div>
+      <footer class="between text-sm" style="height:20px">
+        <small>
+          支持{{articleMsn.sup}}
+        反对{{articleMsn.op}}
+        </small>
+        <time>
+          {{articleMsn.lrd|time}}
+        </time>
+        <time>
+          {{articleMsn.cd | date:'short'}}
+        </time>
+      </footer>
+    </article>
+
+  </div>
+  <hr>
+</div>
+<reply-card [i]="i" *ngFor="let i of replyLists"></reply-card>
+<ztw-pagination #ztwPg style="position:fixed;bottom:0;left:50%;transform:translateX(-50%)" *ngIf="breakPg" navSize="5" [colles]="breakPg.totals" [nowPage]="breakPg.nowPage" (selectPage)="getPage($event,ztwPg)"></ztw-pagination>

@@ -1,0 +1,83 @@
+<div *ngIf="_reS.value=='lg'" class="d-flex p-2 ">
+  <div>
+    <div class="tpParent">
+      <img style="width:120px;" class="rounded box-1 frame" [src]="insert?user.head:putImg(user.head)">
+      <i (click)="_rs.navToUser(user.name)" style="right:0;bottom:0" class="ir tpShow leftFade fa fa-eye btn btn-default2 btn-sm"></i>
+    </div>
+    <a [innerTemplate]="Msn"></a>
+  </div>
+  <div style="flex:1" class="parent d-flex flex-column">
+      <div  class="card-block" [innerHTML]="i.c">
+
+      </div>
+      <ng-container *ngIf="isHost">
+        <ng-template [innerTemplate]="host"></ng-template>
+      </ng-container>
+      <div class="between text-sm pl-3">
+        <ztw-vote  [msn]="i"></ztw-vote>
+        <nav>
+          <samp >{{i.cd | date:'short'}}</samp>
+          <a *ngIf="!isHost" (click)="innerReply(inner)" class="btn0 btn-default2 ml-2  fa fa-commenting-o"></a>
+        </nav>
+      </div>
+  </div>
+</div>
+<ng-template #test>
+  aasasa
+</ng-template>
+<div *ngIf="_reS.value!='lg'" [@Fade]>
+  <div class="d-flex p-2">
+    <img #myTooltip="ztwTooltip" type="oc" class="img-min" [ztwTooltip]="Msn" [src]="insert?user.head:putImg(user.head)">
+    <div class="p-2 pl-4" style="flex-grow:1;">
+      <b class="text-sm text-center">{{user.nickN}}</b>
+      <div class="text-sm between">
+        <span style="color:darkgray">
+          <span [hidden]="!i.rId" class='mr-1'>{{i.rId}}楼</span>
+          <a >{{i.cd |time}}</a>
+        </span>
+        <ztw-vote [msn]="i"></ztw-vote>
+      </div>
+    </div>
+  </div>
+  <div class="parent p-2 pl-3">
+    <div class="md-body" [innerHTML]="i.c"></div>
+    <ng-container *ngIf="isHost">
+
+      <ng-template [innerTemplate]="host"></ng-template>
+    </ng-container>
+    <div *ngIf="!isHost" (click)="innerReply(inner)" class="text-sm index closeBtn"><i class="fa fa-commenting-o"></i></div>
+  </div>
+</div>
+<ng-template #inner="vcr" viewContainer></ng-template>
+<view-reply2 [_parent]="this" [newReply]="newReply" *ngIf="i.rCache?.cs||newReply"></view-reply2>
+
+<div class="dropdown-divider"></div>
+<ng-template #Msn>
+  <div style="padding:5px">
+    <small>{{isMain?'楼主':'层主'}}<span (click)="_rs.navToUser(user.name)" *ngIf="_reS.value!='lg'" class="badge badge-info"><i class="fa fa-arrow-right"></i></span></small>
+    <div>
+      <samp>{{user.nickN}}</samp>
+    </div>
+    <star-level [user]="user"></star-level>
+  </div>
+</ng-template>
+
+<ng-template #vote>
+    <span style="border-bottom: 1px solid gainsboro">
+      <i class="mx-1">{{i.sup}}</i>
+      <i class="fa fa-thumbs-up"></i>
+      <i class="mx-1">{{i.op}} </i>
+      <i class="fa fa-thumbs-o-down"></i>
+    </span>
+</ng-template>
+
+<ng-template #host>
+  <article-strategy *ngIf="i.nStg||i.c2||i.stg" [i]="i"></article-strategy>
+<samp *ngIf="isHost" class="text-muted ml-3 text-right">
+  <a (click)="_as.modifyHost(i)" *ngIf="isMaster" class="text-sm hover">修改</a>
+  <small [hidden]="!i.md">最后修改在:{{i.md |time}}</small>
+  <i class="mr-1 fa fa-eye"></i>{{i.rds}}
+  <i class="mr-1 fa fa-comments"></i>{{i.rps}}
+</samp>
+</ng-template>
+

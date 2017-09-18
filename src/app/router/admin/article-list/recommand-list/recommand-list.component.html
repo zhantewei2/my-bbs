@@ -1,0 +1,56 @@
+
+<ul style="margin-top:60px">
+  <dd class="text-sm p-2 text-white mb-2" style="background:gray">
+    <div class="between">
+      <a class="text-lg">推荐列表：</a>
+      <span>
+        <span ngbTooltip="重新获取" placement="bottom" (click)="getList()" class="btn rgBtn">
+          <i [class.fa-spin]="loading" class="fa fa-refresh rgBtn-icon"></i>
+        </span>
+        <span ngbTooltip="收起列表" placement="bottom" (click)="parent.nestedNav('default')" class="btn rgBtn">
+          <i class="fa fa-arrow-right rgBtn-icon"></i>
+        </span>
+      </span>
+    </div>
+    <div class="py-2 between">
+      <span>从右方列表选择添加</span>
+      <kbd class="fa fa-hand-o-right"></kbd>
+    </div>
+  </dd>
+  <li [class.remindBg]="i._id==selectId" (click)="this.selectId=i._id" class="listItem p-2 parent" *ngFor="let i of lists;index as index">
+    <div class="my-1">
+      <span class="badge badge-default">{{index}}</span>
+      {{i.t}}
+    </div>
+    <div class="between">
+      <small>
+        {{i.cd |time}}
+      </small>
+      <samp class="text-sm">
+        <i class="fa fa-comment"></i>:{{i.rps}}
+        <i class="fa fa-eye"></i>:{{i.rds}}
+      </samp>
+
+    </div>
+
+    <div class="abs2" *ngIf="selectId==i._id">
+      <button (click)="up(index)" class="btn-default2 closeBtn">
+        <i class="fa fa-arrow-up"></i>
+      </button>
+      <button (click)="down(index)" class="btn-default2 closeBtn">
+        <i class="fa fa-arrow-down"></i>
+      </button>
+
+      <button (click)="close(index)" class="btn-default2 closeBtn">&times;</button>
+    </div>
+
+  </li>
+  <div class=' p-2 alert alert-danger' *ngIf="error">{{error}}
+    <i (click)="error=null" class="close">&times;</i>
+  </div>
+</ul>
+<div class="between mt-2 p-2" *ngIf="lists.length">
+  <button (click)="confirm()" class="btn btn-default2">提交</button>
+  <span [hidden]="!selectId" (click)="selectId=null" class="btn-sm rgBtn text-white">取消</span>
+  <span (click)="lists=[]" class="btn btn-default2">重设</span>
+</div>

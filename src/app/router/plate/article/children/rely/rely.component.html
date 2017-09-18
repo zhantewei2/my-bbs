@@ -1,0 +1,16 @@
+<div (click)="_as.closeReply()" [@Fade] class="full parent abs" style="background:rgba(0,0,0,0.3);z-index:1;position:fixed" *ngIf="this._as.reply.show">
+</div>
+<div class="card reply mt-2" *ngIf="this._as.reply.show" [@SlideTopToggle]>
+  <nav class="card-header">
+    回复区：
+    <span (click)="_as.closeReply()" class="close">&times;</span>
+  </nav>
+  <div class="p-2">
+    <ztw-text-editor [limitSize]="400" #text class="text" disUpload="true"></ztw-text-editor>
+    <ztw-loading [bind]="running" pos="full"></ztw-loading>
+  </div>
+  <div class="p-2">
+    <button (click)="_submit(text)" class="btn btn-outline-primary">提交</button>
+    <button (click)="text.reset()" class="btn btn-outline-primary">重填</button>
+  </div>
+</div>

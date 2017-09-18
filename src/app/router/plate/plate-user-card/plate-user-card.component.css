@@ -1,0 +1,26 @@
+.img-min{
+  height:60px;
+  width:60px;
+  border:1px solid #ddd;
+  box-shadow: 4px 4px 12px gray;
+  border-radius:50%;
+}
+.md-body{
+  min-height:80px;
+}
+.index{
+  position:absolute;
+  right:7px;
+  opacity:0.6;
+  text-shadow:0 2px 5px #ddd;
+  bottom:0;
+}
+.min-media{
+
+}
+.min-media::after{
+  clear:both;
+}
+:host /deep/ .btLine{
+  border-bottom: 1px solid gainsboro
+}

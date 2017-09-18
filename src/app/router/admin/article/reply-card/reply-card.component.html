@@ -1,0 +1,59 @@
+<div class="ztwBlock p-2 box-1 my-2">
+  <div style="display:flex;flex-direction:row" class="parent">
+    <div class="flex-column flex text-sm">
+      <img class="headImg" [src]="putImg(user.head)">
+      <br><samp>账号:<kbd>{{user.name}}</kbd></samp>
+      <br><samp>昵称:{{user.nickN}}</samp>
+      <star-level [user]="user"></star-level>
+    </div>
+    <article style="flex-grow:1;display:flex;flex-flow:column;" class="p-2">
+      <div style="flex-grow:1;background:white">{{compress.decode(_i.c)}}</div>
+      <footer style="height:20px;" class="between">
+        <i class="text-sm">
+          支持{{_i.sup}} 反对 {{_i.op}}
+        </i>
+        <small>
+          {{_i.cd}}
+        </small>
+      </footer>
+    </article>
+    <div class="close btn-group btn-group-vertical" [hidden]="!_admin.isEdit">
+      <button class="btn btn-sm btn-info">
+        Forbid
+      </button>
+      <button (click)="clearAllReply2()" class="btn btn-sm btn-danger">
+        Clear Reply
+      </button>
+    </div>
+
+  </div>
+  <div *ngIf="_i.rCache.cs" class="card-1" style="width:100%">
+    <div *ngFor="let mbs of _i.rCache.mbs;index as index">
+      <div [innerTemplate]="reply2" [deps]="{msn:mbs,isIn:index==0?-1:1}"></div>
+    </div>
+  </div>
+  <div (click)="viewOther()" class="btn btn-sm btn-block btn-outline-primary" *ngIf="_i.rCache.cs>2">
+    <span *ngIf="!isViewOther;else closeReply"> 查看余下{{_i.rCache.cs-2}}条回复</span>
+  </div>
+  <div *ngIf="otherReplyList">
+    <article *ngFor="let i of otherReplyList">
+      <ng-container [innerTemplate]="reply2" [deps]="{msn:i,isIn:0}"></ng-container>
+    </article>
+    <min-pagination [nowPage]="otherReplyBP.nowPage" [pages]="otherReplyBP.pages" (result)="getReply2Page($event.page,$event.dr)"></min-pagination>
+  </div>
+</div>
+
+
+<ng-template let-msn="msn" let-isIn="isIn" #reply2>
+  <div class="text-sm box-1 parent">
+    <b>Account:</b><code>{{msn.auId}}</code>
+    <b>NickName:</b><a>{{msn.auName}}</a>
+    <b>date:</b><time>{{msn.cd |time}}</time>
+    <p><b class="text-lg">Content:</b><span [innerHTML]="compress.decode(msn.c)"></span></p>
+    <div class="dropdown-divider"></div>
+    <div (click)="removeReply2(msn,isIn)" [hidden]="!_admin.isEdit" class="close" style="">&times;</div>
+  </div>
+</ng-template>
+<ng-template #closeReply>
+  收起回复
+</ng-template>

@@ -1,0 +1,14 @@
+.parent{
+  display:inline-block;
+  position:relative;
+}
+.tip{
+  position:absolute;
+  z-index:2;
+}
+.df{
+  color:white;
+  background:black;
+  padding:4px;
+  border-radius:5px;
+}

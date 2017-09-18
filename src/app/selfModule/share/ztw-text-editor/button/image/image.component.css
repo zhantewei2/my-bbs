@@ -1,0 +1,20 @@
+.main{
+  width:340px;
+}
+
+i{margin:0 5px}
+.upload{
+  width:180px;
+  height:160px;
+  background:#ddd;
+  border-radius:5px;
+}
+
+.imgItem{
+  width:40px;
+  height:40px;
+}
+nav{
+  min-width:200px;
+  margin:6px 0;
+}

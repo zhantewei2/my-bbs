@@ -1,0 +1,88 @@
+<a>
+  功能
+</a>
+<ng-template #payTip>
+  <div class="show text-warning">他人需要支付一定金币才能查阅本贴!
+  </div>
+</ng-template>
+<ng-template #voteTip>
+  <div class="show text-warning">
+  开启一个投票主题，发帖后，该投票项会附加在本贴的文末
+  </div>
+</ng-template>
+<ng-template #tp>
+  <div *ngIf="!select;else other" class="m-1 column text-sm">
+    <ztw-loading [bind]="!strategy" pos="full" transparent="0.5"></ztw-loading>
+    <button [class.active]="_ps.selectItem=='rView'" (click)="select=null;confirm()" class="my-1 btn0 btn-default2">回复可见</button>
+    <button [class.active]='_ps.selectItem=="pay"' (click)="select='pay'" class="my-1 btn0 btn-default2">支付可见</button>
+    <button [class.active]='_ps.selectItem=="vote"' (click)="select='vote'" class="my-1 btn0 btn-default2">投票</button>
+  </div>
+</ng-template>
+<ng-template #other>
+  <div style="min-width:300px;">
+    <button (click)="select=null" class="btn btn-default2">
+      <i class="fa fa-arrow-left" ></i>
+    </button>
+    <samp class="ml-2">
+      <span *ngIf="select=='pay';else tpVote">
+        输入支付金币
+        <i [ztwTooltip]="payTip" class="text-warning fa fa-question-circle"></i>
+      </span>
+      <ng-template #tpVote>
+        投票
+        <i [ztwTooltip]="voteTip" class="text-warning fa fa-question-circle"></i>
+      </ng-template>
+    </samp>
+  </div>
+  <div [ngSwitch]="select">
+    <input *ngSwitchCase="'pay'"  [(ngModel)]="_ps.useLimit.pay" name="pay" class="form-control my-2" type="number" [step]="payStg.step" [max]="payStg.max" [min]="payStg.min">
+    <div *ngSwitchCase="'vote'">
+      <form #voteForm="ngForm">
+      <div class="py-2">
+        <samp [class.text-success]="voteName.valid">主题</samp>
+        <input #voteName="ngModel" [limitLen]="[1,10]" class="input" [(ngModel)]="voteObj.name" name="voteName">
+        <i [hidden]="voteName.valid||voteName.pristine">&times;</i>
+      </div>
+      <p class="text-sm box-1">选项：{{voteObj.len||'空'}}</p>
+      <dl>
+        <dd [class.box-1]="o" style="height:20px" class="between" *ngFor="let i of voteObj.list;index as index;odd as o;trackBy">
+          <dfn [class.badge-success]="nextSpy.valid" class="badge badge-pill badge-default mr-1">{{index}}</dfn>
+          <span class="listItem" style="flex:1" [hidden]="i.edit" (click)="entryItem(i,nextNode)" [innerHTML]="i.name||'<kbd>required value</i>'"></span>
+          <input [limitLen]="[0,8]" required (blur)="i.edit=false" #nextSpy="ngModel" #nextNode (focus)="focusItem(index)" class="input" [(ngModel)]="i.name" [name]="index+'vote'" [hidden]="!i.edit">
+          <span  (click)="!i.edit?removeItem(index):i.edit=false" class="btn btn-sm btn-default2">
+            {{i.edit?'删除':'&times;'}}
+          </span>
+        </dd>
+      </dl>
+      <dl >
+        <button [disabled]="voteObj.len>8" (click)="addList()" class="btn btn-sm btn-default2 ">
+          <i class="fa fa-plus"></i>
+          <small>添加</small>
+        </button>
+        <button  (click)="select='viewVote'" [hidden]="!voteObj.len" class="btn btn-sm btn-default2">
+          查看
+          <i class="fa fa-chevron-circle-right"></i>
+        </button>
+      </dl>
+      </form>
+    </div>
+    <div *ngSwitchCase="'viewVote'">
+      <b>主题:{{voteObj.name||'未填写'}}</b>
+      <dd  *ngFor="let i of voteObj.list" class="text-sm">
+        <a>{{i.name||'未设置'}}</a>
+        <span>票数:<span class="badge badege-pill badge-success">{{i.value}}</span></span>
+        <ztw-progress-bar  type="success"  value="100"></ztw-progress-bar>
+      </dd>
+      <button (click)="select='vote'" class="btn btn-sm btn-default2">
+        <i class="fa fa-chevron-circle-left"></i>
+        编辑
+      </button>
+    </div>
+  </div>
+  <footer class="mt-2 between">
+    <button (click)="confirm()" class="btn btn-default2">确定</button>
+    <button (click)="clear()" class="btn btn-default2">清除</button>
+  </footer>
+
+</ng-template>
+

@@ -1,0 +1,30 @@
+<div body>
+  <ztw-tab>
+    <ztw-tabBtn>
+      系统头像
+        <div class="mt-2" *ztwTabContent>
+          <div *ngIf="!hasImg">
+            <img (click)="hasImg=i" class='img-thumbnail m-1 selectImg' *ngFor="let i of imgArr" [src]="putImg(i)">
+          </div>
+          <select-img [(ngModel)]="hasImg"></select-img>
+        </div>
+    </ztw-tabBtn>
+    <ztw-tabBtn>
+      自定义
+        <div class="mt-2" *ztwTabContent>
+          <div *ngIf="!upImg" class="mt-2 center flex-column">
+            <div class="parent">
+              <button style="width:150px;height:140px;" class="btn btn-outline-default upBtn">
+                <i class="fa fa-cloud-upload upIcon"></i>
+                <p>上传</p>
+              </button>
+                <input style="width:150px;height:140px;opacity:0" (change)="fileChange($event)" class="abs"  type="file">
+            </div>
+            <p class="text-muted">上传图片(<small>小于500KB的jpg、jpeg、png、gif图片</small>)</p>
+            <ztw-alert type="danger" [show]="err" (close)="err=null">{{err}}</ztw-alert>
+          </div>
+          <select-img upImg="true" [(ngModel)]="upImg"> </select-img>
+        </div>
+    </ztw-tabBtn>
+  </ztw-tab>
+</div>

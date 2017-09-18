@@ -1,0 +1,22 @@
+.draft{
+  position:absolute;
+  right:0;
+  top:0;
+  height:100%;
+}
+.edit1{
+  overflow: hidden;
+}
+.btn1{
+  position:absolute;
+  left:0;
+  top:30%;
+  transform:translateX(-100%);
+}
+.sideCard{
+  width:200px;
+
+}
+.btnGp .btn{
+  border-radius:0;
+}

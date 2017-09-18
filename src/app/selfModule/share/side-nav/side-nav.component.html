@@ -1,0 +1,5 @@
+<div [@SlideRightToggle]="slide" class="main" [style.width.px]="contentWidth" (@SlideRightToggle.done)="sideDown()">
+  <div #container></div>
+</div>
+<div class="bg" [@FadeToggle]="slide" (click)="close()">
+</div>

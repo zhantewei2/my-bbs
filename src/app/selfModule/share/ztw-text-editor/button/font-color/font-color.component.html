@@ -1,0 +1,11 @@
+<button class="btn2 center" (click)="setColor()">
+  <i class="fa fa-font"></i>
+</button>
+<div (mousedown)="$event.preventDefault()" class="btn2 center" (click)="selectColor(colorTp)">
+  <span class="color" [@FontColor]="colorAn" (@FontColor.done)="colorAn='normal'" [style.background]="color"> </span>
+  <i style="color:gray" class="fa fa-caret-down" ></i>
+</div>
+<ng-template #colorTp>
+  <div id="ztw-textEdit-color" (click)="click($event)">
+  </div>
+</ng-template>

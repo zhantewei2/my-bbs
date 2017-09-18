@@ -1,0 +1,41 @@
+<div class="d-flex lgBox">
+  <div class="hidden-sm-down" style="width:4rem">
+  </div>
+  <div style="flex:1" >
+
+    <div *ngFor="let i of selfReplys" [innerTemplate]="tp" [deps]="{n:i.auName,t:i.cd,c:i.c,id:i.auId}">
+    </div>
+
+    <div *ngFor="let i of list" [innerTemplate]="tp" [deps]="{n:i.auName,t:i.cd,c:i.c,id:i.auId}">
+    </div>
+    <min-pagination (result)="navPage($event)" [nowPage]="nowPage" [pages]="model.pages" *ngIf="model?.pages>1&&isOpen">
+
+    </min-pagination>
+    <small (click)="toggleView()" *ngIf="main.cs>cacheSize" class="hover">
+      <span *ngIf="!isOpen;else others"><i class="fa fa-chevron-down"></i>
+        查看另外{{main.cs-cacheSize}}条回复
+      </span>
+      <ng-template #others>
+        <span>
+          <i class="fa fa-chevron-up"></i>
+          收起回复
+        </span>
+      </ng-template>
+    </small>
+  </div>
+</div>
+
+<ng-template #tp let-n="n" let-t="t" let-c="c" let-id="id">
+  <article  class="media">
+    <div class="mx-2">
+      <div ><i class="fa fa-user-o pr-1"></i>
+        <code (click)="reply(vcr,{id:id,name:n})" class="text-sm listItem">{{n}}</code>
+      </div>
+      <samp class="text-sm ml-4">
+        {{t |time}}
+      </samp>
+    </div>
+    <div class="media-body" style="word-break: break-all" [innerHTML]="_lzw.decode(c)"></div>
+  </article>
+  <ng-template #vcr="vcr" viewContainer></ng-template>
+</ng-template>

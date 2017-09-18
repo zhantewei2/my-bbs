@@ -1,0 +1,18 @@
+.main{
+  position:fixed;
+  height:100%;
+  top:0;
+  width:200px;
+  border-right:1px solid gainsboro;
+  z-index:6;
+  overflow:auto;
+  background:white;
+}
+.bg{
+  position:fixed;
+  width:100%;
+  top:0;
+  height:100%;
+  z-index:5;
+  background:rgba(0,0,0,0.3)
+}

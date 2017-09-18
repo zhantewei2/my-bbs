@@ -1,0 +1,9 @@
+<button  *ngIf="s=='up'" [@Top] class="top btn-default2">
+  <i class="fa fa-spinner fa-spin"></i>
+</button>
+<button *ngIf="s=='down'" [@Bottom] class="bottom btn-default2">
+  <i class="fa fa-spinner fa-spin"></i>
+</button>
+<button class="mid btn-default2" [@Fade] *ngIf="s&&s!='up'&&s!='down'">
+  <i class="fa fa-spinner fa-spin "></i>
+</button>

@@ -1,0 +1,11 @@
+.boxBar{
+  z-index:1;
+  opacity:0.7;
+  right:1rem;
+  bottom:1rem;
+  position:fixed;
+}
+.titleNav{
+  transition:background 0.3s ease;
+}
+

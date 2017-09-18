@@ -1,0 +1,7 @@
+<span class="btLine">
+  <i *ngIf="running" class="fa fa-spinner fa-spin"></i>
+  <i class="mx-1">{{parent.sup}}</i>
+  <i (click)="vote('sup')" class="hover fa fa-thumbs-up"></i>
+  <i class="mx-1">{{parent.op}} </i>
+  <i (click)="vote('op')" class="hover fa fa-thumbs-o-down"></i>
+</span>

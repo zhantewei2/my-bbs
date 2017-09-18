@@ -1,0 +1,8 @@
+:host /deep/ .abs2{
+  position:absolute;
+  right:0;
+  top:0;
+}
+:host /deep/ button{
+  outline:none;
+}

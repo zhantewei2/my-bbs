@@ -1,0 +1,68 @@
+<div *ngIf="initEnd">
+<div class="media">
+  <div (mouseenter)="edit=true" (mouseleave)="edit=false" class="mr-2 parent">
+    <img  style="width:160px;height:160px" [src]="user.head" class="img-thumbnail">
+    <button (click)="_ts.modal(modalTp,false,true)" *ngIf="edit" class="edit btn btn-success"><i class="fa fa-edit"></i></button>
+  </div>
+  <div class="media-body">
+    <h5>{{user.nickN}}</h5>
+    <star-level [user]="user"></star-level>
+    <p class="mt-2">
+    <span class="sign mx-2">发帖数:{{user.st.a||0}}</span>
+    <span class="sign mx-2">回帖数:{{user.st.r||0}}</span>
+    </p>
+    <div class="text-sm">
+      出生日期 {{user.st.b|date:'short'}}
+    </div>
+  </div>
+</div>
+
+<ztw-tab >
+  <ztw-tabBtn>
+    个人信息
+    <ng-template ztwTabContent>
+    <form [formGroup]="formGroup" *ngIf="isMaster;else visitor">
+    <div [@SlideRightToggle]="formGroup.dirty&&cancelEdit?'show':'hidden'" class="my-2">
+        <button [disabled]="!formGroup.valid||!msnChange" (click)="$event.stopPropagation();submitChange()" class="btn btn-primary">提交</button>
+        <button (click)="resetMsn();$event.stopPropagation()" class="btn btn-outline-primary">撤销</button>
+         <ztw-loading [bind]="msnUping"></ztw-loading>
+    </div>
+    <ul class="list-group">
+        <li *ngFor="let i of userArr" class="list-group-item hover" [ngSwitch]="i.edit">
+          <div outclick (outClick)="leaveItem(i)" (click)="clickItem($event,i)" class="full d-flex" *ngSwitchCase="true" (mouseenter)="i.editEvent=true" (mouseleave)="i.editEvent=false">
+            <span>{{i.name2}}：<a *ngIf="!i.editEvent2">{{i.value}}</a></span>
+              <input preventSpace *ngIf="i.editEvent2" class="col form-control" [formControlName]="i.name">
+              <span class="text-primary ml-2" [hidden]="!i.editEvent">
+                       <i class="fa fa-edit" ></i>
+              </span>
+          </div>
+          <span *ngSwitchDefault>
+            {{i.name2}}：{{i.value}}
+          </span>
+
+        </li>
+    </ul>
+    </form>
+
+    </ng-template>
+  </ztw-tabBtn>
+  <ztw-tabBtn>
+    发帖统计
+    <ng-template ztwTabContent>
+      <publish-statistics [userId]="user.name"></publish-statistics>
+    </ng-template>
+  </ztw-tabBtn>
+</ztw-tab>
+
+  <ng-template #visitor>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let i of userArr">
+        {{i.name2+': '+i.value}}
+      </li>
+    </ul>
+  </ng-template>
+
+<ng-template #modalTp>
+  <select-img-0></select-img-0>
+</ng-template>
+</div>

@@ -1,0 +1,22 @@
+.top{
+  top:50px;
+}
+.bottom{
+  bottom:50px;
+}
+button{
+  z-index:10001;
+  outline:none;
+  position:fixed;
+  background:white;
+  font-size:2rem;
+  left:50%;
+  color:gray;
+  transform: translateX(-50%);
+  opacity:0.8;
+  border-radius:50%;
+}
+.mid{
+  top:50%;
+  transform:translateY(-50%);
+}

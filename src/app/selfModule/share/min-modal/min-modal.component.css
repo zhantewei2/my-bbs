@@ -1,0 +1,10 @@
+
+.context{
+  min-width:5rem;
+}
+.closeBtn{
+  position:absolute;
+  top:-13px;
+  right:-13px;
+  font-size:1.5rem;
+}

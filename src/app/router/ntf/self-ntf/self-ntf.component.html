@@ -1,0 +1,33 @@
+<div class="text-sm main card-1" (click)="$event.stopPropagation()">
+  <ztw-loading transparent="0.5" pos="full" noCheck="true" [bind]="loading"></ztw-loading>
+  <ztw-tab class="parent" style="display:block" (selected)="selectTab($event)">
+    <samp (click)="modal.open()" [@Fade] *ngIf="selectValue==2&&history.totals!=0" class="right hover">清除所有{{history.totals}}条记录</samp>
+    <ztw-tabBtn value="1">
+      最新消息
+      <ng-template ztwTabContent>
+        <div class="btn-group2" *ngIf="lists;else noexists">
+          <ntf-list *ngFor="let i of lists;trackBy" [i]="i"></ntf-list>
+        </div>
+      </ng-template>
+    </ztw-tabBtn>
+    <ztw-tabBtn value="2">
+      历史消息
+      <ng-template ztwTabContent>
+        <div class="my-2 btn-group2" *ngIf="lists2;else noexists">
+          <ntf-list *ngFor="let i of lists2" [i]="i"></ntf-list>
+        </div>
+        <div class="text-right">
+          <min-pagination [pages]="history.pages" [nowPage]="history.now" (result)="getHistory($event.page,$event.dr)"></min-pagination>
+        </div>
+      </ng-template>
+    </ztw-tabBtn>
+  </ztw-tab>
+
+</div>
+<ng-template #noexists>
+  <div class="noexists center text-lg">
+    <i class="fa fa-meh-o"></i>暂时没有消息
+  </div>
+</ng-template>
+<ztw-modal #modal [content]="{content:'该操作将清除所有记录',btnType:'double'}" (confirm)="clearHistory($event)">
+</ztw-modal>

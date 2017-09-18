@@ -1,0 +1,16 @@
+<dl style="opacity:0.6;" class="btn-group parent d-flex" *ngIf="show"  [@SlideXToggle]>
+  <div [hidden]="!loading" class="abs full cover" ></div>
+  <button [class]="btn" (click)="emit(1)" [hidden]="_nowPage<_navSize">
+    <i class="fa fa-angle-double-left"></i>
+  </button>
+  <button [class]="btn" [disabled]="_nowPage==1" (click)="emit(_nowPage-1)">
+    <i class="fa fa-angle-left"></i>
+  </button>
+  <span [class]="btn" [class.active]="i==_nowPage" (click)="emit(i)" *ngFor="let i of btnArr">{{i}}</span>
+  <button [class]="btn" [disabled]="_nowPage==pages" (click)="emit(_nowPage+1)">
+    <i class="fa fa-angle-right"></i>
+  </button>
+  <button [class]="btn" (click)="emit(pages)" [hidden]="_nowPage>pages-_navSize">
+    <i class="fa fa-angle-double-right"></i>
+  </button>
+</dl>

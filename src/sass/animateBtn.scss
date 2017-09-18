@@ -1,0 +1,276 @@
+$color:#ddd;
+$shadowColor:#ddd;
+$bgColor:white;
+$deepColor:darken($color,30%);
+$deepColor2:darken($color,5%);
+$lightColor:mix($color,white,20%);
+$remindColor:mix(mix($color,indianred,20%),white,40%);
+$borderRadius:5px;
+$lg:1200px;
+$smBtnPadding:6px;
+$shd1:0 0 10px 2px $shadowColor;
+$shd2:0 0 30px 2px $shadowColor;
+$border1:2px solid $bgColor;
+.bg-1{
+  background:$lightColor;
+}
+.shadow-1{
+  box-shadow:$shd1;
+}
+.borderR{
+  border-radius:$borderRadius;
+}
+.box-1{
+  @extend .bg-1;
+  @extend .borderR;
+}
+.card-2{
+  @extend .borderR;
+  background:$bgColor;
+  @extend .frame;
+}
+
+.sign{
+  border-radius:$borderRadius;
+  padding:5px;
+  &>i{
+    margin:0 6px;
+  }
+  box-shadow:1px 2px 3px $shadowColor;
+  border-bottom:1px solid $shadowColor;
+}
+em{color:$deepColor}
+.btn:hover{
+  cursor:pointer;
+}
+.frame{
+  border:1px solid $color;
+}
+.card-1{
+  @extend .box-1;
+  @extend .frame;
+  padding:5px;
+};
+.card-3{
+  @extend .card-1;
+  border:$border1;
+  box-shadow:$shd2;
+}
+.img1{
+  box-shadow:2px 2px 4px $deepColor;
+  border:$border1;
+}
+.btn-default:hover{
+  background:$lightColor;
+}
+.rgBtn{
+  background:rgba(0,0,0,0.3);
+  transition:background ease 0.3s;
+}
+.rgBtn-icon{
+  transition:all ease 0.3s;
+}
+.rgBtn:hover>.rgBtn-icon,.roBtn:hover .rgBtn-icon{
+  transform:rotate(180deg);
+}
+@keyframes Bright{
+  from{color:$deepColor}
+  to{color:$lightColor}
+}
+.bright{
+  animation:Bright 0.6s ease 0s infinite alternate;
+}
+
+kbd{
+  background:$deepColor;
+  box-shadow:2px 2px 5px $deepColor;
+  margin:0 5px;
+}
+@media only screen and(min-width:$lg){
+  .lgBox{
+    margin:10px 0;
+    padding:10px 0;
+    background:$lightColor;
+  }
+}
+@keyframes slideY{
+  from {transform:translateY(-50%)}
+  to{transform:translateY(0)}
+}
+.SlideY{
+  animation:slideY 0.5s ease;
+}
+
+.tab-nav{
+  box-sizing:border-box;
+  border-bottom:1px solid $shadowColor;
+}
+.tab-btn{
+  cursor:pointer;
+  outline:none;
+  color:white;
+  display:inline-block;
+  background:$deepColor2;
+  transition:all 0.3s ease;
+  padding:$smBtnPadding;
+  border:1px solid $color;
+  transform:translateY(2px);
+  border-radius:$borderRadius $borderRadius 0 0;
+  &.active{
+    background:$bgColor;
+    color:black;
+    border-bottom-color:$bgColor;
+  }
+}
+
+.tab-bg{
+  background:$bgColor;
+  padding:5px 0;
+  border-top-width:0;
+}
+.ztwBlock{
+  @extend .shadow-1;
+  background:$bgColor;
+}
+%abs0{
+  position:absolute;
+}
+.ft{
+  @extend %abs0;
+  bottom:1rem;
+  right:1rem;
+}
+.ir{
+  @extend %abs0;
+  right:10px;
+  bottom:10px;
+  opacity:0.6;
+}
+.close0{
+  @extend %abs0;
+  top:0.6rem;
+  right:0.6rem;
+}
+.fr{
+  @extend %abs0;
+  bottom:0;
+  right:0;
+}
+.closeBtn{
+  color:white;
+  text-shadow:0 0 4px black;
+  &:hover{
+    cursor:pointer;
+    transform:scale(1.2,1.2);
+  }
+  &:active{
+    transform:scale(0.8,0.8);
+  }
+}
+%active0{
+  box-shadow:0 0 2px gray;
+  background:$deepColor;
+  color:$bgColor;
+}
+.btn0{
+  display:inline-block;
+  box-sizing:border-box;
+  outline:none;
+  padding:10px;
+  background:transparent;
+  transition:all 0.3s;
+  @extend .box-1;
+  &[disabled]{
+    color:$color;
+    box-shadow:none;
+  }
+  &:hover{
+    background:$lightColor;
+    cursor: pointer;
+  }
+}
+.btn0[disabled]:hover{
+  box-shadow:none;
+  background:transparent;
+  cursor:not-allowed;
+}
+.btn-shd,.btn-default2:hover{
+  background:$lightColor;
+  box-shadow:$shd1;
+}
+.btn-default2{
+  box-shadow:$shd2;
+  border:1px solid white;
+  color:gray;
+  text-shadow: none;
+  background:white;
+  cursor:pointer;
+  transition:all 0.4s;
+  &:active,&.active{
+    background:$color;
+  }
+}
+
+.listItem{
+  transition:all 0.3s;
+  &:hover{
+    background:$lightColor;
+    box-shadow:$shd2;
+    z-index:1;
+  }
+}
+.btn0-inverse{
+  @extend .btn-default2;
+  @extend .btn-shd;
+  &:hover{
+    background:$remindColor;
+  }
+  &.active{
+    @extend %active0;
+  }
+}
+
+.btn-group2{
+  .btn0{float:left;}
+  &:after{
+    content:'';
+    clear:both;
+    display:table;
+  }
+}
+.rgBtn:hover{
+  cursor:pointer;
+  color:$bgColor;
+  background:rgba(0,0,0,0.8)
+}
+
+
+.btn-min{
+  padding:3px;
+}
+
+$remindColor2:transparentize($shadowColor,0.5);
+.remindBg{
+  background:$remindColor2;
+}
+.blur{
+  filter:blur(2px);
+  background: $bgColor;
+  opacity:0.4;
+}
+.cover{
+  @extend .blur;
+  z-index:1;
+  transition:all 0.3s ease;
+}
+.coverH:hover{
+  @extend .blur
+}
+.dropdown-item{
+  margin-top:3px;
+}
+.dropdown-item:hover{
+  background:$color;
+  border-radius:$borderRadius;
+}
+

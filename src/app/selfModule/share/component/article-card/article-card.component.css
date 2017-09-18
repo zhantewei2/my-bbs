@@ -1,0 +1,14 @@
+
+.f1{
+  width:100%;
+  padding:1rem 0;
+}
+.badge{
+  padding:5px;
+}
+i{
+  padding:0 5px;
+}
+:host{
+  padding-right:0;
+}

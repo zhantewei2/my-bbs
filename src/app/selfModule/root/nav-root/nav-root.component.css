@@ -1,0 +1,11 @@
+nav{
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+nav li{
+  color:white;
+}
+:host{
+    display:block;
+
+}

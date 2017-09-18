@@ -1,0 +1,18 @@
+ <div class="w-100" style="padding:0">
+    <div class="w-100 column " *ztwFor="let i in _ts.cgs">
+      <div >
+        <div style="width:250px" class="parent p-2 bg-info text-white">
+          <a>
+            <i class="fa fa-bookmark"></i>
+            <span>{{i.name}}</span>
+          </a>
+          <div style="position:absolute;right:0;top:0;border:19px solid transparent;border-right-color:white;width:0;height:0">
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap">
+        <plate-card *ztwFor="let rg in i.rgs" [plateMsn]="rg" [cg]="i.id"></plate-card>
+      </div>
+      <hr>
+    </div>
+  </div>

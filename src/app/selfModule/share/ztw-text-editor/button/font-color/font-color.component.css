@@ -1,0 +1,10 @@
+.color{
+  display:block;
+  width:0.6rem;
+  height:0.5rem;
+  box-shadow: 0 1px 3px gray;
+  border-radius:2px;
+}
+:host{
+  border:1px solid transparent;
+}

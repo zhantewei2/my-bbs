@@ -1,0 +1,44 @@
+<div  class="m-3 d-flex card-3 listItem">
+  <div (click)="click()" class="center p-2">
+    <img [class.img2]="_res.value=='sm'" class='img1 ml-2 box-1 coverH listItem' [src]="putImg(msn.cover.img)">
+    <b class="mt-1" [hidden]="_res.value!='sm'">{{msn.name}}</b>
+  </div>
+  <div style="flex:1" class="m-2 parent">
+      <h5 [hidden]="_res.value=='sm'" class="p-2 text-center">
+        <b>{{msn.name}}</b>
+      </h5>
+      <div class="row">
+        <div *ngIf="_res.value!='sm'" class="col-4">
+          <article class="px-2 text-sm">
+            <i class="fa fa-book mr-1"></i>
+            {{msn.cover.c}}
+          </article>
+        </div>
+        <dl [ngClass]="_res.value=='sm'?'text-sm col-12 center mt-2':'col-8'">
+          <div class="px-2">
+            <article *ngIf="_res.value=='sm'">
+              <i class="fa fa-book mr-1"></i>{{msn.cover.c}}
+            </article>
+            <div class="mt-1">今日新贴:
+              <b class="badge badge-info">{{msn.todayA}}</b>
+            </div>
+            <div class="mt-1">今日活跃贴:
+            <b class="badge badge-default">{{msn.todayAc}}</b>
+            </div>
+            <div class="mt-1">总贴数:
+            <b class="badge badge-default">{{msn.totalA}}</b>
+            </div>
+          </div>
+        </dl>
+      </div>
+      <ng-container *ngIf="_res.value=='sm'" [innerTemplate]="enter"></ng-container>
+    <ztw-loading [bind]="loading" pos="full" transparent="0.5"></ztw-loading>
+  </div>
+  <ng-container *ngIf="_res.value!='sm'" [innerTemplate]="enter"></ng-container>
+</div>
+<ng-template #enter>
+  <div (mouseenter)="isEnter=true" [ngClass]="_res.value=='sm'?'nav2':'nav1'" (mouseleave)="isEnter=false" [class.bright]="!isEnter" (click)="click()" class="parent hover center bright">
+    <i [@SlideTopToggle] *ngIf="!isEnter;else other" class="mid fa fa-angle-double-right"></i>
+    <ng-template #other><i [@SlideTopToggle] class="mid fa fa-arrow-circle-right"></i></ng-template>
+  </div>
+</ng-template>

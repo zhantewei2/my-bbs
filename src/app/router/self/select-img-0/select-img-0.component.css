@@ -1,0 +1,11 @@
+.selectImg:hover{
+  border:1px solid red;
+  box-shadow: 0 0 3px lightcoral;
+}
+.upBtn{
+  width:6rem;
+  height:6rem;
+}
+.upIcon{
+  font-size:4rem;
+}

@@ -1,0 +1,30 @@
+<div class="card-block" (click)="$event.stopPropagation()">
+  <div *ngIf="user.name;else login">
+    <user-card [user]="user"></user-card>
+    <div class="row justify-content-around mt-4">
+      <button (click)="_rs.nav.close()" routerLink='/user' class="btn btn-sm btn-outline-primary"> 个人信息</button>
+      <button (click)="logout()" class="btn btn-sm btn-outline-primary">退出</button>
+      <button routerLink="/admin6" *ngIf="user.type=='admin'" class="btn btn-sm btn-danger"> manage</button>
+    </div>
+  </div>
+  <ng-template #login>
+    <form [formGroup]="formGroup">
+      <div>
+        <ztw-loading color="primary" [transparent]="0.5" [bind]="_ts.loading.login" pos="full"></ztw-loading>
+        <div>
+          <div class="form-group" *ngFor="let i of formData">
+            <label>{{i.label}}</label>
+            <input [type]="i.type" (focus)="_ts.err.login?_ts.err.login=false:0;" class="form-control" [formControlName]="i.name">
+          </div>
+        </div>
+      </div>
+        <ztw-side-vf-package height="200px" [bindValid]="formGroup.valid" (pass)="passVf=$event" #vf></ztw-side-vf-package>
+        <ztw-alert [show]="_ts.err.login" type="danger" (close)="resetForm()"><i class="fa fa-warning"></i>account or password error!</ztw-alert>
+        <div class="row justify-content-around">
+          <button [disabled]="!formGroup.valid || _ts.err.login ||!passVf" class="btn btn-outline-primary" (click)="submit();vf.reset()">提交</button>
+          <button class="btn btn-outline-primary" (click)="resetForm();vf.reset()">重设</button>
+        </div>
+        <div class="text-right mt-2"><i routerLink="/register" class="badge badge-primary cursor">注册?</i></div>
+    </form>
+  </ng-template>
+</div>

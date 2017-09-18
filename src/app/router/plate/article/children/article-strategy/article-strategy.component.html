@@ -1,0 +1,53 @@
+<div [ngSwitch]="pattern" class="m-2">
+
+  <nav class="card-3 m-3" style="color:gray">
+    <span [ngClass]="lock?(pattern=='rv'?'text-success':'text-warning'):'text-info'">
+      <i [hidden]="lock===undefined" class="fa" [ngClass]="lock?'fa-lock':'fa-unlock'"></i>
+      <b class="ml-1">{{title}}</b>
+    </span>
+    <i class="fa fa-refresh fa-spin text-success" [hidden]="!running"></i>
+    <div class="p-2" *ngIf="pattern=='c'&&stg" [innerTemplate]="payTp"></div>
+  </nav>
+  <div>
+    <div *ngSwitchCase="'rv'">
+      <button (click)="_as.openReply()" class="ml-2 btn btn-success">
+          <i class="fa fa-hand-o-right"></i>
+          <b>点此回复</b>
+      </button>
+    </div>
+    <div *ngSwitchCase="'p'" class="p-4">
+      <a [innerTemplate]="payTp"></a>
+      <p class="mt-2">
+        <button  (click)="put(stg.p.g)" class="btn-warning btn"><i class="mr-1 fa fa-handshake-o"></i>确认支付</button>
+      </p>
+    </div>
+    <div  *ngSwitchCase="'v'">
+      <div class="p-2"><i class="text-info fa fa-bar-chart"></i>主题：
+        <span class="sign">{{stg.v.n}}</span>
+      </div>
+      <div class="text-sm m-2">参与人数：<kbd>{{voteNum}}</kbd>得票最多：<var>{{maxVoteN}}</var></div>
+      <table class="full">
+        <tr *ngFor="let i of voteList" class="mb-1">
+          <td (click)="put(i.name,true)" align="center" class="btn0-inverse px-2">
+            {{i.name}}
+          </td>
+          <td style="width:100%">
+            <ztw-progress-bar showValue="true" type="success" [max]="maxVote" [value]="i.value">{{i.value}}</ztw-progress-bar>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div *ngSwitchCase="'c'" class="ml-3">
+      <div [innerHTML]="content"></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #payTp>
+
+  <small>
+    支付{{gN}}为:<kbd>{{stg.p.g}}</kbd>
+    已购买人数：<kbd>{{stg.p.t||0}}</kbd>
+    </small>
+
+</ng-template>

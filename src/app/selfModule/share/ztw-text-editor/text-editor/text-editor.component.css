@@ -1,0 +1,77 @@
+div[contenteditable]{
+  overflow: auto;
+}
+.container1{
+  border:1px solid gainsboro;
+  padding:5px 0 5px 5px;
+  border-radius:5px;
+  color:black;
+}
+.txt2{
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:300px;
+  width:100%;
+  background:rgba(255,255,255,0.8);
+  display:flex;
+}
+.topBtn{
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+}
+:host{
+  display:inline-block;
+}
+:host /deep/ .mr1{
+  margin-right:1rem;
+}
+:host /deep/ .input{
+  height:1.5rem;
+  outline:none;
+  padding:2px;
+  border:1px solid gainsboro;
+  border-radius:5px;
+  margin-left:5px;
+  background:transparent;
+}
+:host /deep/ button,.full,.container1{
+  outline:none;
+}
+
+:host /deep/ .dbBtn:hover{
+  border:1px solid gainsboro;
+}
+:host /deep/ .dbBtn{
+  border:1px solid transparent;
+}
+
+:host /deep/ .muted{
+  color:gray;
+  font-size:12px;
+}
+
+:host /deep/ .btn-icon{
+  border-width:0;
+  font-size:1rem;
+}
+
+:host /deep/ .btn2{
+  height:100%;
+  background:transparent;
+  padding:0 4px;
+  outline:none;
+  font-size:1rem;
+  border-width:0;
+}
+:host /deep/ .btn2:hover{
+  cursor:pointer;
+  background:gainsboro;
+}
+
+.btn0:hover{
+  background:#ddd;
+}
+

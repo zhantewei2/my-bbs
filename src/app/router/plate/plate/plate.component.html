@@ -1,0 +1,44 @@
+<div>
+  <button class="btn btn-info" (click)="_rs.navToPublish(cgId,rgId)">
+    <i class="fa fa-pencil"></i>
+    Publish</button>
+</div>
+<div class="box-1 parent frame p-4 m-1 pl-5" *ngIf="showNtf&&briefContent" [@Fade]>
+  <span [innerHTML]="briefContent|trustHtml"></span>
+  <small class="abs sign">公告</small>
+  <i class="close0 closeBtn" (click)="showNtf=false">&times;</i>
+</div>
+<h5 (click)="_rs.navToPublish(cgId,rgId)" class="box-1 center listItem m-3" style="height:350px;" *ngIf="isEmpty">
+  没有帖子！点此成为本版块第一个发帖的人。
+  <i style="font-size:2rem" class="mt-2 fa fa-pencil-square"></i>
+</h5>
+<div *ngIf="rcPlates&&rcPlates.length">
+  <div class="between">
+    <div (click)="showRc=!showRc" class="sign hover roBtn m-2 between text-info">
+      <div class="center px-2">推荐贴</div>
+      <span>
+        <i class="rgBtn-icon fa fa-chevron-{{showRc?'down':'up'}}"></i>
+      </span>
+    </div>
+  </div>
+</div>
+<div *ngIf="showRc">
+  <article-card *ngFor="let i of rcPlates;index as index" [id]="setId(-1,index)" [parent]="this" [rgId]="rgId" [cgId]="cgId" [msn]="i"></article-card>
+</div>
+<article-load-btn [state]="pageLoad"></article-load-btn>
+<ztwScroll baseLine="60" (event)="scrollEvent($event)" #myScroll [(ngModel)]="scrollVal">
+  <div *ngFor="let plate of plates" [ztwScrollControl]="plate.p">
+    <div class="m-2">
+      <samp class="sign box-1 text-info text-lg">
+        <i class="fa fa-bookmark"></i>P{{plate.p}}
+      </samp>
+    </div>
+    <div class="ztwBlock list-group">
+      <article-card [parent]="this" [id]="setId(plate.p,index)" [msn]="i" *ngFor="let i of plate.v;index as index" [rgId]="rgId" [cgId]="cgId"> </article-card>
+    </div>
+  </div>
+</ztwScroll>
+<ng-container *ngIf="_reload||(_bp&&_bp.nowPage)">
+  <btn-scroll-nav (refresh)="reLoad(true)" (select)="myScroll.scrollTo($event)" [bound]="bp0?.bound" #navBtn (result)="goPage($event)" [nowPage]="_bp.nowPage" [pages]="_bp.pages"></btn-scroll-nav>
+</ng-container>
+

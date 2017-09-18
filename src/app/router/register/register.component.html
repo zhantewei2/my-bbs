@@ -1,0 +1,8 @@
+
+<div>
+  <register-form #form (register)="register($event)" class="loadHid">
+  </register-form>
+  <ztw-loading [bind]="running" [transparent]="0.5" pos="full" size="3rem"></ztw-loading>
+</div>
+<ztw-modal #modal [content]="{content:'msn:'+acceptMsn,btnType:'double'}" (confirm)="$event&&redirect()">
+</ztw-modal>

@@ -1,0 +1,15 @@
+ <span (mouseenter)="mydrop.open()" (mouseleave)="mydrop.close()" #mydrop="ztw-dropdown" class="btn btn-default2" pure="1" ztw-dropdown placement="tpLeft">
+   <i class="fa fa-th-large"></i>
+   <div style="overflow:hidden" [@Width] class="grow" *ztw-dropdown-menu>
+     <button (click)="reply()" class="btn btn0-inverse">回复</button>
+     <button (click)="_as.state.hidPagination=!_as.state.hidPagination" class="btn btn0-inverse center p-2 px-3" style="font-size:10px">
+       <a>{{_as.state.hidPagination?'显示':'隐蔽'}}</a>导航
+     </button>
+     <button (click)="_as.ztwScroll.scrollTo('ztw_top')" class="btn btn-default2 btn0-inverse fa fa-arrow-up"></button>
+   </div>
+ </span>
+
+
+<ng-template #box>
+
+</ng-template>

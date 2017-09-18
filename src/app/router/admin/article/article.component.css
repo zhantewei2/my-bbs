@@ -1,0 +1,24 @@
+:host /deep/ .headImg{
+  width:120px;
+}
+:host /deep/ .close{
+  position:absolute;
+  top:0;
+  right:10px;
+}
+
+:host /deep/ .hasChange{
+  background:rgba(255,0,0,0.2);
+  transition:background 0.3s ease;
+}
+.invalid{
+ background:indianred;
+}
+input{
+  outline:none;
+
+  width:100%;
+  margin:5px 0;
+}
+.bg-primary{color:white}
+.btn{font-weight: bold}

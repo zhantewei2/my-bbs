@@ -1,0 +1,104 @@
+$tpBgColor:black;
+$tpWidth:5px;
+$minW:70px;
+@mixin Animate($name,$line:0.2s ease-out){
+  animation:$name $line;
+}
+
+@keyframes Left{
+  from {transform:translateX(-50%);opacity:0}
+  to{}
+}
+@keyframes Right{
+  from {transform:translateX(50%);opacity:0}
+  to{}
+}
+.leftFade{
+  @include Animate(Left)
+}
+.rightFade{
+  @include Animate(Right)
+}
+.hid0{
+  visibility:hidden;
+  top:0;
+  left:0;
+}
+%tpAfter{
+  content:'';
+  position:absolute;
+  display:block;
+  border:$tpWidth solid transparent;
+  width:0;
+  height:0;
+}
+.tpContainer{
+  z-index:10000;
+  box-sizing:border-box;
+  display:block;
+  text-align:center;
+  position:absolute;
+}
+%tooltip{
+  min-width:$minW;
+  padding:$tpWidth;
+  background: $tpBgColor;
+  border-radius:$tpWidth;
+  color:white;
+}
+.tpParent{
+  position:relative;
+}
+.tpParent:hover .tpChild{
+  display:block;
+}
+.tpShow{
+  display:none;
+}
+.tpParent:hover .tpShow{
+  display:block;
+}
+.tpChild{
+  @extend .tpContainer;
+  @extend %tooltip;
+  display:none;
+}
+.tpTop{
+  top:-$tpWidth*1.5;
+  transform:translate(-50%,-100%);
+  left:50%;
+}
+.tcTop{
+  @extend .tpContainer;
+  @extend %tooltip;
+  margin-bottom:$tpWidth*1.5;
+}
+.tpTop::after,.tcTop::after{
+  @extend %tpAfter;
+  bottom:-$tpWidth*2;
+  left:50%;
+  margin-left:-$tpWidth;
+  border-top:$tpWidth solid $tpBgColor;
+}
+.tpBottom{
+  @extend .tpContainer;
+  bottom:-$tpWidth;
+  position:absolute;
+  transform:translate(0,100%);
+}
+.tpBottom1{
+  @extend .tpBottom;
+  right:0;
+}
+.tpBottom2{
+  @extend .tpBottom;
+  left:50%;
+  transform:translate(-50%,100%);
+}
+.tpLeft{
+  @extend .tpContainer;
+  left:0;
+  top:50%;
+  transform:translate(-100%,-50%);
+}
+

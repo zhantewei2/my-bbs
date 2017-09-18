@@ -1,0 +1,30 @@
+<div [class.titleNav]="showIcon" class="text-white nav mb-2 bg-primary between p-2" style="overflow:hidden">
+    <span>
+      <span (click)="_rs.nav.sideNav()" [@Width] class="titleBtn cursor" *ngIf="showIcon">
+        <i class="fa fa-navicon"></i>
+      </span>
+      <b class="p-3 rgBtn" (click)="back()">
+        {{_as.rgMsn.rgName}}
+        <i class="rgBtn-icon fa fa-chevron-right"></i>
+      </b>
+        <a class="cursor h5 ml-3" [ztwTooltip]="share" pure="rightFade" placement="right" type="oc">
+          {{_as.title}}
+        </a>
+    </span>
+  <span class="hidden-lg-down">
+    <div>
+      <button class="btn btn-primary btn-sm">收藏</button>
+      <button (click)="_as.openReply()" class="btn btn-primary btn-sm">
+        <i  class="fa fa-comment-o fa-flip-horizontal"></i>
+        回复
+      </button>
+    </div>
+  </span>
+</div>
+
+
+<ng-template #share>
+  <span [clickCopy]="href0" (complete)="_ts.alert('已复制本网址')" class="mx-1 hover text-white listItem">
+    <i class="fa fa-external-link"></i>
+  </span>
+</ng-template>

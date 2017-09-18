@@ -1,0 +1,47 @@
+<div class="row full">
+  <div class="col-2 text-sm">
+    <var class="badge badge-default">{{i.s}}</var><br>
+    <span [hidden]="!i.isRead" style="opacity:0.5" class="hidden-lg-up badge badge-warning mt-1">
+      <a class="fa fa-tag" ></a>
+       已阅
+    </span>
+  </div>
+  <div class="col-lg-4 col-6 ">{{i.t}}
+    <small>
+      <i [hidden]="!isHot" class="badge badge-danger">hot!!</i>
+      <i [hidden]="!isNew" class="badge badge-success">new!!</i>
+      <i *ngIf="i.or&&i.or.rc" ztwTooltip="版主推荐" class="fa fa-thumbs-up text-warning">
+      </i>
+    </small>
+  </div>
+  <div class="col-2 text-sm hidden-md-down">
+    <div>{{(i.or&&i.or.lrn)||i.au.n}}</div>
+    <div>{{i.lrd |time}}</div>
+  </div>
+  <div class="text-sm col-2 hidden-md-down center">
+    {{i.rps}}/{{i.rds}}
+  </div>
+  <div class="col-lg-2 col-4 text-sm text-center center box-1">
+    <div class="full"><i class="fa fa-user-o mr-1"></i>{{i.au.n}}</div>
+    <div class="full">{{i.cd |time}}</div>
+  </div>
+</div>
+<div class="text-sm f1 row pt-1 hidden-lg-up full">
+  <div class="col-2 center">
+
+  </div>
+  <div class="col-7">
+    <i class="fa fa-comment-o"></i>
+    {{i.lrd|time}}
+  </div>
+  <span class="ft sign">
+    <i class="fa fa-comments-o"></i>{{i.rps}}
+    <i class="fa fa-eye"></i>{{i.rds}}
+  </span>
+</div>
+
+
+<span [hidden]="!i.isRead" class="hidden-md-down ir badge badge-info">
+  <span ztwTooltip="已经看过了"><a class="fa fa-tag" ></a>已阅
+  </span>
+</span>

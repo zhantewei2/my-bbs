@@ -1,0 +1,8 @@
+<div class="media" *ngIf="user" >
+  <img (click)="hostClick.emit()" class="cursor img-thumbnail mr-2"  [src]="user.head">
+  <div class="media-body">
+    <h6>{{user?.nickN}}</h6>
+    <star-level [user]="user"></star-level>
+
+  </div>
+</div>

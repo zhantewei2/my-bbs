@@ -1,0 +1,15 @@
+<div *ngIf="img">
+  <div class="card">
+    <p class="card-header"> 您的头像将改变为:</p>
+    <div class="card-block">
+      <user-card [user]="user2"></user-card>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+      <button (click)="back()" class="btn btn-outline-primary"><i class="fa fa-mail-reply mr-1"></i>重新选择 </button>
+      <span>
+        <ztw-loading  [bind]="_ts.loading.changeHead"></ztw-loading>
+        <button [disabled]="_ts.loading.changeHead||(oldName==sysName)" (click)="confirm()" class="btn btn-outline-primary">确认</button>
+      </span>
+    </div>
+  </div>
+</div>

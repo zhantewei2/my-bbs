@@ -1,0 +1,116 @@
+
+<nav class="my-2">
+  <button (click)="_rs.back()" class="btn btn-outline-primary">
+    <i class="fa fa-mail-reply"></i>
+    <span >{{mfPattern?'取消修改并返回':'返回'+posObj.rgName}}</span>
+  </button>
+</nav>
+<label class="pl-2">文章标题</label>
+<div class="input-group form-group" [ngClass]="{'has-danger':!titleControl.valid&&titleControl.dirty}">
+<button class="btn btn-primary" placement="tpBottom2" ztw-dropdown>
+  {{start}}
+  <div *ztw-dropdown-menu style="width:100px">
+      <span (click)="start=i" class="dropdown-item" *ngFor="let i of startCg">{{i}} </span>
+  </div>
+</button>
+
+
+  <input  [formControl]="titleControl" class="form-control form-control-danger">
+
+</div>
+<label class="mt-2 pl-2 between">正文
+  <span [@Fade] *ngIf="showStore">
+    <span class="text-sm">自动储存.....</span>
+   <i  class="fa fa-spin fa-circle-o-notch"></i>
+  </span>
+  <span class="badge badge-warning" *ngIf="_ps.selectName">
+    <i class="fa fa-check-square-o"></i>
+    {{_ps.selectName}}
+  </span>
+</label>
+<ztw-alert class="text-sm" type="warning" [show]="showWarn" (close)="closeW()">
+  您有一篇于{{preDraft?.d |date:'y-M-d h:m'}}自动保存的草稿，是否立即恢复
+  <span class="btn btn-warning btn-sm" (click)="setMsn(preDraft);closeW()">确定</span>
+  <span class="btn btn-warning btn-sm" (click)="closeW()">取消</span>
+</ztw-alert>
+<div class="parent edit1">
+  <ztw-text-editor style="width:100%;height:600px" #textEditor disUpload="true">
+    <my-strategy textEditorBtn>11</my-strategy>
+  </ztw-text-editor>
+  <div  class="draft center" [@SlideX]="showDraft?'show':'hidden'">
+    <div outclick (outClick)="closeEditDf()" class="sideCard parent">
+      <button (click)="draftEdit()" class="btn btn1 btn-info" style="opacity:0.5">
+        <i class="fa fa-caret-{{showDraft?'right':'left'}}"></i>
+      </button>
+      <div class="card-header bg-info text-white">
+        恢复草稿
+      </div>
+      <div class="list-group w-100">
+        <button [disabled]="!draft" (click)="ensureDf(draft)" class="btn btn-outline-info">
+          <span *ngIf="draft;else noDraft">
+            <div >
+              最近保存
+              <small>{{draft.title|limitStr}}</small>
+            </div>
+            <div class="text-muted">
+              时间:{{draft?.d | date:'M/d H:m'}}
+            </div>
+          </span>
+          <ng-template #noDraft>
+            没有自动存档
+          </ng-template>
+        </button>
+        <li (click)="getDfs();showDrafts=!showDrafts" class="btn btn-outline-info">
+          <span><i class="fa fa-trash"></i>
+          我的草稿箱
+          </span>
+        </li>
+        <div *ngIf="showDrafts" [@Fade] class="w-100">
+          <div style="height:30px;overflow:hidden" class="parent w-100">
+            <div  class="grow abs w-100 btnGp" [@SlideXLine] *ngIf="!customDf.editing">
+              <div class="btn btn-info btn-sm" (click)="customDf.add()" >保存</div>
+              <div class="btn btn-info btn-sm" (click)="customDf.edit()"><i class="fa fa-pencil"></i>编辑</div>
+            </div>
+            <div class="btnGp abs grow w-100" [@SlideXLine] *ngIf="customDf.editing">
+              <div class="btn btn-info btn-sm" (click)="customDf.cfMf()">提交</div>
+              <div class="btn btn-info btn-sm" (click)="customDf.cancelEdit()">取消</div>
+            </div>
+          </div>
+          <div class="btn-group-vertical w-100">
+            <li (click)="customDf.editing?0:customDf.setDf(i.n)" *ngFor="let i of dfList" [class.btn-outline-info]="!customDf.editing" class="media btn">
+              <i *ngIf="!customDf.editing;else delIcon" class="fa fa-book text-lg"></i>
+              <ng-template #delIcon>
+                <button (click)="customDf.delI(i.n)" class="close"><i class="text-lg fa fa-window-close"></i></button>
+              </ng-template>
+              <div class="media-body">
+                {{i.n | limitStr}}
+                <div>{{i.d | date}}</div>
+              </div>
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="my-2">
+  <button [disabled]="!titleControl.valid" class="btn btn-outline-info" (click)="submit1(textEditor)">{{mfPattern?'确认修改':'提交'}}</button>
+
+</div>
+<footer-alert #alert></footer-alert>
+<ng-template #addDfTp>
+  <div class="form-group" [class.has-danger]="!dfNameControl.valid&&dfNameControl.dirty">
+    <label class="center">编辑内容将被储存,请输入另命名：</label>
+    <input [formControl]="dfNameControl" class="form-control form-control-danger">
+    <p class="center mt-4 text-sm text-muted">
+      <span>
+      <i class="fa fa-lightbulb-o"> </i>
+      仅储存五篇，超出以后，其最早一篇将被自动删除！
+      </span>
+    </p>
+  </div>
+  <div class="around">
+    <button [disabled]="!dfNameControl.valid"  (click)="customDf.confirm()" class="btn btn-outline-primary">确定</button>
+    <button (click)="customDf.cancel()" class="btn btn-outline-primary">取消</button>
+  </div>
+</ng-template>

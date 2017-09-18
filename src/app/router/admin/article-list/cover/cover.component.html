@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col column">
+    <div class="center w-100">
+      <img *ngIf="!isChangeImg;else upImg" class="imgCard" [src]="putImg(rgMsn.cover.img)">
+    </div>
+    <div>
+      <button [hidden]="isChangeImg" (click)="isChangeImg=!isChangeImg"  class="btn-primary btn-sm btn btn-block">更换图片</button>
+      <ztw-alert [show]="overSize" type="danger">图片不能超过200KB</ztw-alert>
+    </div>
+  </div>
+  <div class="col">
+    <label>封面简介</label>
+    <textarea #text="ngModel" [(ngModel)]="originContent" name="text" minRows="2" [limitLen]="[0,16]" class="form-control" [innerHTML]="rgMsn.cover.c">
+    </textarea>
+    <div class="btn-group btn-sm">
+        <button (click)="confirm()" [disabled]="!text.valid" class="btn btn-primary">submit</button>
+        <button (click)="originContent=rgMsn.cover.c" class="btn btn-primary">reset</button>
+        <button (click)="originContent=''" class="btn btn-primary">clear</button>
+    </div>
+  </div>
+</div>
+<ng-template #upImg>
+  <div *ngIf="!showImg" class="center">
+    <div class="imgCard center card-1 parent cursor">
+      <i class="text-lg fa fa-cloud-upload"></i>
+      上传
+      <input (change)="changeFile($event)" type="file" style="opacity:0" class="full abs">
+    </div>
+    <button [hidden]="imgDataUrl" class="btn btn-primary" (click)="destroyImg()">取消</button>
+    <span [hidden]="!imgDataUrl">
+      <button (click)="destroyImg()" class="btn btn-sm btn-danger">
+        <i class=" fa fa-unlink"></i>
+        撤销编辑
+      </button>
+      <button (click)='showImg=true' class="btn btn-sm btn-primary">
+        查看图片
+        <i class="fa fa-arrow-right"></i>
+      </button>
+    </span>
+  </div>
+  <div *ngIf="showImg" >
+    <img [src]="imgDataUrl" class="imgCard">
+    <p class="mt-2">
+      <button class="btn btn-warning btn-sm" (click)="showImg=false">
+        <i class="fa fa-arrow-left"></i>
+        返回重选
+      </button>
+      <span class="badge badge-info">已选定该图片</span>
+    </p>
+  </div>
+</ng-template>

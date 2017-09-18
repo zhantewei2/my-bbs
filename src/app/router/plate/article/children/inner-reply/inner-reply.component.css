@@ -1,0 +1,10 @@
+textarea{
+  width:100%;
+  resize:none;
+  line-height:120%;
+}
+:host{
+  display:block;
+  width:100%;
+  overflow:hidden;
+}

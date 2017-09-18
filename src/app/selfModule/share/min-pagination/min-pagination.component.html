@@ -1,0 +1,12 @@
+<p *ngIf="pages">
+  <button (click)="select(1,null)" [hidden]="_nowPage<=2" class="btn btn-sm btn-default2 fa fa-angle-double-left"></button>
+  <button (click)="select(_nowPage-1,'pre')" [disabled]="_nowPage<=1" class="btn btn-sm btn-default2 fa fa-caret-left">
+  </button>
+  <code class="text-sm">{{_nowPage}}</code>
+  <button (click)="select(_nowPage+1,'next')" [disabled]="_nowPage>=pages" class="btn btn-sm btn-default2 fa fa-caret-right">
+  </button>
+  <button (click)="select(pages,'end')" [hidden]="preventEnd||_nowPage>=pages-1" class="btn btn-sm btn-default2 fa fa-angle-double-right">
+  </button>
+  <small class="pl-2">共 <b>{{pages}}</b> 页</small>
+  <i [hidden]="!loading" class="fa fa fa-spinner fa-spin"></i>
+</p>

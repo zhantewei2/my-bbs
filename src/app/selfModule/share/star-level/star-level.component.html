@@ -1,0 +1,18 @@
+
+<small>
+<div>
+  <span [ztwTooltip]="gN+_user.gold">
+  <i class="fa fa-btc"></i>
+  {{floor(_user.gold)}}
+  </span>
+</div>
+Lv{{level}}
+<span [innerHtml]="innerhtml">
+</span>
+</small>
+
+  <ztw-progress-bar [ztwTooltip]='tp' type="info" [value]="_user.ep" [max]="_user.needEp">
+  </ztw-progress-bar>
+<ng-template #tp>
+  <small>{{_user.ep+'/'+_user.needEp}}</small>
+</ng-template>

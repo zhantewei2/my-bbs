@@ -1,0 +1,5 @@
+<div class="main center" [@SlideTopToggle] *ngIf="showAlert">
+  <ztw-alert [type]="type" (close)="close()" show="true">
+    <span [innerHTML]="content"></span>
+  </ztw-alert>
+</div>

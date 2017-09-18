@@ -1,0 +1,16 @@
+<div class="parent clearfix">
+  <div style="float:left;" (click)="changeDate()" #timeList>
+    <span style="display:inline-block"  class="dateCard text-center" *ngFor="let i of dateObj.filedArr">
+      <div>{{i}}</div>
+      <div class="frame box-1">
+        <div (click)="add(i)" class="btnD"><i class="fa fa-chevron-up"></i></div>
+        <div>{{dateObj[i]}}</div>
+        <div class="btnD" (click)="reduce(i)"><i class="fa fa-chevron-down"></i></div>
+      </div>
+    </span>
+  </div>
+  <span class="absRight box-1 p-2 timeCard" *ngIf="result" style="float:left">
+    <span>{{result.toJSON()}}</span>
+    <button (click)="resetDate()" class="btn btn-sm btn-default2">&times; </button>
+  </span>
+</div>

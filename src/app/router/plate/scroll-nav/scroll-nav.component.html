@@ -1,0 +1,17 @@
+<nav class="column parent">
+  <button ngbTooltip="刷新" (click)="refresh.emit()" class="btn btn0-inverse">
+    <i [class.fa-spin]="loading" class="fa fa-refresh"></i>
+  </button>
+  <button (click)="go('pre')" class="btn btn0-inverse">
+    <i class="fa fa-arrow-circle-up"></i>
+  </button>
+  <div class="column">
+    <span (click)="select.emit(i)" [class.active]="i==_now" class="btn btn0-inverse" *ngFor="let i of btnArr">
+      {{i}}
+    </span>
+  </div>
+  <button (click)="go('next')" class="btn btn0-inverse">
+    <i class="fa fa-arrow-circle-down"></i>
+  </button>
+  <div *ngIf="loading" class="cover full abs"></div>
+</nav>

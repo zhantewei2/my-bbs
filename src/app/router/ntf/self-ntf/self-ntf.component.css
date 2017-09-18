@@ -1,0 +1,19 @@
+.main{
+  z-index:7;
+  width:350px;
+  min-height:100px;
+  position:fixed;
+  top:60px;
+  right:10px;
+  overflow:hidden;
+}
+:host /deep/ .right{
+  position:absolute;
+  right:0;
+  top:0;
+  display:block;
+}
+.noexists{
+  min-height:100px;
+
+}

@@ -1,0 +1,23 @@
+<div class="box-1 px-2 pt-2" style="margin:5px" *ngIf="show" [@SlideXToggle] (@SlideXToggle.done)="anDone()">
+  <textarea [hidden]="nextVf" ngModel #txt="ngModel" minRows="2" name="textarea" required rows="3" class="form-control">
+  </textarea>
+  <div [hidden]="!nextVf" class="center mt-2">
+    <ztw-side-vf-package (pass)="vfPass=true" [style.maxWidth.px]="580" height="150px" [bindValid]="nextVf"></ztw-side-vf-package>
+  </div>
+  <div class="text-right p-2 parent">
+    <span class="abs text-sm">
+      <b [hidden]="!otherAu"><b class="text-primary mr-1 fa fa-mail-reply fa-rotate-180"></b>{{otherAu?.name}}</b>
+      <b class="text-danger" style="opacity:0.5">{{error}}</b>
+    </span>
+    <ng-container *ngIf="!nextVf">
+      <button [disabled]="!txt.valid" (click)="submitC()" [class]="btn1">确认</button>
+      <button (click)="close1()" [class]="btn2">撤销</button>
+    </ng-container>
+    <ng-container *ngIf="nextVf">
+      <button (click)="_submit()" [disabled]="!vfPass" [class]="btn1">提交回复</button>
+      <button (click)="close1()" [class]='btn2'>撤销</button >
+    </ng-container>
+  </div>
+  <ztw-loading transparent="0.5" pos="full" [bind]="loading"></ztw-loading>
+</div>
+

@@ -1,0 +1,38 @@
+<div [hidden]="!_admin.isEdit">
+  <div class="d-flex justify-content-end btn-group">
+  <button (click)="nestedNav('default')" [hidden]="state=='default'" class="btn btn-success">
+    <i class="fa fa-hand-o-left"></i>
+  </button>
+  <button (click)="navI('recommand')"  class="btn btn-info">
+    {{state=='recommand'?'取消设置':'设置推荐文章'}}
+  </button>
+  <button (click)="navI('brief')" class="btn btn-warning">
+    {{state=='brief'?'取消设置':'版块简介'}}
+  </button>
+  <button ztw-dropdown #dropdown="ztw-dropdown" (click)="navI('cover')" class="btn btn-primary">
+    {{state=='cover'?'取消设置':'版块封面'}}
+    <div (click)="$event.stopPropagation()" style="width:500px;height:200px;color:black;cursor:default" *ztw-dropdown-menu>
+      <admin-plate-cover></admin-plate-cover>
+    </div>
+  </button>
+  </div>
+</div>
+<div *ngIf="isEmpty" class="box-1 center parent" style="height:350px">
+  没有帖子
+  <span (click)="isEmpty=false" class="text-lg close0 closeBtn">&times;</span>
+</div>
+<div >
+  <ng-container *ngIf="state!='brief';else brief">
+    <div (click)="_admin.isEdit||state=='recommand'?(state=='recommand'&&recommand.accept(i)):_admin.navToArticle(cgId,rgId,i._id)" class="btn0" style="position:relative;display:block" *ngFor="let i of articles">
+      <span (click)="removeArticle(i._id,i.t,i.au)" [hidden]="!_admin.isEdit" class="close btn-default2">&times;</span>
+      <article-card  preventNav="true" [msn]="i"></article-card>
+    </div>
+    {{state}}
+    <min-pagination preventEnd="true" [nowPage]="_bp.nowPage" [pages]="_bp.pages" (result)="getArticleList($event.page,$event.dr)"></min-pagination>
+  </ng-container>
+  <admin-recommand-list [begin]="state=='recommand'" #recommand [parent]="this" [@SlideRightToggle]="state=='recommand'?'show':'hidden'"></admin-recommand-list>
+  <ng-template #brief>
+    <admin-plate-brief [parent]="this"></admin-plate-brief>
+  </ng-template>
+
+</div>
