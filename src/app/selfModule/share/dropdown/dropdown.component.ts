@@ -15,6 +15,8 @@ export class ztwDropdown{
   menuControl:any;
   open=()=>this.menuControl.open();
   close=()=>this.menuControl.close();
+  toggle=()=>this.menuControl.isOpen?this.close():this.open();
+
 }
 
 @Directive({
@@ -28,6 +30,7 @@ export class dropDownMenu{
     public _tool:ToolService,
     private _el:ElementRef
   ){
+
     _drop.menuControl=this;
   }
 
@@ -37,10 +40,9 @@ export class dropDownMenu{
     const viewRef=this._vcr.createEmbeddedView(this._tp),
       node=viewRef.rootNodes[0],
       pm=this._drop.placement,
-      classArr=this._drop.pure?[]:['listItem','card-2'];
+      classArr=this._drop.pure?[]:['dropdown0','card'];
     classArr.push(pm?pm:'tpBottom1');
     node.classList.add.apply(node.classList,classArr);
-
     this.isOpen=true;
     this._tool.nextTick(()=>{
       this._tool.listenOnce(document,'click',this.close.bind(this));

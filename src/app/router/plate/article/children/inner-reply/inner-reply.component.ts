@@ -37,7 +37,7 @@ export class InnerReplyComponent implements OnInit {
   };
   as:any;
   @ViewChild('txt')txt;
-  btn2='btn btn-outline-primary btn-sm';
+  btn2='btn btn-primary btn-sm';
   btn1=this.btn2+' mr-2';
   otherAu:any;
   parent:any;

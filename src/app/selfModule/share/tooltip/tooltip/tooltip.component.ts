@@ -14,7 +14,7 @@ export class TooltipComponent implements OnInit {
   set pure(val){
     if(!val){
       this.node.classList.add('tcTop');
-      this.node.classList.add('leftFade');
+      this.node.classList.add('pop');
     }else if(typeof val=='string'){
       this.node.classList.add(val);
     }

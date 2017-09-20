@@ -9,7 +9,7 @@
 <div class="input-group form-group" [ngClass]="{'has-danger':!titleControl.valid&&titleControl.dirty}">
 <button class="btn btn-primary" placement="tpBottom2" ztw-dropdown>
   {{start}}
-  <div *ztw-dropdown-menu style="width:100px">
+  <div *ztw-dropdown-menu>
       <span (click)="start=i" class="dropdown-item" *ngFor="let i of startCg">{{i}} </span>
   </div>
 </button>
@@ -33,20 +33,21 @@
   <span class="btn btn-warning btn-sm" (click)="setMsn(preDraft);closeW()">确定</span>
   <span class="btn btn-warning btn-sm" (click)="closeW()">取消</span>
 </ztw-alert>
-<div class="parent edit1">
+<div class="parent edit1 bg-0">
   <ztw-text-editor style="width:100%;height:600px" #textEditor disUpload="true">
-    <my-strategy textEditorBtn>11</my-strategy>
+    <my-strategy textEditorBtn></my-strategy>
   </ztw-text-editor>
   <div  class="draft center" [@SlideX]="showDraft?'show':'hidden'">
     <div outclick (outClick)="closeEditDf()" class="sideCard parent">
-      <button (click)="draftEdit()" class="btn btn1 btn-info" style="opacity:0.5">
+      <button (click)="draftEdit()" class="btn btn1 btn-secondary opacity">
         <i class="fa fa-caret-{{showDraft?'right':'left'}}"></i>
       </button>
-      <div class="card-header bg-info text-white">
+      <div class="card-header bg-dark text-white">
         恢复草稿
       </div>
       <div class="list-group w-100">
-        <button [disabled]="!draft" (click)="ensureDf(draft)" class="btn btn-outline-info">
+        <div class="btn-group btn-group-vertical">
+        <button [disabled]="!draft" (click)="ensureDf(draft)" class="btn btn-outline-secondary">
           <span *ngIf="draft;else noDraft">
             <div >
               最近保存
@@ -60,24 +61,25 @@
             没有自动存档
           </ng-template>
         </button>
-        <li (click)="getDfs();showDrafts=!showDrafts" class="btn btn-outline-info">
+        <li (click)="getDfs();showDrafts=!showDrafts" class="btn btn-outline-secondary">
           <span><i class="fa fa-trash"></i>
           我的草稿箱
           </span>
         </li>
+        </div>
         <div *ngIf="showDrafts" [@Fade] class="w-100">
           <div style="height:30px;overflow:hidden" class="parent w-100">
             <div  class="grow abs w-100 btnGp" [@SlideXLine] *ngIf="!customDf.editing">
-              <div class="btn btn-info btn-sm" (click)="customDf.add()" >保存</div>
-              <div class="btn btn-info btn-sm" (click)="customDf.edit()"><i class="fa fa-pencil"></i>编辑</div>
+              <div class="btn btn-secondary btn-sm" (click)="customDf.add()" >保存</div>
+              <div class="btn btn-secondary btn-sm" (click)="customDf.edit()"><i class="fa fa-pencil"></i>编辑</div>
             </div>
             <div class="btnGp abs grow w-100" [@SlideXLine] *ngIf="customDf.editing">
-              <div class="btn btn-info btn-sm" (click)="customDf.cfMf()">提交</div>
-              <div class="btn btn-info btn-sm" (click)="customDf.cancelEdit()">取消</div>
+              <div class="btn btn-secondary btn-sm" (click)="customDf.cfMf()">提交</div>
+              <div class="btn btn-secondary btn-sm" (click)="customDf.cancelEdit()">取消</div>
             </div>
           </div>
           <div class="btn-group-vertical w-100">
-            <li (click)="customDf.editing?0:customDf.setDf(i.n)" *ngFor="let i of dfList" [class.btn-outline-info]="!customDf.editing" class="media btn">
+            <li (click)="customDf.editing?0:customDf.setDf(i.n)" *ngFor="let i of dfList" class="media btn btn-outline-secondary">
               <i *ngIf="!customDf.editing;else delIcon" class="fa fa-book text-lg"></i>
               <ng-template #delIcon>
                 <button (click)="customDf.delI(i.n)" class="close"><i class="text-lg fa fa-window-close"></i></button>

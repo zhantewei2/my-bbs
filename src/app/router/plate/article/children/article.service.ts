@@ -99,7 +99,7 @@ export class ArticleService {
       return this._us.post(this.url.reply,query,'reply1');
     },
     initPage:(articleData)=>{
-      this.replys=[];
+      //this.replys=[];
       this.title=articleData.t;
       this.breakPage.totals=articleData.rps;
       this.au=refer.transactionUser(articleData.user);
@@ -139,6 +139,7 @@ export class ArticleService {
     },
 
     getReply:(index:any,hasFilter=false,first=false,force?)=>{
+
       let method=this.method;
       let i=hasFilter?index:method.filterIndex(index);
       if(!i)return Promise.resolve(false);
@@ -155,6 +156,7 @@ export class ArticleService {
         if(first||i==1) {
             this.getHomePage(offset0,(v) => {
               if(!v)return resolve(v);
+
               if(offset0==1)v.r.unshift(v.d);
               method.initPage(v.d);
               resolve(v.r);
@@ -207,17 +209,16 @@ export class ArticleService {
   reply:any={
     show:false
   };
-  openReply=()=>{
-    this.reply.show=true;
-  };
-  closeReply=()=>{
-    this.reply.show=false;
-  };
+  openReply=()=>this.reply.show=true;
+
+  closeReply=()=>this.reply.show=false;
+
   getHomePage:any=(start,cb)=>{
     const next=()=>this.cacheTool.getPage(start,v=>cb(v));
     if(!this.cacheTool){
       this._db.isInit().then(()=>{this.cacheTool=new CacheArticle(this,this._db.db);next()})
     }else{next()}
+
   };
   resetScroll(t=1){
     setTimeout(()=>{this.ztwScroll.calControls()},t);
@@ -235,6 +236,7 @@ export class ArticleService {
     this._rs.navToPublish(msn.cgId,msn.rgId,data);
   }
   refresh=()=>{
+    this.method.state=1;
     this.method.getReply(1,true,true,true);
     this.stg=null;
   };

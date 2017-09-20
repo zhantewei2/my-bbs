@@ -1,8 +1,9 @@
-@import 'sass/animateBtn';
-@import 'sass/tooltip.scss';
-body{
-  font-size:1rem;
+html{
+  font-size:15px;
 }
+@import 'sass/animateBtn';
+@import 'sass/tooltip';
+@import 'sass/screen';
 @for $i from 1 through 4{
   .space-#{$i}{
     width:1rem*$i;
@@ -86,7 +87,8 @@ body{
 .hover:hover{
   transition:all 0.3s;
   cursor:pointer;
-  background:rgba(255,255,255,0.4);
+  box-shadow: $shd2;
+  background:rgba($bgColor,0.1);
   &:active{
     color:black;
   }
@@ -94,6 +96,9 @@ body{
 ztw-text-editor a[href]{
   color:blue;
   text-decoration:underline;
+}
+.opacity{
+  opacity:.5;
 }
 div,span{
   box-sizing:border-box;
@@ -113,3 +118,4 @@ div,span{
 article{
   word-break:break-all;
 }
+

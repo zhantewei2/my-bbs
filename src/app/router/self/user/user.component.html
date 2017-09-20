@@ -7,10 +7,10 @@
   <div class="media-body">
     <h5>{{user.nickN}}</h5>
     <star-level [user]="user"></star-level>
-    <p class="mt-2">
+    <div class="my-2 d-flex flex-wrap">
     <span class="sign mx-2">发帖数:{{user.st.a||0}}</span>
     <span class="sign mx-2">回帖数:{{user.st.r||0}}</span>
-    </p>
+    </div>
     <div class="text-sm">
       出生日期 {{user.st.b|date:'short'}}
     </div>

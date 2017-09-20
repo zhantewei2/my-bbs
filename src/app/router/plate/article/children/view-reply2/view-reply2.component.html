@@ -29,7 +29,7 @@
   <article  class="media">
     <div class="mx-2">
       <div ><i class="fa fa-user-o pr-1"></i>
-        <code (click)="reply(vcr,{id:id,name:n})" class="text-sm listItem">{{n}}</code>
+        <span (click)="reply(vcr,{id:id,name:n})" class="text-sm badge hover">{{n}}</span>
       </div>
       <samp class="text-sm ml-4">
         {{t |time}}

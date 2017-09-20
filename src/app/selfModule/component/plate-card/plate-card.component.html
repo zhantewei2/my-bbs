@@ -14,7 +14,8 @@
             {{msn.cover.c}}
           </article>
         </div>
-        <dl [ngClass]="_res.value=='sm'?'text-sm col-12 center mt-2':'col-8'">
+        <dl class="text-sm" [ngClass]="_res.value=='sm'?'col-12 center mt-2':'col-8'">
+
           <div class="px-2">
             <article *ngIf="_res.value=='sm'">
               <i class="fa fa-book mr-1"></i>{{msn.cover.c}}

@@ -45,8 +45,8 @@ export class ScrollVfComponent implements OnInit {
   ngOnInit(){
     // drag block :
     let block=this.block.nativeElement,
-      body=document.querySelector('body'),
       width,parentLeft,x;
+
     this.moveDestroy=this._tool.ztwMove(block,
       ()=>{
         parentLeft=block.parentNode.getBoundingClientRect().left;

@@ -1,5 +1,4 @@
 import {Directive,Input,ElementRef,Output,EventEmitter} from '@angular/core';
-import {ScrollComponent} from './scroll.component';
 import {ztwScrollParent} from './scroll.service';
 @Directive({
 	selector:'[ztwScrollControl]'

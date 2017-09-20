@@ -1,0 +1,21 @@
+$screen:(
+  sm:max 768px,
+  md:max 1200px,
+  lg:min 1200px
+);
+$replyW:(
+  md:80% 10%,
+  sm:100% 0,
+  lg:50% 25%,
+);
+@each $abbrev,$val in $replyW{
+  $result:map-get($screen,$abbrev);
+  $limit:nth($result,1);
+  $size:nth($result,2);
+  @media screen and (#{$limit}-width:$size){
+    .replyWidth{
+      width:nth($val,1);
+      left:nth($val,2);
+    }
+  }
+}

@@ -32,7 +32,10 @@ export class VoteComponent implements OnInit {
     if(rId)q2.rId=rId;
     const query:voteQuery=Object.assign(q1,q2);
     let db=this._as._db.db;
+
     db.use('vote',{keyPath:'key'}).then(model=>{
+      console.log(model)
+
       let newQuery:any=Object.assign({},query);
       delete newQuery.rgId;
       newQuery.u=this._as.baseParams.auId;
@@ -59,6 +62,7 @@ export class VoteComponent implements OnInit {
           this.running=false;
         }
       })
+
     });
 
   }

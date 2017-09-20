@@ -6,7 +6,7 @@
         <li [routerLink]="['/']" class="nav-item nav-link">Boot</li>
       </nav>
       <div class="row">
-        <button [hidden]="!_ts.userMsn.name" (outClick)="_remind.closeNtf()" outclick (click)="_remind.toggleNtf()" [class.remind1]="user.ntfSelf>0" class="remind1 parent btn-primary mr-3 btn rounded-circle" [routerLink]="[{outlets:{popup:['ntf']}}]">
+        <button [hidden]="!_ts.userMsn.name" (outClick)="_remind.closeNtf()" outclick (click)="_remind.toggleNtf()" [class.remind1]="user.ntfSelf>0" class="remind1 parent btn-primary mr-3 btn" [routerLink]="[{outlets:{popup:['ntf']}}]">
           <i class="fa fa-bell-o"> </i>
           <small [hidden]="user.ntfSelf==0" class="abs">{{_ts.userMsn.ntfSelf}}</small>
         </button>
@@ -16,7 +16,7 @@
               <a *ngIf="(user&&user.name);else login">{{user.name|limitStr}}</a>
               <ng-template #login>LOGIN</ng-template>
             </button>
-              <div style="width:250px;color:black;" *ztw-dropdown-menu>
+              <div style="width:250px" *ztw-dropdown-menu>
                 <user-msn-min></user-msn-min>
               </div>
             </span>
@@ -25,7 +25,7 @@
     </nav>
 </fix-container>
 
-<app-side-nav #sideNav width="350" [tp]="sideRight">
+<app-side-nav #sideNav width="300" [tp]="sideRight">
 
 </app-side-nav>
 <ng-template #sideRight>

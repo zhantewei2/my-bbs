@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,ViewChild } from '@angular/core';
 import {ArticleService} from '../children/article.service';
 import {width} from 'app/selfModule/animations/animate';
 @Component({
@@ -12,9 +12,17 @@ export class ToolBoxComponent implements OnInit {
   constructor(
     private _as:ArticleService
   ){}
-
+  @ViewChild('mydrop')myDrop;
   ngOnInit() {}
-
+  isOpen:boolean;
+  open(){
+    this.isOpen=true;
+    this.myDrop.open();
+  }
+  close(){
+    this.isOpen=false;
+    this.myDrop.close();
+  }
   goUp(){
 
   }

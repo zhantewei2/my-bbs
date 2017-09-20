@@ -18,7 +18,7 @@ export class RemindService {
   historyPage:number;
   historyCursor:Cursor={};
   activated:boolean;
-  navPop=(q)=>this.router.navigate([{outlets:{popup:q}}]);
+  navPop=(q)=>this.router.navigate([{outlets:{popup:q}}],{skipLocationChange:true});
   toggleNtf=()=>this.activated?this.closeNtf():this.navPop(['ntf']);
   closeNtf(){
     this.navPop(null);

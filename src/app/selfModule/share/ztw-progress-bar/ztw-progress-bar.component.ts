@@ -26,6 +26,7 @@ export class ZtwProgressBarComponent{
     const max=this.max,val=this.value;
     if(max!==undefined&&val!==undefined){
       this.percent=(val/max)*100;
+      this.percent=this.percent<0?0:(this.percent>100?100:this.percent);
     }
   }
 

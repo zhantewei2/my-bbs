@@ -9,7 +9,7 @@ import * as obj from '../util/Object';
 (window as any).myObj=obj;
 import * as refer from '../msn/referList';
 (window as any).myRefer=refer;
-
+import {Observable} from 'rxjs/Observable';
 
 export interface user{
   name?:string;
@@ -120,6 +120,10 @@ export class TotalService{
           });
 
       })
+    }
+    whenLogined(){
+      const ob=Observable.of(this.userMsn.name);
+      return Observable.merge(ob,this.loginSub);
     }
     initUser(v){
       this.err.login=false;

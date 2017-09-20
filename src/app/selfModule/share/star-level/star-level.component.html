@@ -11,7 +11,7 @@ Lv{{level}}
 </span>
 </small>
 
-  <ztw-progress-bar [ztwTooltip]='tp' type="info" [value]="_user.ep" [max]="_user.needEp">
+  <ztw-progress-bar [ztwTooltip]='disBar||tp' type="info" [value]="_user.ep" [max]="_user.needEp">
   </ztw-progress-bar>
 <ng-template #tp>
   <small>{{_user.ep+'/'+_user.needEp}}</small>

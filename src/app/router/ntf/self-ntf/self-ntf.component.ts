@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,ChangeDetectionStrategy} from '@angular/core';
 import {Router} from '@angular/router';
 import {RemindService} from 'app/service/remind.service';
 import {TotalService} from 'app/service/total.service';
@@ -53,11 +53,13 @@ export class SelfNtfComponent implements OnInit {
        this._remind.cacheNtfs=this.lists=v;
       this.user.ntfSelf=0;
        v.forEach(i=>i.cd=new Date(i.cd).getTime());
-       const model=this._ps.model;
-       v.asyncForEach(
-         (list,next)=>{list.cd=new Date(list.cd).getTime();model.insert(list,()=>next())},
-         ()=>{this.loading=false}
-       );
+       this._ps.useModel().then((model:any)=>{
+         v.asyncForEach(
+           (list,next)=>{list.cd=new Date(list.cd).getTime();model.insert(list,()=>next())},
+           ()=>{this.loading=false}
+         );
+       });
+
     })
   }
 
@@ -87,41 +89,42 @@ export class SelfNtfComponent implements OnInit {
   }
   history:History=new History();
   getHistory(page:any,dr:any){
-    const history=this.history,
-      hCursor=this._remind.historyCursor,
-      model=this._ps.model;
-    if(!page)page=this._remind.historyPage||1;
-    this._remind.historyPage=page;
-    ((cb)=>{
-      !history.totals&&history.totals!=0?model.size((err,data)=>{history.totals=data;cb()}):cb();
-    })(()=>{
-      let storeCursor=(v)=>{
-        try {
-          hCursor.start = v[0].cd;
-          hCursor.end = v[v.length - 1].cd;
-        }catch(e){this._ts.throwErr(e)}
-      };
-
-      let getMsn=(dr,page,cb)=>{
-        if(dr===null&&page==1){
-          model.getList(pageSize,[],'cd','prev').then(v=>cb(v));
-        }else if(dr=='end'){
-          const count=history.totals%pageSize;
-          model.getList(count||pageSize,[],'cd').then(v=>cb(v.reverse()));
-        }else if(dr=='next'){
-          model.getList(pageSize,[],'cd','prev',IDBKeyRange.upperBound(hCursor.end,true)).then(v=>cb(v));
-        }else if(dr=='pre'){
-          model.getList(pageSize,[],'cd','next',IDBKeyRange.lowerBound(hCursor.start,true)).then(v=>cb(v.reverse()));
-        }else{
-          model.getList(pageSize,[],'cd','prev',IDBKeyRange.upperBound(hCursor.start)).then(v=>cb(v));
-        }
-      };
-      getMsn(dr,page,(v)=>{
-        if(!v||!v.length)return this.lists2=null;
-        storeCursor(v);
-        this.lists2=v;
-        history.now=page;
-      })
+    this._ps.useModel().then(model=>{
+      const
+      history=this.history,
+      hCursor=this._remind.historyCursor;
+      if(!page)page=this._remind.historyPage||1;
+      this._remind.historyPage=page;
+      ((cb)=>{
+        !history.totals&&history.totals!=0?model.size((err,data)=>{history.totals=data;cb()}):cb();
+      })(()=>{
+        let storeCursor=(v)=>{
+          try {
+            hCursor.start = v[0].cd;
+            hCursor.end = v[v.length - 1].cd;
+          }catch(e){this._ts.throwErr(e)}
+        };
+        let getMsn=(dr,page,cb)=>{
+          if(dr===null&&page==1){
+            model.getList(pageSize,[],'cd','prev').then(v=>cb(v));
+          }else if(dr=='end'){
+            const count=history.totals%pageSize;
+            model.getList(count||pageSize,[],'cd').then(v=>cb(v.reverse()));
+          }else if(dr=='next'){
+            model.getList(pageSize,[],'cd','prev',IDBKeyRange.upperBound(hCursor.end,true)).then(v=>cb(v));
+          }else if(dr=='pre'){
+            model.getList(pageSize,[],'cd','next',IDBKeyRange.lowerBound(hCursor.start,true)).then(v=>cb(v.reverse()));
+          }else{
+            model.getList(pageSize,[],'cd','prev',IDBKeyRange.upperBound(hCursor.start)).then(v=>cb(v));
+          }
+        };
+        getMsn(dr,page,(v)=>{
+          if(!v||!v.length)return this.lists2=null;
+          storeCursor(v);
+          this.lists2=v;
+          history.now=page;
+        })
+      });
     });
   }
   clearRel(){
@@ -155,7 +158,8 @@ export class SelfNtfComponent implements OnInit {
   styles:[
     'b{margin:0 5px}',
     'li{padding:15px 5px}',
-    '.read{opacity:0.3;text-shadow:1px 2px 3px white;transform:rotate(30deg)}']
+    '.read{opacity:0.3;text-shadow:1px 2px 3px white;transform:rotate(30deg)}'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class ntfListComponent {
   constructor(public _ps:ParentService){}

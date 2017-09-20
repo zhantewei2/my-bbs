@@ -30,6 +30,7 @@ export class NavPageComponent implements OnInit {
         //load appoint page
           as.method.getReply(result, true).then(v=>v&&setTimeout(()=>{ztwScroll.scrollTo2(200)},1));
       }else if(state=='down'){
+        as.state.preventWhenBound=false;
         ztwScroll.scrollTo('ztw_bottom');
       }else{
           as.method.getReply(result, true).then(()=>setTimeout(()=>{ztwScroll.scrollTo('ztw_top')},1))

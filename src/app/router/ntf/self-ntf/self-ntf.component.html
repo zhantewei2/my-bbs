@@ -1,4 +1,4 @@
-<div class="text-sm main card-1" (click)="$event.stopPropagation()">
+<div class="text-sm main card card-1" (click)="$event.stopPropagation()">
   <ztw-loading transparent="0.5" pos="full" noCheck="true" [bind]="loading"></ztw-loading>
   <ztw-tab class="parent" style="display:block" (selected)="selectTab($event)">
     <samp (click)="modal.open()" [@Fade] *ngIf="selectValue==2&&history.totals!=0" class="right hover">清除所有{{history.totals}}条记录</samp>

@@ -1,5 +1,5 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
-
+const hostUrl=(window as any).myCommon.hostUrl;
 @Component({
   selector: 'ztw-side-vf-package',
   templateUrl: './side-vf-package.component.html',
@@ -16,7 +16,7 @@ export class SideVfPackageComponent implements OnInit {
   @Output('pass')passEmt:EventEmitter<boolean>=new EventEmitter();
   @Input('bindValid')set fn(valid){
     if(!valid ||this.showVf ||this.passVf)return;
-    this.imgUrl='/assets/vf/'+Math.ceil(Math.random()*10)+'.jpg';
+    this.imgUrl=hostUrl+'/static/vf/'+Math.ceil(Math.random()*10)+'.jpg';
     this.showVf=true;
   }
   constructor() { }

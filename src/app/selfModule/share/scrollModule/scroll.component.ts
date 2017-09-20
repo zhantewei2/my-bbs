@@ -158,7 +158,7 @@ scrollTo(value,bottom=false,out=false,t0=200){
   let controlOffset=this.offsetControls.find(i=>i.value==value);
   return this.scrollTo2(bottom?controlOffset.bottom:controlOffset.top+10,out,t0,10,true);
 };
-scrollTo2(pos:number,out=false,t0=300,vt=10,notBottom?){
+scrollTo2(pos:number,out=false,t0=500,vt=10,notBottom?){
   return new Promise(resolve=>{
     let top=this.scrollTop,
       end=document.querySelector('body').scrollHeight-window.innerHeight;

@@ -32,7 +32,6 @@ export class UserService {
         const epArr=epStg.epArr;
         if(typeof s=='string'){
           user.ep+=epStg[s]['ep'];
-          console.log(epStg[s]);
           user.gold+=epStg[s]['g']||0;
         }else{
           user.ep+=s;

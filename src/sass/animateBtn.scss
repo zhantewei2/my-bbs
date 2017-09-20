@@ -1,19 +1,38 @@
-$color:#ddd;
-$shadowColor:#ddd;
+$color:gray;
+$shadowColor:$color;
 $bgColor:white;
+$lightColor:mix($color,white,20%);
+$bgColor-secondary:rgba($lightColor,.1);
 $deepColor:darken($color,30%);
 $deepColor2:darken($color,5%);
-$lightColor:mix($color,white,20%);
-$remindColor:mix(mix($color,indianred,20%),white,40%);
+$remindColor:black;
 $borderRadius:5px;
 $lg:1200px;
 $smBtnPadding:6px;
 $shd1:0 0 10px 2px $shadowColor;
-$shd2:0 0 30px 2px $shadowColor;
-$border1:2px solid $bgColor;
-.bg-1{
-  background:$lightColor;
+$shd2:0 0 30px 2px rgba($shadowColor,.5);
+$border1:1px solid rgba($bgColor,.5);
+$extendColor:lighten(black,15%);
+$tab-color:transparent;
+$tab-btn-color:$deepColor;
+$tab-active-color:$extendColor;
+
+@mixin transition(){
+  transition:all .3s ease;
 }
+.bg-1{
+  background:$bgColor-secondary;
+}
+.bg-2{
+  background:$extendColor;
+}
+.bg-0{
+  background:rgba(255,255,255,.9);
+}
+.color-dark{
+  color:black;
+}
+
 .shadow-1{
   box-shadow:$shd1;
 }
@@ -36,7 +55,7 @@ $border1:2px solid $bgColor;
   &>i{
     margin:0 6px;
   }
-  box-shadow:1px 2px 3px $shadowColor;
+  box-shadow:1px 2px 3px rgba($shadowColor,.5);
   border-bottom:1px solid $shadowColor;
 }
 em{color:$deepColor}
@@ -80,7 +99,13 @@ em{color:$deepColor}
 .bright{
   animation:Bright 0.6s ease 0s infinite alternate;
 }
-
+.dropdown0{
+  box-shadow:$shd2;
+  @include transition();
+  &:hover{
+    box-shadow:none;
+  }
+}
 kbd{
   background:$deepColor;
   box-shadow:2px 2px 5px $deepColor;
@@ -90,7 +115,8 @@ kbd{
   .lgBox{
     margin:10px 0;
     padding:10px 0;
-    background:$lightColor;
+    border-radius:.5rem;
+    background:$bgColor-secondary;
   }
 }
 @keyframes slideY{
@@ -108,23 +134,21 @@ kbd{
 .tab-btn{
   cursor:pointer;
   outline:none;
-  color:white;
   display:inline-block;
-  background:$deepColor2;
+  background:$tab-btn-color;
   transition:all 0.3s ease;
   padding:$smBtnPadding;
   border:1px solid $color;
   transform:translateY(2px);
   border-radius:$borderRadius $borderRadius 0 0;
   &.active{
-    background:$bgColor;
-    color:black;
-    border-bottom-color:$bgColor;
+    background:$tab-active-color;
+    border-bottom-color:$tab-active-color;
   }
 }
 
 .tab-bg{
-  background:$bgColor;
+  background:transparent;
   padding:5px 0;
   border-top-width:0;
 }
@@ -214,7 +238,7 @@ kbd{
 .listItem{
   transition:all 0.3s;
   &:hover{
-    background:$lightColor;
+    background:$bgColor-secondary;
     box-shadow:$shd2;
     z-index:1;
   }
@@ -266,11 +290,5 @@ $remindColor2:transparentize($shadowColor,0.5);
 .coverH:hover{
   @extend .blur
 }
-.dropdown-item{
-  margin-top:3px;
-}
-.dropdown-item:hover{
-  background:$color;
-  border-radius:$borderRadius;
-}
+
 

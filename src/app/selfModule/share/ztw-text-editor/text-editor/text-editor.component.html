@@ -12,7 +12,7 @@
     <i class="fa fa-unlink"> </i>
   </button>
   <ztw-image [disUpload]="disUpload"></ztw-image>
-  <ng-content class="btn0" select="[textEditorBtn]"></ng-content>
+  <ng-content select="[textEditorBtn]"></ng-content>
 </nav>
 <div class="full">
   <div class="full container1" >
@@ -22,8 +22,8 @@
   <div class="txt2 parent"  [@SlideTopToggle2]="txt2.isOpen?'show':'hidden'"   *ngIf="txt2">
     <div class="full" [class.blur]="!closeBg2"></div>
     <div class="abs full column" >
-      <div class="ztwBlock parent between">
-        <samp><i class="fa fa-hand-o-down"></i>&nbsp;{{txt2.title}}</samp>
+      <div class="ztwBlock parent between text-muted">
+        <samp ><i class="fa fa-hand-o-down"></i>&nbsp;{{txt2.title}}</samp>
         <i (click)="txt2Close()" class="fa fa-chevron-down hover mid"></i>
         <span class="colorBlock frame mr-3" (click)="closeBg2=!closeBg2" [class.remindBg]="!closeBg2"></span>
       </div>

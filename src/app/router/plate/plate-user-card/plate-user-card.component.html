@@ -4,7 +4,7 @@
       <img style="width:120px;" class="rounded box-1 frame" [src]="insert?user.head:putImg(user.head)">
       <i (click)="_rs.navToUser(user.name)" style="right:0;bottom:0" class="ir tpShow leftFade fa fa-eye btn btn-default2 btn-sm"></i>
     </div>
-    <a [innerTemplate]="Msn"></a>
+    <a [innerTemplate]="Msn" [deps]="{lg:true}"></a>
   </div>
   <div style="flex:1" class="parent d-flex flex-column">
       <div  class="card-block" [innerHTML]="i.c">
@@ -17,7 +17,7 @@
         <ztw-vote  [msn]="i"></ztw-vote>
         <nav>
           <samp >{{i.cd | date:'short'}}</samp>
-          <a *ngIf="!isHost" (click)="innerReply(inner)" class="btn0 btn-default2 ml-2  fa fa-commenting-o"></a>
+          <a *ngIf="!isHost" (click)="innerReply(inner)" class="btn btn-primary ml-2  fa fa-commenting-o"></a>
         </nav>
       </div>
   </div>
@@ -27,7 +27,7 @@
 </ng-template>
 <div *ngIf="_reS.value!='lg'" [@Fade]>
   <div class="d-flex p-2">
-    <img #myTooltip="ztwTooltip" type="oc" class="img-min" [ztwTooltip]="Msn" [src]="insert?user.head:putImg(user.head)">
+    <img type="oc" class="img-min" [ztwTooltip]="Msn" [src]="insert?user.head:putImg(user.head)">
     <div class="p-2 pl-4" style="flex-grow:1;">
       <b class="text-sm text-center">{{user.nickN}}</b>
       <div class="text-sm between">
@@ -52,13 +52,13 @@
 <view-reply2 [_parent]="this" [newReply]="newReply" *ngIf="i.rCache?.cs||newReply"></view-reply2>
 
 <div class="dropdown-divider"></div>
-<ng-template #Msn>
+<ng-template #Msn let-lg="lg">
   <div style="padding:5px">
-    <small>{{isMain?'楼主':'层主'}}<span (click)="_rs.navToUser(user.name)" *ngIf="_reS.value!='lg'" class="badge badge-info"><i class="fa fa-arrow-right"></i></span></small>
+    <small>{{isMain?'楼主':'层主'}}<span (click)="_rs.navToUser(user.name)" *ngIf="_reS.value!='lg'" class="ml-1 btn btn-sm btn-outline-info"><i class="fa fa-eye"></i></span></small>
     <div>
       <samp>{{user.nickN}}</samp>
     </div>
-    <star-level [user]="user"></star-level>
+    <star-level [disBar]="!lg" [user]="user"></star-level>
   </div>
 </ng-template>
 

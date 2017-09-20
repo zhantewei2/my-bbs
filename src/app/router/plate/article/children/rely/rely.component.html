@@ -1,16 +1,30 @@
-<div (click)="_as.closeReply()" [@Fade] class="full parent abs" style="background:rgba(0,0,0,0.3);z-index:1;position:fixed" *ngIf="this._as.reply.show">
+<div (click)="clear();_as.closeReply()" [@Fade] class="full parent abs" style="background:rgba(0,0,0,0.3);z-index:1;position:fixed" *ngIf="this._as.reply.show">
 </div>
-<div class="card reply mt-2" *ngIf="this._as.reply.show" [@SlideTopToggle]>
-  <nav class="card-header">
-    回复区：
-    <span (click)="_as.closeReply()" class="close">&times;</span>
+<div class="reply card replyWidth mt-2" *ngIf="this._as.reply.show" [@SlideTopToggle]>
+  <nav class="card-header bg-primary">
+    回复区
+    <span (click)="clear();_as.closeReply()" class="close">&times;</span>
   </nav>
-  <div class="p-2">
+  <div class="p-2" [hidden]="nextVf">
     <ztw-text-editor [limitSize]="400" #text class="text" disUpload="true"></ztw-text-editor>
-    <ztw-loading [bind]="running" pos="full"></ztw-loading>
   </div>
-  <div class="p-2">
-    <button (click)="_submit(text)" class="btn btn-outline-primary">提交</button>
-    <button (click)="text.reset()" class="btn btn-outline-primary">重填</button>
+  <ztw-loading noCheck="true" [bind]="running" pos="full"></ztw-loading>
+  <div [hidden]="!nextVf" style="min-height:180px;" class="center my-2">
+    <ztw-side-vf-package style="max-width:580px" #sideVf height="150px" (pass)="isPassVf=$event" [bindValid]="nextVf"></ztw-side-vf-package>
   </div>
+  <div class="p-2 center">
+    <span *ngIf="!nextVf;else btn2">
+      <button (click)="_submit0(text)" class="btn btn-outline-primary">
+        提交
+      </button>
+      <button (click)="text.reset()" class="btn btn-outline-primary">重填</button>
+    </span>
+    <ng-template #btn2>
+      <span>
+      <button [ngClass]="isPassVf?'btn-outline-success':'btn-outline-primary'" [disabled]="!isPassVf" (click)="_submit()" class="btn">提交</button>
+      <button [ngClass]="isPassVf?'btn-outline-success':'btn-outline-primary'" (click)="clear()" class="btn">撤销</button>
+      </span>
+    </ng-template>
+  </div>
+
 </div>

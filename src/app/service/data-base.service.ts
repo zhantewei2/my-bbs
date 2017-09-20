@@ -1,8 +1,11 @@
 import { Injectable} from '@angular/core';
-import {IndexDB} from './IndexedDB/db';
+import {IndexDB} from './DB/index';
 import {Subject} from 'rxjs/Subject';
 import {TotalService} from './total.service';
 const dbConfig=(window as any).myCommon.dbConfig;
+
+
+
 @Injectable()
 export class DataBaseService{
   draftModel:any;
@@ -31,12 +34,12 @@ export class DataBaseService{
     private _ts:TotalService
   ) {
    let db=this.db=new IndexDB(dbConfig.name,dbConfig.opts);
-   db.init(()=>{
+   db.init().then(()=>{
      this._isInit=true;
      this.subDB0.next(true);
-     this._ts.isLogined().then(v=>{
-       let name;
+     this._ts.whenLogined().subscribe(v=>{
        if(v){
+         let name;
          name=this._ts.userMsn.name;
          let names={
            draft:name+'-draft',
@@ -44,14 +47,14 @@ export class DataBaseService{
            ntfs:name+'-ntfs'
          };
          this.names=names;
-         this.db2.append(names.main,{keyPath:'type'},true);
+         this.db2.append(names.main,{keyPath:'type'});
          /*
           main:{
           type:'draft',c:content ,t:title, d:date ,s:start
           type:'main'
           }
           */
-         this.db2.append(names.draft,{keyPath:'n',type:'capped',limit:5},true);
+         this.db2.append(names.draft,{keyPath:'n',type:'capped',limit:5});
          this.db2.append(names.ntfs,{keyPath:'cd',type:'index',index:'cd'});
        }
        /*
@@ -61,7 +64,7 @@ export class DataBaseService{
        this._userInit=true;
        this.subDB.next(true);
      })
-   });
+   })
   }
   getDB(){
     return new Promise(resolve=>{

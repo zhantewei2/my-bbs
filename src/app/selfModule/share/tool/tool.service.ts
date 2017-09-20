@@ -9,4 +9,5 @@ export class ToolService {
   tooltipPos=tooltipPos;
   nextTick=(cb)=>setTimeout(()=>{cb()},1);
   ztwMove=moveEvent;
+  tipOpened:any;
 }

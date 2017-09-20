@@ -49,7 +49,7 @@ export class PublishComponent implements OnInit {
   db:any;
   dfListChg:boolean=true;
   dfList:Array<any>=[];
-  //@ViewChild('modal')modal;
+
   @ViewChild('addDfTp')addDtTp;
   titleControl:any=new FormControl('',[Validators.required,limitValidator(3,22)]);
   dfNameControl:any=new FormControl('',[Validators.required,limitValidator(1,7)]);
@@ -64,6 +64,8 @@ export class PublishComponent implements OnInit {
     public _lzw:lzwService
   ){}
   @ViewChild('textEditor')textEditor;
+  cb:any=()=>{};
+  useModel:any=()=>new Promise(resolve=>this.mainModel?resolve(this.mainModel):(this.cb=()=>resolve(this.mainModel)));
   modal:any;
   ngAfterViewInit(){
     this.modal=this._ts.modal;
@@ -80,6 +82,7 @@ export class PublishComponent implements OnInit {
         this.textNode=this.textEditor.textarea.nativeElement;
         db.use('main').then(model=>{
             this.mainModel=model;
+            this.cb();
             const transmitData=this._rs.transmit;
             //nav from modify article;
             if(transmitData){
@@ -111,17 +114,15 @@ export class PublishComponent implements OnInit {
     msn:null
   };
   draftEdit(){
-    this.showDraft?this.closeEditDf():this.showDraft=true;
-    let find=()=>{
-      this.mainModel.findOne('draft', (err, data) => {
-        this.draft = data;
+    if(!this.showDraft){
+      this.useModel().then(model=>{
+        model.findOne('draft',(err, data) => {
+          this.draft = data;
+          this.showDraft=true;
+        })
       })
-    };
-    try{find()}catch(e){
-      this.db.use('main').then(model=>{
-        this.mainModel=model;
-        find();
-      });
+    }else{
+      this.closeEditDf()
     }
   }
   setMsn(msn:SetMsn){
@@ -258,14 +259,13 @@ export class PublishComponent implements OnInit {
     },e=>e&&this.setMsn(draft)&&this.closeEditDf())
   }
   getDf(){
-    const field1='_ztw_date';
+    const field1='_ngz_date';
     this.dfListChg=false;
     this.draftModel.getList(5,['t',field1,'n']).then(data=>{
-      data.forEach(v=>{
-        v.d=new Date(v[field1]);
-      });
+      data.forEach(v=>v.d=new Date(v[field1]));
       this.dfList=data;
     })
+
   };
   getDfs(){
     if(!this.draftModel){

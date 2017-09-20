@@ -1,9 +1,9 @@
 <div class="ztwBlock" [@Pop]="show" (click)="$event.stopPropagation()">
-  <div class="between title">
+  <div class="between title bg-primary">
     <span>{{containerTitle}}</span>
     <i (click)="close()" class="fa fa-close close"></i>
   </div>
-  <div class="inner" >
+  <div class="inner bg-2" >
     <ng-template #container></ng-template>
     <div>{{innerText}}</div>
   </div>

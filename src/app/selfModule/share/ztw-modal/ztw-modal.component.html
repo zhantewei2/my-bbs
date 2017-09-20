@@ -1,7 +1,7 @@
 <div *ngIf="bgShow" class="bg row justify-content-center" (click)="close();confirm.next(false)">
 
   <div class="col-11" [ngClass]="{'col-lg-6':_lg,'col-lg-3':!_lg}" style="min-width:400px">
-    <div  [@SlideRightToggle]="state||'hidden'" (@SlideRightToggle.done)="anEnd()" (click)="$event.stopPropagation()" class=" myContainer">
+    <div  [@SlideRightToggle]="state||'hidden'" (@SlideRightToggle.done)="anEnd()" (click)="$event.stopPropagation()" class="modal-content myContainer">
       <div class="h4 justify-content-between">
         <a>
           <span class="mx-2  badge badge-{{type}}"><i [class]="typeIcon"></i></span>

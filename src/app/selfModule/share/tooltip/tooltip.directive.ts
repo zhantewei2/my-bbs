@@ -46,9 +46,12 @@ export class TooltipDirective {
       componentRef.instance.pure=this.pure;
       componentRef.instance.pos=this._tool.tooltipPos(this._el.nativeElement,node,this.placement);
       this.type&&this._tool.listenOnce(document,'click',this.close.bind(this));
+      if(this._tool.tipOpened)this._tool.tipOpened.close();
+      this._tool.tipOpened=this;
     })
   }
   close(){
+    if(this._tool.tipOpened==this)this._tool.tipOpened=null;
     if(this.node){
       this.node.parentNode.removeChild(this.node);
       this.node=null;

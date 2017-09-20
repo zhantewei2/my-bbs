@@ -13,8 +13,10 @@ export class StarLevelComponent implements OnInit {
   floor=(gold:number)=>Math.floor(gold);
   gN:any=(window as any).myRefer.userList['gold'];
   _user:any;
+  @Input()disBar:boolean;
   @Input('user')set fn(user:any){
     if(!user)return;
+    user.needEp=user.needEp||100;
     this._user=user;
     let val=this.level=user.level;
     this.setStar(val,3,()=>{

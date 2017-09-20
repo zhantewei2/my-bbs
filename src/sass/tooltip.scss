@@ -13,6 +13,13 @@ $minW:70px;
   from {transform:translateX(50%);opacity:0}
   to{}
 }
+@keyframes Pop{
+  from{opacity:0;transform:scale(.6,.6)}
+  to{transform:scale(1,1)}
+}
+.pop{
+  @include Animate(Pop);
+}
 .leftFade{
   @include Animate(Left)
 }

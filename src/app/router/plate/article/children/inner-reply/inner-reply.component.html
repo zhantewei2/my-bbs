@@ -1,5 +1,6 @@
 <div class="box-1 px-2 pt-2" style="margin:5px" *ngIf="show" [@SlideXToggle] (@SlideXToggle.done)="anDone()">
-  <textarea [hidden]="nextVf" ngModel #txt="ngModel" minRows="2" name="textarea" required rows="3" class="form-control">
+  <textarea [hidden]="nextVf" ngModel #txt="ngModel" minRows="2"
+  name="textarea" required rows="3" class="form-control">
   </textarea>
   <div [hidden]="!nextVf" class="center mt-2">
     <ztw-side-vf-package (pass)="vfPass=true" [style.maxWidth.px]="580" height="150px" [bindValid]="nextVf"></ztw-side-vf-package>

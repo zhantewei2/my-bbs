@@ -11,7 +11,7 @@ import {slideRightToggle} from 'app/selfModule/animations/animate';
   selector: 'ztw-modal',
   templateUrl: './ztw-modal.component.html',
   styleUrls: ['./ztw-modal.component.css'],
-  animations:[slideRightToggle('0.3s ease-out',{transform:'translateX(-20%)',opacity:0})]
+  animations:[slideRightToggle('0.2s ease-out',{transform:'translateX(-20%)',opacity:0})]
 })
 export class ZtwModalComponent {
   @Input('title')title:string='';
