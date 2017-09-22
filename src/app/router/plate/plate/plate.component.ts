@@ -175,7 +175,7 @@ export class PlateComponent implements OnInit {
     }else{this.scrollTo(p);}
   };
   scrollEvent=(e)=>{
-    if(this.stopEvent)return;
+    if(this.stopEvent||!this._bp)return;
     let h=document.querySelector('body').scrollHeight;
     if(e.bottom>=h-2){
       this.stopEvent=true;

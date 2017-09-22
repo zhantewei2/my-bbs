@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {RemindService} from 'app/service/remind.service';
 import {TotalService} from 'app/service/total.service';
 import {HttpService} from 'app/service/http.service';
-import {ParentService} from './parent.service';
+import {DataBaseService} from 'app/service/data-base.service';
 import {fade} from 'app/selfModule/animations/animate';
 const pageSize=6;
 class History{
@@ -17,7 +17,6 @@ class History{
 @Component({
   templateUrl: './self-ntf.component.html',
   styleUrls:['./self-ntf.component.css'],
-  providers:[ParentService],
   animations:[fade()]
 })
 export class SelfNtfComponent implements OnInit {
@@ -29,7 +28,8 @@ export class SelfNtfComponent implements OnInit {
     public _remind:RemindService,
     public _ts:TotalService,
     private http:HttpService,
-    public _ps:ParentService,
+
+    public _db:DataBaseService,
     private router:Router
   ) {}
   ngOnInit(){
@@ -37,12 +37,11 @@ export class SelfNtfComponent implements OnInit {
       if(!v)this._remind.closeNtf();
       this.user=this._ts.userMsn;
       this.user.ntfSelf?this.getNtf():this.lists=this._remind.cacheNtfs;
-      this._ps.navTo=this.navTo.bind(this);
     })
   }
   user:any;
   totals:number;
-  pageModel:any;
+  ntfModel:any;
   lists:any;
   lists2:any;
   getNtf(){
@@ -53,13 +52,13 @@ export class SelfNtfComponent implements OnInit {
        this._remind.cacheNtfs=this.lists=v;
       this.user.ntfSelf=0;
        v.forEach(i=>i.cd=new Date(i.cd).getTime());
-       this._ps.useModel().then((model:any)=>{
+       this._db.db2.use('ntfs').then((model:any)=>{
+         this.ntfModel=model;
          v.asyncForEach(
            (list,next)=>{list.cd=new Date(list.cd).getTime();model.insert(list,()=>next())},
            ()=>{this.loading=false}
          );
        });
-
     })
   }
 
@@ -68,8 +67,7 @@ export class SelfNtfComponent implements OnInit {
     const base=['plates',rgUrl,msn.thId];
     //mark read;
     msn.read=true;
-    this._ps.model.purePut(msn,()=>{});
-    //
+    this._db.db2.use('ntfs').then(model=>model.purePut(msn,()=>{}));
     if(!msn.f){
       this.router.navigate(base);
     }else{
@@ -89,7 +87,8 @@ export class SelfNtfComponent implements OnInit {
   }
   history:History=new History();
   getHistory(page:any,dr:any){
-    this._ps.useModel().then(model=>{
+    this._db.db2.use('ntfs').then(model=>{
+      this.ntfModel=model;
       const
       history=this.history,
       hCursor=this._remind.historyCursor;
@@ -125,7 +124,7 @@ export class SelfNtfComponent implements OnInit {
           history.now=page;
         })
       });
-    });
+    })
   }
   clearRel(){
     this.history.totals=null;
@@ -133,7 +132,7 @@ export class SelfNtfComponent implements OnInit {
   }
   clearHistory(e){
     if(!e)return;
-    this._ps.model.removeAll(()=>{
+    this.ntfModel.model.removeAll(()=>{
       this.lists2=null;
       this.clearRel();
     });
@@ -143,15 +142,15 @@ export class SelfNtfComponent implements OnInit {
 @Component({
   selector:'ntf-list',
   template:`
-      <li class="btn0 btn-block between parent" (click)="_ps.navTo(i)">
+      <li class="btn0 btn-block between parent" (click)="parent.navTo(i)">
          <div class="read right text-lg">
             <i [hidden]="!i.read" class="text-primary fa fa-check-square-o"></i>
          </div>
          <span *ngIf="i.f" >
-           您在<b>{{i.ab}}</b>的回复收到<kbd>{{i.c}}</kbd>条消息
+           您在<b>{{i.ab}}</b>的回复收到<kbd class="badge badge-info">{{i.c}}</kbd>条消息
          </span>
          <span *ngIf="!i.f">
-           您的<kbd>主题</kbd><b>{{i.ab}}</b>收到<kbd >{{i.c}}</kbd>条消息
+           您的<span class="badge badge-warning">主题</span><b>{{i.ab}}</b>收到<kbd class="badge badge-info">{{i.c}}</kbd>条消息
          </span>
          <span>{{i.cd |time}}</span>
       </li>`,
@@ -162,6 +161,6 @@ export class SelfNtfComponent implements OnInit {
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class ntfListComponent {
-  constructor(public _ps:ParentService){}
+  constructor(public parent:SelfNtfComponent){}
   @Input()i;
 }

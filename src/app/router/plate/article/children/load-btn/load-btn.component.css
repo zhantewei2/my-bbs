@@ -4,17 +4,14 @@
 .bottom{
   bottom:50px;
 }
-button{
+span{
   z-index:10001;
   outline:none;
   position:fixed;
-  background:transparent;
   font-size:2rem;
   left:50%;
-  color:gray;
-  transform: translateX(-50%);
-  opacity:0.8;
-  border-radius:50%;
+  padding:5px;
+  transform:translateX(-50%);
 }
 .mid{
   top:50%;

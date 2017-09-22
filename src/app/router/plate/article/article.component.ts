@@ -5,7 +5,7 @@ import {TotalService} from 'app/service/total.service';
 import {ArticleService} from './children/article.service';
 import {InnerReplyService} from './children/inner-reply.service';
 import {RemindService} from 'app/service/remind.service';
-let setOnce=(window as any).myObj.setOnce;
+
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -25,7 +25,6 @@ export class ArticleComponent implements OnInit,OnDestroy {
   rgMsn:any;
   arId:any;
   data:any;
-  href:any;
   @ViewChild('ztwScroll')ztwScroll;
   @ViewChild('titleNav')titleNav;
   ngOnInit(){
@@ -55,7 +54,6 @@ export class ArticleComponent implements OnInit,OnDestroy {
         const node=document.getElementById('reply'+frag);
         if(node)this.ztwScroll.scrollToNode(node).then(()=>node.firstElementChild.classList.add('remind'));
       }, 1);
-      let node = document.getElementById('reply' + frag);
     }
   }
   ngAfterViewInit(){
@@ -64,38 +62,16 @@ export class ArticleComponent implements OnInit,OnDestroy {
   back(){
     this._rs.navPlate(this.rgMsn.cgId,this.rgMsn.rgId);
   };
-  preGt:boolean=false;
-  titleOnce:any=new setOnce();
-  navOnce:any=new setOnce();
-  showNavIcon:boolean;
+  titleVal:any;
   scrollValue:any;
+  overTitle:boolean;
   method:any={
-    controlTitleNav:(obj)=>{
+    controlTitleNav:()=>{
       const titleNav=this.titleNav;
       if(!titleNav)return;
       let n=this._rs.nav,
-        top=n.hiddenTop,
-        title=titleNav._el.nativeElement,
-        nav=n.node,
-        height=n.height,
-        v=obj.top,
-        top2=top+height;
-
-      let d=v-top;
-      if(v>top){
-        this.showNavIcon=true;
-        if(v<top2){
-          this.titleOnce.once(title,height-d+'px');
-          this.navOnce.once(nav,0-d+'px');
-        }else{
-          title.style.top=0;
-          this.navOnce.once(nav,0-height+'px');
-        }
-      }else{
-        this.titleOnce.once(title,height+'px');
-        this.navOnce.once(nav,0);
-        this.showNavIcon=false;
-      }
+        nav=n.node;
+      nav.style.transform=(this.overTitle=this.titleVal=='down')?'translateY(-100%)':'translateY(0)';
     },
     whenBound:(obj)=>{
       let as=this._as;
@@ -127,8 +103,8 @@ export class ArticleComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(){
-    this._rs.nav.node.style.top=0;
     this._as.clear();
     this._remind.isInner=false;
+    this._rs.nav.node.style.transform='translateY(0)'
   }
 }

@@ -1,0 +1,27 @@
+
+$titleNav-height:50px;
+$titleNav-radius:10px;
+$titleNav-space:5px;
+@mixin NavShd{
+  box-shadow:0 1px 3px rgba(black,.3);
+}
+.titleNav{
+  height:$titleNav-height;
+  border-radius:$titleNav-radius;
+}
+.navShd{
+  @include NavShd()
+}
+.title-fix{
+  position:fixed;
+  z-index:7;
+  left:0;
+  top:0;
+  width:100%;
+  border-radius:0;
+  @include NavShd()
+}
+.sticky-brand{
+  position:sticky !important;
+  top:$titleNav-height+$titleNav-space;
+}

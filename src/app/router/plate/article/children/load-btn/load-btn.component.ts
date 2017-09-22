@@ -8,12 +8,12 @@ import {fade} from 'app/selfModule/animations/animate';
   styleUrls: ['./load-btn.component.css'],
   animations:[
     trigger('Top',[
-      transition('void=>*',[style({top:0}),animate('0.3s ease-in')]),
-      transition('*=>void',[animate('0.3s ease',style({top:0}))])
+      transition('void=>*',[style({top:0,opacity:0}),animate('0.3s ease-in')]),
+      transition('*=>void',[animate('0.3s ease',style({top:0,opacity:0}))])
     ]),
     trigger('Bottom',[
-      transition('void=>*',[style({bottom:0}),animate('0.3s ease-in')]),
-      transition('*=>void',[animate('0.3s ease',style({bottom:0}))])
+      transition('void=>*',[style({bottom:0,opacity:0}),animate('0.3s ease-in')]),
+      transition('*=>void',[animate('0.3s ease',style({bottom:0,opacity:0}))])
     ]),
     fade()
   ]

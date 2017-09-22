@@ -1,14 +1,13 @@
 <nav-page ></nav-page>
 
 <article-load-btn [state]="_as.state.pageLoad"></article-load-btn>
-
 <ztwScroll (ngModelChange)="getScrollValue($event)" [(ngModel)]="scrollValue" [baseLine]="_rs.nav.height" (event)="scrollEvent($event)" #ztwScroll>
     <p>
       <button (click)="back()" class="fa fa-chevron-circle-left btn btn-outline-primary"> {{rgMsn?.rgName}}</button>
     </p>
 <div *ngIf="_as.replys.length">
-  <fix-container [height]="_rs.nav.height" [overFix]="titleVal" (entry)="titleVal=$event" useEntry="true" ztwScrollControl="head">
-    <title-nav [showIcon]="showNavIcon" class="titleNav" #titleNav fix-item></title-nav>
+  <fix-container   (entry)="titleVal=$event" useEntry="true" ztwScrollControl="head">
+    <title-nav [state]="overTitle" [ngClass]="overTitle?'title-fix bg-primary':'bg-info'" class="an_node titleNav" #titleNav fix-item></title-nav>
   </fix-container>
 
 
@@ -22,4 +21,5 @@
 <article-rely></article-rely>
 <tool-box class="boxBar"></tool-box>
 </ztwScroll>
+
 

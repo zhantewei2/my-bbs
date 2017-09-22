@@ -5,6 +5,7 @@ import {ShareModule} from '../share/share.module';
 import {RegisterFormComponent} from '../component/register-form/register-form.component';
 import {TopComponent} from '../../router/home/top/top.component';
 import {HomeComponent} from '../../router/home/home/home.component';
+import {ErrComponent} from '../../router/home/err/err.component';
 import {UserMsnMinComponent} from '../component/user-msn-min/user-msn-min.component';
 import {RouterModule} from '@angular/router';
 import {RegisterComponent} from '../../router/register/register.component';
@@ -18,7 +19,8 @@ import {PlateCardComponent} from '../component/plate-card/plate-card.component';
     UserMsnMinComponent,
     RegisterFormComponent,
     RegisterComponent,
-    PlateCardComponent
+    PlateCardComponent,
+    ErrComponent
   ],
   providers:[lzwService],
   entryComponents:[UserMsnMinComponent],
@@ -27,6 +29,7 @@ import {PlateCardComponent} from '../component/plate-card/plate-card.component';
     ShareModule,
     TopComponent,
     HomeComponent,
+    ErrComponent,
     RegisterFormComponent,
     RegisterComponent
   ]

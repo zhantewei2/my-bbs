@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http,Headers,RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/delay';
+//import 'rxjs/add/operator/delay';
 import {decrypt} from '../util/decrypt';
 import {hostUrl} from '../util/common';
 let option=new RequestOptions({
@@ -56,7 +56,7 @@ export class HttpService{
     };
     post=(url,params={},time=0):Promise<any>=>{
         return new Promise(resolve=> {
-          this.http.post(realPath(url), params, option).delay(500).throttleTime(time).subscribe((result: any) => {
+          this.http.post(realPath(url), params, option).throttleTime(time).subscribe((result: any) => {
             resolve(this.parseResult(result));
           })
         })

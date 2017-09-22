@@ -4,13 +4,11 @@ import {Subject} from 'rxjs/Subject';
 import {TotalService} from './total.service';
 const dbConfig=(window as any).myCommon.dbConfig;
 
-
-
 @Injectable()
 export class DataBaseService{
   draftModel:any;
   db:any;
-  initComplete:boolean=false;
+
   subDB:Subject<any>=new Subject();
   subDB0:Subject<any>=new Subject();
   names:any;
@@ -38,39 +36,35 @@ export class DataBaseService{
      this._isInit=true;
      this.subDB0.next(true);
      this._ts.whenLogined().subscribe(v=>{
-       if(v){
+       if(v) {
          let name;
-         name=this._ts.userMsn.name;
-         let names={
-           draft:name+'-draft',
-           main:name+'-main',
-           ntfs:name+'-ntfs'
+         name = this._ts.userMsn.name;
+         let names = {
+           draft: name + '-draft',
+           main: name + '-main',
+           ntfs: name + '-ntfs'
          };
-         this.names=names;
-         this.db2.append(names.main,{keyPath:'type'});
+         this.names = names;
+         this.db2.append(names.main, {keyPath: 'type'});
          /*
           main:{
           type:'draft',c:content ,t:title, d:date ,s:start
           type:'main'
           }
           */
-         this.db2.append(names.draft,{keyPath:'n',type:'capped',limit:5});
-         this.db2.append(names.ntfs,{keyPath:'cd',type:'index',index:'cd'});
+         this.db2.append(names.draft, {keyPath: 'n', type: 'capped', limit: 5});
+         this.db2.append(names.ntfs, {keyPath: 'cd', type: 'index', index: 'cd'});
+
+         /*
+          n:name,c:content,t:title,s:start.
+          */
+
+         this._userInit = true;
+         this.subDB.next(true);
        }
-       /*
-        n:name,c:content,t:title,s:start.
-        */
-       this.initComplete=true;
-       this._userInit=true;
-       this.subDB.next(true);
      })
    })
   }
-  getDB(){
-    return new Promise(resolve=>{
-      if(this.initComplete)return resolve(this.db2);
-      this.subDB.subscribe(()=>{resolve(this.db2)});
-    })
-  }
+
 
 }

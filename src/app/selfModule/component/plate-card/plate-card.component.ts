@@ -1,6 +1,7 @@
 import { Component, OnInit,Input} from '@angular/core';
 import {RouterService} from 'app/service/router.service';
 import {slideTopToggle} from 'app/selfModule/animations/animate';
+
 import {ResizeService} from 'app/service/resize.service';
 @Component({
   selector: 'plate-card',
@@ -27,6 +28,6 @@ export class PlateCardComponent implements OnInit {
   ngOnInit() {
 
   }
-  isEnter:boolean;
-
+  isEnter:boolean=false;
+  isEnter0:boolean=false;
 }

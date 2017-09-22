@@ -1,10 +1,12 @@
-<div class="ztwBlock" [@Pop]="show" (click)="$event.stopPropagation()">
-  <div class="between title bg-primary">
+<div class="card" [@Pop]="show" (click)="$event.stopPropagation()">
+  <div class="card-header">
     <span>{{containerTitle}}</span>
     <i (click)="close()" class="fa fa-close close"></i>
   </div>
-  <div class="inner bg-2" >
-    <ng-template #container></ng-template>
-    <div>{{innerText}}</div>
+  <div class="inner">
+    <div>
+      <ng-template #container></ng-template>
+      <span>{{innerText}}</span>
+    </div>
   </div>
 </div>

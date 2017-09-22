@@ -1,3 +1,11 @@
-.btn{
-   padding:5px 7px;
+.btnBar{
+  transition:all .1s ease;
+  border-radius:5px;
+  overflow: hidden;
+  opacity:.6;
+}
+.btnBar:hover{
+  opacity:1;
+  transform:scale(1.2,1.2);
+  box-shadow:0 0 16px gray;
 }

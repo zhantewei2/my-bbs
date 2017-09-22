@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild} from '@angular/core';
 import {FormControl,Validators} from '@angular/forms';
-import {fade,slideXToggle,fadeToggle} from 'app/selfModule/animations/animate';
+import {reply} from 'app/selfModule/animations/animate';
 import {lzwService} from 'app/service/util.service';
 import {limitStr} from 'app/util/string';
 const selectParams=(window as any).myObj.selectParams;
@@ -8,7 +8,7 @@ export interface Query{
   rgId:number;
   aId:string; //plateId
   rId:number; //replyId;
-  auId:string;
+  //auId:string;
   auName:string; //author nickName;
   c:string;
   r2?:boolean;
@@ -21,7 +21,7 @@ export interface Query{
   selector: 'app-inner-reply',
   templateUrl: './inner-reply.component.html',
   styleUrls: ['./inner-reply.component.css'],
-  animations:[fade(),slideXToggle(),fadeToggle()],
+  animations:[reply()],
 
 })
 export class InnerReplyComponent implements OnInit {
@@ -37,7 +37,7 @@ export class InnerReplyComponent implements OnInit {
   };
   as:any;
   @ViewChild('txt')txt;
-  btn2='btn btn-primary btn-sm';
+  btn2='btn-outline-primary btn';
   btn1=this.btn2+' mr-2';
   otherAu:any;
   parent:any;
@@ -73,7 +73,7 @@ export class InnerReplyComponent implements OnInit {
   _submit(){
     let as=this.as;
     this.loading=true;
-    let baseQuery=as.getParams('cgId','rgId','aId','auId','auName');
+    let baseQuery=as.getParams('cgId','rgId','aId','auName');
     let tId,c=this.txt.value,otherAu=this.otherAu;
     if(otherAu){
       tId=otherAu.id;

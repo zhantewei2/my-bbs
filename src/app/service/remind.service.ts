@@ -10,8 +10,18 @@ export class RemindService {
   constructor(
     public router:Router
   ) {
-    document.addEventListener('visibilitychange',(e)=>{
-      console.log(document.hidden)
+    const body=document.querySelector('body');
+    let result:boolean;
+    body.style.transition='0.5s ease background';
+    document.addEventListener('visibilitychange',()=>{
+      result=document.hidden;
+      if(result===undefined)return;
+      if(result){
+        console.log(result);
+        body.style.background='gray';
+      }else{
+        body.style.background=null;
+      }
     })
   }
   cacheNtfs:any;

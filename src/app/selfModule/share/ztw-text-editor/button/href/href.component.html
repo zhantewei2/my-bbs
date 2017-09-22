@@ -1,10 +1,12 @@
 
   <i class="color-dark fa fa-link"></i>
 <ng-template #tp>
-  <label><i class="fa fa-link"></i></label>
-  <input [disabled]="inputDisabled" id="ztw-text-editor-href-input" class="input" [(ngModel)]="hrefText" name="input"/>
-  <p class="between">
-    <button [disabled]="inputDisabled" class="btn0 btn-default2" (click)="confirm()">Confirm</button>
-    <button class="btn0 btn-default2" (click)="cancel()">Cancel</button>
+  <div class="input-group">
+    <label class="input-group-addon"><i class="fa fa-link"></i></label>
+    <input [disabled]="inputDisabled" id="ztw-text-editor-href-input" class="form-control" [(ngModel)]="hrefText" name="input"/>
+  </div>
+  <p class="between mt-2">
+    <button [disabled]="inputDisabled" class="btn btn-primary" (click)="confirm()">Confirm</button>
+    <button class="btn btn-primary" (click)="cancel()">Cancel</button>
   </p>
 </ng-template>

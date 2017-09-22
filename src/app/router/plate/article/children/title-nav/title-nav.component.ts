@@ -1,16 +1,20 @@
 import { Component, OnInit,ElementRef,Input} from '@angular/core';
 import {ArticleService} from '../article.service';
-import {width} from 'app/selfModule/animations/animate';
+
 import {RouterService} from 'app/service/router.service';
 import {TotalService} from 'app/service/total.service';
+import {TitleNav} from 'app/selfModule/animations/animate';
 @Component({
   selector: 'title-nav',
   templateUrl: './title-nav.component.html',
   styleUrls: ['./title-nav.component.css'],
-  animations:[width()]
+  animations:[TitleNav()],
+  host:{
+    class:'d-block bg-primary'
+  }
 })
 export class TitleNavComponent implements OnInit {
-  @Input()showIcon:boolean;
+  @Input()state:any;
   get href0(){return location.href}
   constructor(
     public _as:ArticleService,
@@ -20,7 +24,7 @@ export class TitleNavComponent implements OnInit {
   ) { }
   ngOnInit() {
   }
-  alertContent:string;
+
   back(){
     let msn=this._as.rgMsn;
     this._rs.navPlate(msn.cgId,msn.rgId);

@@ -14,12 +14,13 @@ export class RouterService {
     private route:ActivatedRoute
   ) {}
   openLogin:any=()=>{};
+  closeSide:any=()=>{};
   navInsertComp=()=>{};
   selectRgVersion:number;
   selectRgVersion2:number;
   nav:any={
     height:null,
-    hiddenTop:500,
+    hiddenTop:80,
     node:null,
     sideNav:null,
     close:null,

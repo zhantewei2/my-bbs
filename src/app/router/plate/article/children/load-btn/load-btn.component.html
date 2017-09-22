@@ -1,9 +1,9 @@
-<button  *ngIf="s=='up'" [@Top] class="top btn-default2">
-  <i class="fa fa-spinner fa-spin"></i>
-</button>
-<button *ngIf="s=='down'" [@Bottom] class="bottom btn-default2">
-  <i class="fa fa-spinner fa-spin"></i>
-</button>
-<button class="mid btn-default2" [@Fade] *ngIf="s&&s!='up'&&s!='down'">
-  <i class="fa fa-spinner fa-spin "></i>
-</button>
+<span  *ngIf="s=='up'" [@Top] class="top text-primary">
+  <i class="sk-spinner-pulse bg-info"></i>
+</span>
+<span *ngIf="s=='down'" [@Bottom] class="bottom text-primary">
+  <div class="sk-spinner-pulse bg-info"></div>
+</span>
+<span class="mid text-primary" [@Fade] *ngIf="s&&s!='up'&&s!='down'">
+  <div class="sk-spinner-pulse bg-info"></div>
+</span>

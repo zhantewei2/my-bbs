@@ -7,15 +7,17 @@
       url
       <ng-template ztwTabContent>
         <div style="text-align:center" class="p-2 main">
-          <p class="text-sm">
+          <p class="">
             <i class="fa fa-lightbulb-o"></i>输入图片网址.
           </p>
-          <div class="mb-4">
-            <i class="fa fa-chain"></i>
-            <input class="input" [(ngModel)]="inputHref" name="imgHref" #imgHref="ngModel" required>
-            <button (click)="inputHref=null" class="btn2 muted">取消</button>
+          <div class="mb-4 input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-chain"></i>
+            </span>
+            <input class="form-control" [(ngModel)]="inputHref" name="imgHref" #imgHref="ngModel" required>
+            <button (click)="inputHref=null" class="btn input-group-addon">取消</button>
           </div>
-          <button [disabled]="!imgHref.valid" (click)="addPicture(inputHref)" class="btn0 btn-default2">添加</button>
+          <button [disabled]="!imgHref.valid" (click)="addPicture(inputHref)" class="btn btn-primary">添加</button>
         </div>
       </ng-template>
     </ztw-tabBtn>

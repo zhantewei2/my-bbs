@@ -41,7 +41,7 @@ export class ZtwPaginationComponent implements OnInit {
   loading:boolean=false;
   unlock(){this.loading=false};
   constructor(){ }
-  btn='btn btn-outline-primary';
+  btn='btn btn-info btn-sm';
   ngOnInit() {}
   emit(e){
     if(e==this._nowPage)return;

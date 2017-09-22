@@ -1,17 +1,19 @@
 import { Component, ViewContainerRef,OnInit,Input,ViewChild,ElementRef} from '@angular/core';
 import {ArticleService} from '../article/children/article.service';
 import {lzwService} from 'app/service/util.service';
-import {fade} from 'app/selfModule/animations/animate';
 import {ResizeService} from 'app/service/resize.service';
 import {InnerReplyService} from '../article/children/inner-reply.service';
 import {RouterService} from 'app/service/router.service';
 const putImg=(window as any).myCommon.putImg;
 const transactionUser=(window as any).myRefer.transactionUser;
+
 @Component({
   selector: 'plate-user-card',
   templateUrl: './plate-user-card.component.html',
   styleUrls: ['./plate-user-card.component.css'],
-  animations:[fade()]
+  host:{
+    class:'d-block'
+  }
 })
 export class PlateUserCardComponent implements OnInit {
   @Input('msn')set fn(val){

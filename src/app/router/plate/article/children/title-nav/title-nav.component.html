@@ -1,20 +1,17 @@
-<div [class.titleNav]="showIcon" class="text-white nav mb-2 bg-primary between p-2" style="overflow:hidden">
-    <span>
-      <span (click)="_rs.nav.sideNav()" [@Width] class="titleBtn cursor" *ngIf="showIcon">
-        <i class="fa fa-navicon"></i>
-      </span>
-      <b class="p-3 rgBtn" (click)="back()">
+<div [@TitleNav]="state"  class="h-100 w-100 text-white mb-2 between" style="overflow:hidden">
+    <div class="d-inline-flex h-100">
+      <div class="animate h-100 rgBtn item" (click)="back()">
         {{_as.rgMsn.rgName}}
         <i class="rgBtn-icon fa fa-chevron-right"></i>
-      </b>
-        <a class="cursor h5 ml-3" [ztwTooltip]="share" pure="rightFade" placement="right" type="oc">
+      </div>
+        <div class="animate d-inline-block item text-white h5 ml-3" [ztwTooltip]="share" pure="rightFade" placement="right" type="oc">
           {{_as.title}}
-        </a>
-    </span>
-  <span class="hidden-lg-down">
-    <div>
-      <button class="btn btn-primary btn-sm">收藏</button>
-      <button (click)="_as.openReply()" class="btn btn-primary btn-sm">
+        </div>
+    </div>
+  <span >
+    <div class="hidden-sm-down mr-2">
+      <button [ngClass]="state?'btn-primary':'btn-info'" class="animate btn btn-sm">收藏</button>
+      <button [ngClass]="state?'btn-primary':'btn-info'" (click)="_as.openReply()" class="animate btn btn-sm">
         <i  class="fa fa-comment-o fa-flip-horizontal"></i>
         回复
       </button>

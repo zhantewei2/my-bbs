@@ -47,7 +47,7 @@
       <dl>
         <dd [class.box-1]="o" style="height:20px" class="between" *ngFor="let i of voteObj.list;index as index;odd as o;trackBy">
           <dfn [class.badge-success]="nextSpy.valid" class="badge badge-pill badge-default mr-1">{{index}}</dfn>
-          <span class="listItem" style="flex:1" [hidden]="i.edit" (click)="entryItem(i,nextNode)" [innerHTML]="i.name||'<kbd>required value</i>'"></span>
+          <span class="listItem" style="flex:1" [hidden]="i.edit" (click)="entryItem(i,nextNode)" [innerHTML]="i.name||'<i>required value</i>'"></span>
           <input [limitLen]="[0,8]" required (blur)="i.edit=false" #nextSpy="ngModel" #nextNode (focus)="focusItem(index)" class="input" [(ngModel)]="i.name" [name]="index+'vote'" [hidden]="!i.edit">
           <span  (click)="!i.edit?removeItem(index):i.edit=false" class="btn btn-sm btn-secondary">
             {{i.edit?'删除':'&times;'}}

@@ -1,4 +1,4 @@
-import {trigger,transition,style,animate,state,keyframes} from '@angular/animations';
+import {trigger,transition,style,animate,state,query,stagger} from '@angular/animations';
 let defaultT='0.3s ease-out';
 
 export function slideRightToggle(t='0.3s ease-out',style1={transform:'translateX(-100%)',opacity:0.8}):any{
@@ -84,10 +84,36 @@ export function fadeToggle(t=defaultT,style1={opacity:0}):any{
     transition('show=>hidden',[animate(t,style(style1))])
   ])
 }
-
-export function fadeOut(t='0.4s ease-out'):any{
-  return trigger('FadeOut',[
-    transition('void=>*',[style({opacity:0}),animate(t)]),
+export function reply(t=defaultT,t2='.2s ease-out',
+  style1={transform:'translateX(-50%)',opacity:0},
+  style2={transform:'translateX(80%)',opacity:0}
+){
+  return trigger('Reply',[
+    transition(':enter',[
+      query('.reply',style(style1)),
+      query('.text-right',[
+        style(style2),
+        animate(t,style('*'))
+      ]),
+      query('.reply',[
+        animate(t,style('*'))
+      ])
+    ]),
+    transition(':leave',[
+      query('.text-right',[animate(t2,style(style2))]),
+      query('.reply',animate(t2,style(style1)))
+    ])
   ])
 }
-
+export function TitleNav(t='200ms cubic-bezier(0.35, 0, 0.25, 1)'):any{
+  return trigger('TitleNav',[
+    transition('*=>*',[
+      query('.animate',[
+        style({transform:'translateX(-50%) scale(1.2,1.2)',opacity:0}),
+        stagger(150,[
+          animate(t,style('*'))
+        ])
+      ],{optional:true})
+   ])
+  ])
+}

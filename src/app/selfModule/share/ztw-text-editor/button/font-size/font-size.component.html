@@ -1,8 +1,10 @@
 <button (click)="setSize()" class="btn2 center">{{size}}</button>
-<i (mousedown)="$event.preventDefault()" (click)="getSize(tp)" class="color-dark fa fa-caret-down btn2 center"></i>
+<span (mousedown)="$event.preventDefault()" (click)="getSize(tp)" class="color-dark btn2 center">
+  <i class="fa fa-caret-down"></i>
+</span>
 
 <ng-template #tp>
-  <span (click)="setSize(i)" class="btn-icon btn0" [class.btn-default2]="i==size" *ngFor="let i of sizeArr">
+  <span (click)="setSize(i)" class="btn-icon btn0" [class.bg-primary]="i==size" *ngFor="let i of sizeArr">
     {{i}}
   </span>
 </ng-template>

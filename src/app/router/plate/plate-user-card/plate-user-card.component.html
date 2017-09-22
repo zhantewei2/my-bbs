@@ -1,15 +1,19 @@
-<div *ngIf="_reS.value=='lg'" class="d-flex p-2 ">
-  <div>
-    <div class="tpParent">
-      <img style="width:120px;" class="rounded box-1 frame" [src]="insert?user.head:putImg(user.head)">
-      <i (click)="_rs.navToUser(user.name)" style="right:0;bottom:0" class="ir tpShow leftFade fa fa-eye btn btn-default2 btn-sm"></i>
+<div *ngIf="_reS.value=='lg'" class="d-flex p-2">
+  <div class="parent ">
+    <div class="sticky-brand" >
+      <div class="tpParent">
+        <img style="width:120px;" class="rounded box-1 frame" [src]="insert?user.head:putImg(user.head)">
+        <span (click)="_rs.navToUser(user.name)" style="right:0;bottom:0" class="ir tpShow leftFade  btn btn-default2 btn-sm">
+          <i class="fa fa-eye"></i>
+        </span>
+      </div>
+      <a [innerTemplate]="Msn" [deps]="{lg:true}"></a>
     </div>
-    <a [innerTemplate]="Msn" [deps]="{lg:true}"></a>
   </div>
   <div style="flex:1" class="parent d-flex flex-column">
-      <div  class="card-block" [innerHTML]="i.c">
-
+      <div  class="card-block article" [innerHTML]="i.c|trustHtml">
       </div>
+      <i class="tr text-sm text-muted sign" [hidden]="!i.rId">{{i.rId}}</i>
       <ng-container *ngIf="isHost">
         <ng-template [innerTemplate]="host"></ng-template>
       </ng-container>
@@ -17,7 +21,7 @@
         <ztw-vote  [msn]="i"></ztw-vote>
         <nav>
           <samp >{{i.cd | date:'short'}}</samp>
-          <a *ngIf="!isHost" (click)="innerReply(inner)" class="btn btn-primary ml-2  fa fa-commenting-o"></a>
+          <span *ngIf="!isHost" (click)="innerReply(inner)" class="btn0 btn1 ml-2  fa fa-commenting-o"></span>
         </nav>
       </div>
   </div>
@@ -25,7 +29,7 @@
 <ng-template #test>
   aasasa
 </ng-template>
-<div *ngIf="_reS.value!='lg'" [@Fade]>
+<div *ngIf="_reS.value!='lg'">
   <div class="d-flex p-2">
     <img type="oc" class="img-min" [ztwTooltip]="Msn" [src]="insert?user.head:putImg(user.head)">
     <div class="p-2 pl-4" style="flex-grow:1;">
@@ -40,7 +44,7 @@
     </div>
   </div>
   <div class="parent p-2 pl-3">
-    <div class="md-body" [innerHTML]="i.c"></div>
+    <div class="md-body article" [innerHTML]="i.c|trustHtml"></div>
     <ng-container *ngIf="isHost">
 
       <ng-template [innerTemplate]="host"></ng-template>

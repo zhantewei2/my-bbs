@@ -2,9 +2,12 @@ textarea{
   width:100%;
   resize:none;
   line-height:120%;
+  border-color:transparent;
 }
 :host{
   display:block;
-  width:100%;
+}
+.self{
+  background:rgba(200,200,200,0.1);
   overflow:hidden;
 }

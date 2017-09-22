@@ -14,7 +14,7 @@ export class userCanLoad{
     return this._ts.isLogined().then(v=>{
       if(!v){
         if(userName===undefined) {
-          this.router.navigate(['']);
+          this.router.navigate(['/']);
         }else{
           this._rs.openLogin();
         }

@@ -15,6 +15,7 @@ const common=(window as any).myCommon;
 const publishCg=common.publishCg;
 const textInterval=common.textInterval;
 
+
 export interface SetMsn{
   s:string;
   c:string;
@@ -65,7 +66,6 @@ export class PublishComponent implements OnInit {
   ){}
   @ViewChild('textEditor')textEditor;
   cb:any=()=>{};
-  useModel:any=()=>new Promise(resolve=>this.mainModel?resolve(this.mainModel):(this.cb=()=>resolve(this.mainModel)));
   modal:any;
   ngAfterViewInit(){
     this.modal=this._ts.modal;
@@ -77,10 +77,10 @@ export class PublishComponent implements OnInit {
     this.start=this.startCg[0];
     this.route.data.subscribe((v:any)=>{
       this.posObj=v.data;
-      this._db.getDB().then((db:any)=>{
-        this.db=db;
+      this._db.userInit().then(()=>{
+        this.db=this._db.db2;
         this.textNode=this.textEditor.textarea.nativeElement;
-        db.use('main').then(model=>{
+        this.db.use('main').then(model=>{
             this.mainModel=model;
             this.cb();
             const transmitData=this._rs.transmit;
@@ -114,13 +114,20 @@ export class PublishComponent implements OnInit {
     msn:null
   };
   draftEdit(){
-    if(!this.showDraft){
-      this.useModel().then(model=>{
-        model.findOne('draft',(err, data) => {
-          this.draft = data;
-          this.showDraft=true;
-        })
+    const method=()=>{
+      this.mainModel.findOne('draft',(err, data) => {
+        this.draft = data;
+        this.showDraft=true;
       })
+    };
+    //version will lose mainMODEL;I will restore it in next db version;
+    if(!this.showDraft){
+      try{method()}catch(e){
+        this._db.db2.use('main').then(model=>{
+          this.mainModel=model;
+          method()
+        });
+      }
     }else{
       this.closeEditDf()
     }
@@ -199,6 +206,7 @@ export class PublishComponent implements OnInit {
         this._rs.back();
       }
     });
+
   }
   closeW(){
     this.showWarn=false;

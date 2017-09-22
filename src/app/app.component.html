@@ -3,11 +3,9 @@
 <ztw-modal (confirm)="modalResult($event)" [lg]="isLg" [content]="modalContent" #myModal></ztw-modal>
 <footer-alert [content]="footerContent" #footer></footer-alert>
 <nav-root #nav></nav-root>
-<header class="mb-2">
-
-</header>
-<div #div1 class="justify-content-center d-flex">
-<div class="col-xl-8 col-md-10 col-12 p-0">
+<app-top></app-top>
+<div>
+<div class="container">
     <router-outlet (activate)="entry($event)"></router-outlet>
 </div>
 </div>

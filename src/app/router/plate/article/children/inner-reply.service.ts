@@ -9,6 +9,7 @@ export class InnerReplyService {
   ) { }
   preContainer:ViewContainerRef;
   insertReply(container:ViewContainerRef,parent,toAu=false){
+
     if(container==this.preContainer)return;
     let componentFactory=this._cfr.resolveComponentFactory(InnerReplyComponent);
     this.closeReply();
@@ -30,8 +31,5 @@ export class InnerReplyService {
     }catch(e){}
     this.preContainer=null;
     this._as.resetScroll();
-  }
-  viewReply(){
-
   }
 }

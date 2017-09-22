@@ -42,7 +42,7 @@
       <button (click)="draftEdit()" class="btn btn1 btn-secondary opacity">
         <i class="fa fa-caret-{{showDraft?'right':'left'}}"></i>
       </button>
-      <div class="card-header bg-dark text-white">
+      <div class="card-header">
         恢复草稿
       </div>
       <div class="list-group w-100">
@@ -66,9 +66,9 @@
           我的草稿箱
           </span>
         </li>
-        </div>
-        <div *ngIf="showDrafts" [@Fade] class="w-100">
-          <div style="height:30px;overflow:hidden" class="parent w-100">
+
+        <ng-container *ngIf="showDrafts" [@Fade]>
+          <div style="height:28px;overflow:hidden" class="parent btn btn-secondary">
             <div  class="grow abs w-100 btnGp" [@SlideXLine] *ngIf="!customDf.editing">
               <div class="btn btn-secondary btn-sm" (click)="customDf.add()" >保存</div>
               <div class="btn btn-secondary btn-sm" (click)="customDf.edit()"><i class="fa fa-pencil"></i>编辑</div>
@@ -78,8 +78,7 @@
               <div class="btn btn-secondary btn-sm" (click)="customDf.cancelEdit()">取消</div>
             </div>
           </div>
-          <div class="btn-group-vertical w-100">
-            <li (click)="customDf.editing?0:customDf.setDf(i.n)" *ngFor="let i of dfList" class="media btn btn-outline-secondary">
+            <li (click)="customDf.editing?0:customDf.setDf(i.n)" *ngFor="let i of dfList" class="media btn btn-secondary">
               <i *ngIf="!customDf.editing;else delIcon" class="fa fa-book text-lg"></i>
               <ng-template #delIcon>
                 <button (click)="customDf.delI(i.n)" class="close"><i class="text-lg fa fa-window-close"></i></button>
@@ -89,7 +88,7 @@
                 <div>{{i.d | date}}</div>
               </div>
             </li>
-          </div>
+        </ng-container>
         </div>
       </div>
     </div>

@@ -5,6 +5,9 @@ nav{
 nav li{
   color:white;
 }
+.an_nav{
+  transition:all .2s ease-in
+}
 :host{
     display:block;
 

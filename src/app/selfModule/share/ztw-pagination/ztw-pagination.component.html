@@ -1,4 +1,4 @@
-<dl  class="btn-group parent" *ngIf="show"  [@SlideXToggle]>
+<dl  class="btn-group parent btnBar" *ngIf="show"  [@SlideXToggle]>
   <div [hidden]="!loading" class="abs full cover" ></div>
   <button [class]="btn" (click)="emit(1)" [hidden]="_nowPage<_navSize">
     <i class="fa fa-angle-double-left"></i>

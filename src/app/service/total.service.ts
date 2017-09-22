@@ -70,12 +70,12 @@ export class TotalService{
         head:{
           enumerable:true,
           set:(val)=>headStore=val,
-          get:()=>this.hostUrl+'static/header/'+headStore
+          get:()=>this.hostUrl+'/static/header/'+headStore
         }
       });
       return msn;
     };
-    hostUrl='http://localhost:3000/';
+    hostUrl=config.hostUrl;
     constructor(
       public http:HttpService,
       private router:Router
@@ -105,6 +105,7 @@ export class TotalService{
       //userMsn:{name: ,pswd: ,vf:};
       this.loading.login=true;
       this.http.postWithVf(this.url.login,userPost).then(v=>{
+        this.loading.login=false;
         if(v)return this.initUser(v);
         this.err.login=true;
         this.userMsn.name=null;
@@ -126,7 +127,6 @@ export class TotalService{
       return Observable.merge(ob,this.loginSub);
     }
     initUser(v){
-      this.err.login=false;
       let user:any=this.userMsn;
       Object.assign(user,refer.transactionUser(v));
       this.loginSub.next(user.name);

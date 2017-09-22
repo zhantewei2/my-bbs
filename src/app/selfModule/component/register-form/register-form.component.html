@@ -1,5 +1,5 @@
-<form class="card" [formGroup]="formGroup">
-  <div class="card-header">formGroup</div>
+<form class="card mt-4" [formGroup]="formGroup">
+  <div class="card-header bg-primary text-white">注册列表</div>
   <div class="card-block">
     <div class="form-group" [ngClass]="{'has-danger':!i.control.valid&&i.control.dirty,'has-success':i.control.valid}" *ngFor="let i of formDatas">
       <label [innerHTML]="i.label"></label>

@@ -13,31 +13,23 @@ import {RemindService} from 'app/service/remind.service';
 })
 export class NavRootComponent {
   constructor(
-      private _ts:TotalService,
-      private _rs:RouterService,
+      public _ts:TotalService,
+      public _rs:RouterService,
       private _el:ElementRef,
-      private _res:ResizeService,
+      public _res:ResizeService,
       private router:Router,
       private route:ActivatedRoute,
-      private _remind:RemindService
+      public _remind:RemindService
   ) {this.user=_ts.userMsn}
   @ViewChild('sideNav')sideNav;
   @ViewChild('nav')nav;
-  hidNav:boolean=false;
-  tabs:Array<string>=['home','others'];
   user:any;
   ngAfterViewInit(){
-    this._rs.openLogin=()=>{
-      this.sideNav.open.call(this.sideNav);
-    };
+    this._rs.openLogin=()=>this.sideNav.open.call(this.sideNav);
     let nav=this._rs.nav;
     nav.height=this._el.nativeElement.offsetHeight;
     nav.node=this.nav.nativeElement;
     nav.sideNav=this.sideNav.toggle.bind(this.sideNav);
     nav.close=this.sideNav.close.bind(this.sideNav);
-  }
-  back(){
-    console.log(this.route);
-
   }
 }

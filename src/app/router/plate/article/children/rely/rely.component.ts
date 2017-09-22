@@ -38,7 +38,7 @@ export class RelyComponent implements OnInit {
   isPassVf:boolean;
   _submit(){
     let as=this._as;
-    let data:any=as.getParams('rgId','cgId','aId','auId','auName');
+    let data:any=as.getParams('rgId','cgId','aId','auName');
     this.running=true;
     data.c=this.lzw.encode(this.html);
     data.tId=as.au.name;

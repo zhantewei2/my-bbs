@@ -1,7 +1,13 @@
-<div class="box-1 px-2 pt-2" style="margin:5px" *ngIf="show" [@SlideXToggle] (@SlideXToggle.done)="anDone()">
+<div class="box-1 px-2 pt-2 self" style="padding:5px;" *ngIf="show" [@Reply] (@Reply.done)="anDone()">
+  <div class="reply">
+    <p><b class="text-primary">
+      <i class="fa fa-comment-o mx-2"></i>
+    </b>
+    </p>
   <textarea [hidden]="nextVf" ngModel #txt="ngModel" minRows="2"
   name="textarea" required rows="3" class="form-control">
   </textarea>
+  </div>
   <div [hidden]="!nextVf" class="center mt-2">
     <ztw-side-vf-package (pass)="vfPass=true" [style.maxWidth.px]="580" height="150px" [bindValid]="nextVf"></ztw-side-vf-package>
   </div>

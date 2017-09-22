@@ -34,8 +34,6 @@ export class VoteComponent implements OnInit {
     let db=this._as._db.db;
 
     db.use('vote',{keyPath:'key'}).then(model=>{
-      console.log(model)
-
       let newQuery:any=Object.assign({},query);
       delete newQuery.rgId;
       newQuery.u=this._as.baseParams.auId;

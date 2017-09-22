@@ -24,7 +24,7 @@
           <button [disabled]="!formGroup.valid || _ts.err.login ||!passVf" class="btn btn-primary" (click)="submit();vf.reset()">提交</button>
           <button class="btn btn-primary" (click)="resetForm();vf.reset()">重设</button>
         </div>
-        <div class="text-right mt-2"><i routerLink="/register" class="badge badge-primary cursor">注册?</i></div>
+        <div class="text-right mt-2"><i (click)="_rs.nav.close()" routerLink="/register" class="badge badge-primary cursor">注册?</i></div>
     </form>
   </ng-template>
 </div>

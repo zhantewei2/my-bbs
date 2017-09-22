@@ -4,6 +4,7 @@ import { RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home/home.component';
 import { RegisterComponent } from './register/register.component';
 import {userCanLoad} from '../service/guard.service';
+import { ErrComponent } from './home/err/err.component';
 @Component({
   template:`<router-outlet></router-outlet>`
 })
@@ -14,6 +15,9 @@ export class proxyComponent{
 let routing:any=[
   {
     path:'',component:HomeComponent
+  },
+  {
+    path:'err',component:ErrComponent
   },
   {
     path:'ntf',outlet:'popup',

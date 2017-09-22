@@ -1,11 +1,11 @@
-$color:gray;
+$color:#ddd;
 $shadowColor:$color;
 $bgColor:white;
 $lightColor:mix($color,white,20%);
 $bgColor-secondary:rgba($lightColor,.1);
 $deepColor:darken($color,30%);
 $deepColor2:darken($color,5%);
-$remindColor:black;
+$remindColor:rgba(indianred,.3);
 $borderRadius:5px;
 $lg:1200px;
 $smBtnPadding:6px;
@@ -13,9 +13,9 @@ $shd1:0 0 10px 2px $shadowColor;
 $shd2:0 0 30px 2px rgba($shadowColor,.5);
 $border1:1px solid rgba($bgColor,.5);
 $extendColor:lighten(black,15%);
-$tab-color:transparent;
-$tab-btn-color:$deepColor;
-$tab-active-color:$extendColor;
+$tab-color:white;
+$tab-btn-color:#ddd;
+$tab-active-color:white;
 
 @mixin transition(){
   transition:all .3s ease;
@@ -29,12 +29,18 @@ $tab-active-color:$extendColor;
 .bg-0{
   background:rgba(255,255,255,.9);
 }
+
 .color-dark{
   color:black;
 }
-
+.shadow-2{
+  box-shadow:$shd2 !important;
+}
 .shadow-1{
   box-shadow:$shd1;
+}
+.an_node{
+  transition:all 0.3s ease;
 }
 .borderR{
   border-radius:$borderRadius;
@@ -76,7 +82,7 @@ em{color:$deepColor}
   box-shadow:$shd2;
 }
 .img1{
-  box-shadow:2px 2px 4px $deepColor;
+  box-shadow:2px 2px 6px $deepColor;
   border:$border1;
 }
 .btn-default:hover{
@@ -108,7 +114,7 @@ em{color:$deepColor}
 }
 kbd{
   background:$deepColor;
-  box-shadow:2px 2px 5px $deepColor;
+  box-shadow:1px 1px 3px $color;
   margin:0 5px;
 }
 @media only screen and(min-width:$lg){
@@ -139,7 +145,8 @@ kbd{
   transition:all 0.3s ease;
   padding:$smBtnPadding;
   border:1px solid $color;
-  transform:translateY(2px);
+  //border-bottom-color:transparent;
+  transform:translateY(1px);
   border-radius:$borderRadius $borderRadius 0 0;
   &.active{
     background:$tab-active-color;
@@ -148,7 +155,7 @@ kbd{
 }
 
 .tab-bg{
-  background:transparent;
+  background:$tab-color;
   padding:5px 0;
   border-top-width:0;
 }
@@ -174,6 +181,11 @@ kbd{
   @extend %abs0;
   top:0.6rem;
   right:0.6rem;
+}
+.tr{
+  @extend %abs0;
+  top:0;
+  right:0;
 }
 .fr{
   @extend %abs0;
@@ -218,20 +230,11 @@ kbd{
   background:transparent;
   cursor:not-allowed;
 }
-.btn-shd,.btn-default2:hover{
+.btn1{
   background:$lightColor;
-  box-shadow:$shd1;
-}
-.btn-default2{
-  box-shadow:$shd2;
-  border:1px solid white;
-  color:gray;
-  text-shadow: none;
-  background:white;
-  cursor:pointer;
-  transition:all 0.4s;
-  &:active,&.active{
-    background:$color;
+  &:hover{
+    color:white;
+    background:$deepColor2;
   }
 }
 
@@ -241,16 +244,6 @@ kbd{
     background:$bgColor-secondary;
     box-shadow:$shd2;
     z-index:1;
-  }
-}
-.btn0-inverse{
-  @extend .btn-default2;
-  @extend .btn-shd;
-  &:hover{
-    background:$remindColor;
-  }
-  &.active{
-    @extend %active0;
   }
 }
 
@@ -276,19 +269,6 @@ kbd{
 $remindColor2:transparentize($shadowColor,0.5);
 .remindBg{
   background:$remindColor2;
-}
-.blur{
-  filter:blur(2px);
-  background: $bgColor;
-  opacity:0.4;
-}
-.cover{
-  @extend .blur;
-  z-index:1;
-  transition:all 0.3s ease;
-}
-.coverH:hover{
-  @extend .blur
 }
 
 

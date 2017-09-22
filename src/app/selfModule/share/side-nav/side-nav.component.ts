@@ -16,13 +16,13 @@ export class SideNavComponent implements OnInit {
   constructor() { }
 
   open(){
-    if(this.prevent)return;
+    if(this.prevent||this.slide=='show')return;
     this.prevent=true;
     this.slide='show';
     this.container.createEmbeddedView(this.tp);
   }
   close(){
-    if(this.prevent)return;
+    if(this.prevent||this.slide!='show')return;
     this.prevent=true;
     this.slide='hidden';
   }

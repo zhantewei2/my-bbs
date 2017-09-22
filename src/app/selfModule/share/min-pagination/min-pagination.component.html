@@ -1,11 +1,11 @@
 <p *ngIf="pages">
-  <button (click)="select(1,null)" [hidden]="_nowPage<=2" class="btn btn-primary btn-sm fa fa-angle-double-left"></button>
-  <button (click)="select(_nowPage-1,'pre')" [disabled]="_nowPage<=1" class="btn btn-sm btn-primary fa fa-caret-left">
+  <button (click)="select(1,null)" [hidden]="_nowPage<=2" class="btn btn-outline-info btn-sm fa fa-angle-double-left"></button>
+  <button (click)="select(_nowPage-1,'pre')" [disabled]="_nowPage<=1" class="btn btn-sm btn-outline-info fa fa-caret-left">
   </button>
-  <span disabled="true" class="badge badge-primary text-sm">{{_nowPage}}</span>
-  <button (click)="select(_nowPage+1,'next')" [disabled]="_nowPage>=pages" class="btn btn-sm btn-primary fa fa-caret-right">
+  <span disabled="true" class="badge badge-info">{{_nowPage}}</span>
+  <button (click)="select(_nowPage+1,'next')" [disabled]="_nowPage>=pages" class="btn btn-sm btn-outline-info fa fa-caret-right">
   </button>
-  <button (click)="select(pages,'end')" [hidden]="preventEnd||_nowPage>=pages-1" class="btn btn-sm btn-primary fa fa-angle-double-right">
+  <button (click)="select(pages,'end')" [hidden]="preventEnd||_nowPage>=pages-1" class="btn btn-sm btn-outline-info fa fa-angle-double-right">
   </button>
   <small class="pl-2">共 <b>{{pages}}</b> 页</small>
   <i [hidden]="!loading" class="fa fa fa-spinner fa-spin"></i>

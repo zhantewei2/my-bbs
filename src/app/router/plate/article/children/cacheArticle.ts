@@ -26,16 +26,7 @@ export class CacheArticle{
   next:any=()=>{};
   constructor(as,db){
     this.as=as;
-      db.use('article',{keyPath:'id'}).then(model=>{
-        this.model=model;
-        this.next();
-      });
-  }
-  await(){
-    return new Promise(resolve=>{
-      if(this.model)return resolve(this.model);
-      this.next=()=>{resolve(this.model)};
-    })
+    this.db=db;
   }
   store=(data:articleData,cb)=>{
     data.id=this.as.aId;
@@ -59,7 +50,8 @@ export class CacheArticle{
     let send=(query:Query,fn)=>{
       this.as.http.post(this.as.url.viewPlate,query,1000).then(v=>v?fn(v):cb(false));
     };
-    this.await().then(model=>{
+    this.db.use('article',{keyPath:'id'}).then(model=>{
+      this.model=model;
       let version=this.as._rs.selectRgVersion;
       let v2=this.as._rs.selectRgVersion2;
       //let uId=this.as.baseParams.auId;
@@ -74,8 +66,7 @@ export class CacheArticle{
           cb(v);
       };
       if(start==1){
-        this.model.findOne(as.aId.toString(),(err:any,data:articleData)=>{
-
+          model.findOne(as.aId.toString(),(err:any,data:articleData)=>{
           let storeV,storeV2;
           try{
             storeV=+data.__v;

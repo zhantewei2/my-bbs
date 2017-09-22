@@ -1,9 +1,9 @@
 <div class="mb-2">
-  <span class="btn btn-default2 " placement="tpBottom2" ztw-dropdown>
+  <span class="btn btn-outline-primary dropdown-toggle" placement="tpBottom2" ztw-dropdown>
     {{base?.cgName||'按板块查询'}}
     <div class="p-3" *ztw-dropdown-menu>
       <dl *ztwFor="let cg in _ts.cgs">
-        <dt>{{cg.name}}</dt>
+        <dt class="dropdown-header">{{cg.name}}</dt>
         <dd [class.active]="base.cgName==cg.name&&base.rgName==rg.name" (click)="selectRg(cg,rg)" class="dropdown-item" *ztwFor="let rg in cg.rgs">
           {{rg.name}}
         </dd>
