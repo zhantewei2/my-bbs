@@ -164,11 +164,12 @@ export class PlateComponent implements OnInit {
     return dr=='next'?this._bp.nowPage+1:this._bp.nowPage-1;
   };
   goPage=(dr)=>{
-
     let p:any=this.filterDr(dr),bp=this.bp0;
-
     if(!p)return;
     if(p>bp.downP){
+      if(window.innerHeight-document.body.scrollHeight>-10){
+        this.getPage(p,'next');
+      }
       this.scrollTo('ztw_bottom')
     }else if(p<bp.upP){
       this.scrollTo('ztw_top',()=>{this._bp.nowPage=bp.upP;this.getPage(p,'pre')});

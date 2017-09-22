@@ -168,6 +168,7 @@ export class ArticleService {
             s:offset0
           };
           this.http.post(this.url.getReply, query, 1000).then(v => {
+            if(v)this.breakPage.nowPage=i;
             resolve(v?v.r:v);
           })
         }

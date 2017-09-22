@@ -2,9 +2,10 @@ import { Component,Input,EventEmitter,Output} from '@angular/core';
 @Component({
   selector: 'btn-scroll-nav',
   templateUrl: './scroll-nav.component.html',
-  styleUrls: ['./scroll-nav.component.css']
+  styleUrls: ['./scroll-nav.component.css'],
 })
 export class ScrollNavComponent{
+
   @Output('refresh')refresh:any=new EventEmitter();
   @Input('nowPage')_now;
   @Input()pages;
