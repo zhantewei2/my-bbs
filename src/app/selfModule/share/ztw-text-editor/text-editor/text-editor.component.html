@@ -1,4 +1,4 @@
-<nav class="d-flex flex-wrap">
+<nav class="d-flex flex-wrap" >
   <ng-template ngFor let-i [ngForOf]="buttonArr">
     <button class="btn0 btn-icon"  (click)="i.fn()">
       <i [class]="'fa fa-'+i.name"> </i>
@@ -14,9 +14,9 @@
   <ztw-image [disUpload]="disUpload"></ztw-image>
   <ng-content select="[textEditorBtn]"></ng-content>
 </nav>
-<div class="full">
-  <div class="full container1" >
-    <div #textarea id="ztw_textEditor" class="full" contenteditable="true">
+<div class="column flex-1">
+  <div class="container1 column flex-1">
+    <div #textarea id="ztw_textEditor" class="full flex-1" contenteditable="true">
     </div>
   </div>
   <div class="txt2 parent"  [@SlideTopToggle2]="txt2.isOpen?'show':'hidden'"   *ngIf="txt2">
@@ -31,8 +31,7 @@
     </div>
   </div>
   <i class="fa fa-chevron-up topBtn btn0" style="opacity:0.5" (click)="txt2Open()" *ngIf="txt2&&!txt2.isOpen"></i>
-
-
 </div>
+
 <ztw-text-editor-modal #modal></ztw-text-editor-modal>
 

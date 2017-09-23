@@ -16,10 +16,7 @@ const toArr=(window as any).myObj.toArray;
   styleUrls: ['./article-strategy.component.css']
 })
 export class ArticleStrategyComponent{
-  voteDB:any={
-    name:'stVote',
-    keyPath:'key'
-  };
+
   gN:string=(window as any).myRefer.userList['gold'];
   stgUrl:string='/user/manage/stg';
   pattern:any;
@@ -110,26 +107,22 @@ export class ArticleStrategyComponent{
       };
       next('支付失败');
     }else{
-      this._db.userInit().then(()=>{
-        this._db.db.use(this.voteDB.name,{keyPath:this.voteDB.keyPath}).then(model=>{
-          const msn:any=as.getParams('rgId','auId','aId');
-          const key=msn.auId+msn.aId;
-          model.findOne(key,(err,data)=>{
-            if(data)return as._ts.throwErr('你已经投过了!')&&(this.running=false);
-            content=`确认为${num}投票`;
-            query.i=num;
-            end=()=>{
-              model.purePut({key:key},()=>{
-                as._ts.alert('投票成功!');
-                this.voteList.find(v=>v.name==num).value++;
-              });
-            };
-            next('投票失败或已投过');
-          });
-
-        })
-      });
-
+      this._db.useModel('stVote').then((model:any)=>{
+        const msn:any=as.getParams('rgId','auId','aId');
+        const key=msn.auId+msn.aId;
+        model.findOne(key,(err,data)=>{
+          if(data)return as._ts.throwErr('你已经投过了!')&&(this.running=false);
+          content=`确认为${num}投票`;
+          query.i=num;
+          end=()=>{
+            model.purePut({key:key},()=>{
+              as._ts.alert('投票成功!');
+              this.voteList.find(v=>v.name==num).value++;
+            });
+          };
+          next('投票失败或已投过');
+        });
+      })
     }
 
   }

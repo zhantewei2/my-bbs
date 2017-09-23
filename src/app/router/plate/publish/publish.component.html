@@ -34,7 +34,7 @@
   <span class="btn btn-warning btn-sm" (click)="closeW()">取消</span>
 </ztw-alert>
 <div class="parent edit1 bg-0">
-  <ztw-text-editor style="width:100%;height:600px" #textEditor disUpload="true">
+  <ztw-text-editor #textEditor disUpload="true">
     <my-strategy textEditorBtn></my-strategy>
   </ztw-text-editor>
   <div  class="draft center" [@SlideX]="showDraft?'show':'hidden'">
@@ -47,7 +47,7 @@
       </div>
       <div class="list-group w-100">
         <div class="btn-group btn-group-vertical">
-        <button [disabled]="!draft" (click)="ensureDf(draft)" class="btn btn-outline-secondary">
+        <button [disabled]="!draft" (click)="ensureDf(draft)" class="btn btn-secondary">
           <span *ngIf="draft;else noDraft">
             <div >
               最近保存
@@ -61,19 +61,19 @@
             没有自动存档
           </ng-template>
         </button>
-        <li (click)="getDfs();showDrafts=!showDrafts" class="btn btn-outline-secondary">
+        <li (click)="getDfs();showDrafts=!showDrafts" class="btn btn-secondary">
           <span><i class="fa fa-trash"></i>
           我的草稿箱
           </span>
         </li>
 
         <ng-container *ngIf="showDrafts" [@Fade]>
-          <div style="height:28px;overflow:hidden" class="parent btn btn-secondary">
-            <div  class="grow abs w-100 btnGp" [@SlideXLine] *ngIf="!customDf.editing">
+          <div class="parent flex editBtn">
+            <div  class="grow abs w-100 btn-group" [@SlideXLine] *ngIf="!customDf.editing">
               <div class="btn btn-secondary btn-sm" (click)="customDf.add()" >保存</div>
               <div class="btn btn-secondary btn-sm" (click)="customDf.edit()"><i class="fa fa-pencil"></i>编辑</div>
             </div>
-            <div class="btnGp abs grow w-100" [@SlideXLine] *ngIf="customDf.editing">
+            <div class="btn-group abs grow w-100" [@SlideXLine] *ngIf="customDf.editing">
               <div class="btn btn-secondary btn-sm" (click)="customDf.cfMf()">提交</div>
               <div class="btn btn-secondary btn-sm" (click)="customDf.cancelEdit()">取消</div>
             </div>
@@ -96,7 +96,6 @@
 </div>
 <div class="my-2">
   <button [disabled]="!titleControl.valid" class="btn btn-outline-info" (click)="submit1(textEditor)">{{mfPattern?'确认修改':'提交'}}</button>
-
 </div>
 <footer-alert #alert></footer-alert>
 <ng-template #addDfTp>

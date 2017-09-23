@@ -36,6 +36,7 @@ export class PlateComponent implements OnInit {
   briefContent:any;
   briefObj:any;
   isEmpty:boolean;
+  model:any;
   constructor(
     public _rs:RouterService,
     public route:ActivatedRoute,
@@ -51,7 +52,8 @@ export class PlateComponent implements OnInit {
       let msn=this._rs.cache.plate;
       this.briefObj=this._rs.cacheBrief;
       this.briefContent=this.briefObj[this.rgId];
-      this.initDB().then(model=>{
+      _db.useModel('aIsRead').then((model:any)=>{
+        this.model=model;
         if(msn){
           Object.assign(this,msn);
           this._rs.cache.plate=null;
@@ -81,9 +83,8 @@ export class PlateComponent implements OnInit {
     loadP:5
   };
   pageLoad:any;
-  model:any;
+
   //init dataBase check article has read;
-  initDB=()=>this._db.isInit().then(x=>this._db.db.use('aIsRead',{keyPath:'aName',type:'capped',limit:1000}).then(model=>this.model=model));
   getPage(p,dr?){
     let plates=this.plates,
       bp0=this.bp0;

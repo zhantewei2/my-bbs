@@ -14,7 +14,10 @@ interface btn{
   templateUrl: './text-editor.component.html',
   styleUrls: ['./text-editor.component.css'],
   providers:[{provide:parent,useExisting:forwardRef(()=>TextEditorComponent)}],
-  animations:[slideTopToggle2()]
+  animations:[slideTopToggle2()],
+  host:{
+    class:'column publish-editor'
+  }
 })
 export class TextEditorComponent implements OnInit {
   constructor(

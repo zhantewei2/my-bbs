@@ -217,7 +217,8 @@ export class ArticleService {
   getHomePage:any=(start,cb)=>{
     const next=()=>this.cacheTool.getPage(start,v=>cb(v));
     if(!this.cacheTool){
-      this._db.isInit().then(()=>{this.cacheTool=new CacheArticle(this,this._db.db);next()})
+      this.cacheTool=new CacheArticle(this,this._db);
+      next()
     }else{next()}
 
   };

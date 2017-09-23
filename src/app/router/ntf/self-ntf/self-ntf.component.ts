@@ -45,7 +45,6 @@ export class SelfNtfComponent implements OnInit {
   }
   user:any;
   totals:number;
-  ntfModel:any;
   lists:any;
   lists2:any;
   getNtf(){
@@ -53,16 +52,15 @@ export class SelfNtfComponent implements OnInit {
     this.clearRel();
     this.http.post(this.url).then(v=>{
       if(!v||v<0)return;
-       this._remind.cacheNtfs=this.lists=v;
+      this._remind.cacheNtfs=this.lists=v;
       this.user.ntfSelf=0;
-       v.forEach(i=>i.cd=new Date(i.cd).getTime());
-       this._db.db2.use('ntfs').then((model:any)=>{
-         this.ntfModel=model;
+      v.forEach(i=>i.cd=new Date(i.cd).getTime());
+      this._db.useModel('ntfs').then((model:any)=>{
          v.asyncForEach(
            (list,next)=>{list.cd=new Date(list.cd).getTime();model.insert(list,()=>next())},
            ()=>{this.loading=false}
          );
-       });
+      });
     })
   }
 
@@ -71,7 +69,7 @@ export class SelfNtfComponent implements OnInit {
     const base=['plates',rgUrl,msn.thId];
     //mark read;
     msn.read=true;
-    this._db.db2.use('ntfs').then(model=>model.purePut(msn,()=>{}));
+    this._db.useModel('ntfs').then((model:any)=>model.purePut(msn,()=>{}));
     if(!msn.f){
       this.router.navigate(base);
     }else{
@@ -91,8 +89,7 @@ export class SelfNtfComponent implements OnInit {
   }
   history:History=new History();
   getHistory(page:any,dr:any){
-    this._db.db2.use('ntfs').then(model=>{
-      this.ntfModel=model;
+    this._db.useModel('ntfs').then((model:any)=>{
       const
       history=this.history,
       hCursor=this._remind.historyCursor;
@@ -136,9 +133,11 @@ export class SelfNtfComponent implements OnInit {
   }
   clearHistory(e){
     if(!e)return;
-    this.ntfModel.model.removeAll(()=>{
-      this.lists2=null;
-      this.clearRel();
+    this._db.useModel('ntfs').then((model:any)=>{
+      model.removeAll(()=>{
+        this.lists2=null;
+        this.clearRel();
+      })
     });
   }
 }

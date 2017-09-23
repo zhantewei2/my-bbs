@@ -17,6 +17,11 @@ $article-img:(
   md:600px,
   sm:310px
 );
+$article-fontSize:(
+  sm:.8rem,
+  md:.9rem,
+  lg:1rem
+);
 @mixin sm-text-modal(){
   .text-modal-container{
     position:fixed !important;
@@ -36,7 +41,11 @@ $article-img:(
     visibility:visible;
   }
 }
-
+@mixin publish-editor-height(){
+  .publish-editor{
+    height:250px;
+  }
+}
 @each $abbrev,$size in $screen{
   $screen-val:map-get($screen,$abbrev);
   $limit:nth($screen-val,1);
@@ -63,9 +72,11 @@ $article-img:(
     //text-editor modal
     @if ($abbrev ==sm){
       @include sm-text-modal();
+      @include publish-editor-height();
     }
     //article img width;
     .article{
+      font-size:map-get($article-fontSize,$abbrev);
       & img{
         max-width:map-get($article-img,$abbrev);
       }

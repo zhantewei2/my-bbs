@@ -1,11 +1,11 @@
 div[contenteditable]{
   overflow: auto;
 }
+
 .container1{
-  border:1px solid gainsboro;
+  border:1px solid #ddd;
   padding:5px 0 5px 5px;
   border-radius:5px;
-  color:black;
 }
 .txt2{
   position:absolute;
@@ -22,9 +22,7 @@ div[contenteditable]{
   left:50%;
   transform:translateX(-50%);
 }
-:host{
-  display:inline-block;
-}
+
 :host /deep/ .mr1{
   margin-right:1rem;
 }

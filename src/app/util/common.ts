@@ -1,7 +1,7 @@
 export {vfKey} from './key';
 export const val=['required','minLength(5)','maxLength(16)'];
 export const imgCount=14;   //header img count;
-export const hostUrl='http://localhost:3001';
+export const hostUrl='';
 export function putImg(name){
   return hostUrl+'/static/header/'+name;
 }
@@ -17,6 +17,6 @@ export const ntfPs=10;
 export const dbConfig={
   name:'test',
   opts:{
-    publishVersion:2
+    version:10
   }
 };

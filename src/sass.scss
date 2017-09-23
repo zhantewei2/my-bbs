@@ -80,6 +80,9 @@ html{
   @extend .flex0;
   flex-flow:column;
 }
+.flex-1{
+  flex:1;
+}
 .around{
   @extend .flex0;
   justify-content: space-around;

@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild} from '@angular/core';
-import { ActivatedRoute,Router} from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import {TotalService} from 'app/service/total.service';
 import {DataBaseService} from 'app/service/data-base.service';
 
@@ -37,7 +37,6 @@ export class PublishComponent implements OnInit {
   startCg:Array<string>=publishCg;
   start:string;
   posObj:any;
-  mainModel:any;
   draftModel:any;
   preDraft:any;
   draft:any;
@@ -47,7 +46,6 @@ export class PublishComponent implements OnInit {
   showWarn:boolean=false;
   showDraft:boolean=false;
   showDrafts:boolean=false;
-  db:any;
   dfListChg:boolean=true;
   dfList:Array<any>=[];
 
@@ -77,26 +75,22 @@ export class PublishComponent implements OnInit {
     this.start=this.startCg[0];
     this.route.data.subscribe((v:any)=>{
       this.posObj=v.data;
-      this._db.userInit().then(()=>{
-        this.db=this._db.db2;
-        this.textNode=this.textEditor.textarea.nativeElement;
-        this.db.use('main').then(model=>{
-            this.mainModel=model;
-            this.cb();
-            const transmitData=this._rs.transmit;
-            //nav from modify article;
-            if(transmitData){
-              this.mf.init(transmitData);
-            }else {
-              model.findOne('draft', (err, data) => {
-                if (!data)return;
-                this.preDraft = data;
-                this.showWarn = true;
-              })
-            }
-            this.autoStore();
-        });
-      })
+      this.textNode=this.textEditor.textarea.nativeElement;
+      this._db.useModel('main').then((model:any)=>{
+          this.cb();
+          const transmitData=this._rs.transmit;
+          //nav from modify article;
+          if(transmitData){
+            this.mf.init(transmitData);
+          }else {
+            model.findOne('draft', (err, data) => {
+              if (!data)return;
+              this.preDraft = data;
+              this.showWarn = true;
+            })
+          }
+          this.autoStore();
+      });
     })
   }
 
@@ -114,22 +108,15 @@ export class PublishComponent implements OnInit {
     msn:null
   };
   draftEdit(){
-    const method=()=>{
-      this.mainModel.findOne('draft',(err, data) => {
-        this.draft = data;
-        this.showDraft=true;
-      })
-    };
-    //version will lose mainMODEL;I will restore it in next db version;
-    if(!this.showDraft){
-      try{method()}catch(e){
-        this._db.db2.use('main').then(model=>{
-          this.mainModel=model;
-          method()
-        });
-      }
+    if(!this.showDraft) {
+      this._db.useModel('main').then((model:any)=> {
+        model.findOne('draft', (err, data) => {
+          this.draft = data;
+          this.showDraft = true;
+        })
+      });
     }else{
-      this.closeEditDf()
+      this.closeEditDf();
     }
   }
   setMsn(msn:SetMsn){
@@ -239,7 +226,7 @@ export class PublishComponent implements OnInit {
       let msn:any=this.getMsn();
       if(!msn)return;
       msn.d=Date();
-      this.mainModel.upsert('draft',msn,()=>{})
+      this._db.useModel('main').then((model:any)=>model.upsert('draft',msn,()=>{}));
     };
     textNode.onfocus=()=>{
       if(interval)return;
@@ -277,7 +264,7 @@ export class PublishComponent implements OnInit {
   };
   getDfs(){
     if(!this.draftModel){
-      this.db.use('draft').then(model=>{
+      this._db.useModel('draft').then(model=>{
         this.draftModel=model;
         this.getDf();
       })

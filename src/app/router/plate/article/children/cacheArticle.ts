@@ -50,7 +50,7 @@ export class CacheArticle{
     let send=(query:Query,fn)=>{
       this.as.http.post(this.as.url.viewPlate,query,1000).then(v=>v?fn(v):cb(false));
     };
-    this.db.use('article',{keyPath:'id'}).then(model=>{
+    this.db.useModel('article').then((model:any)=>{
       this.model=model;
       let version=this.as._rs.selectRgVersion;
       let v2=this.as._rs.selectRgVersion2;
