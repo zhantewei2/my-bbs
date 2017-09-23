@@ -8,10 +8,7 @@ import {TitleNav} from 'app/selfModule/animations/animate';
   selector: 'title-nav',
   templateUrl: './title-nav.component.html',
   styleUrls: ['./title-nav.component.css'],
-  animations:[TitleNav()],
-  host:{
-    class:'d-block bg-primary'
-  }
+  animations:[TitleNav()]
 })
 export class TitleNavComponent implements OnInit {
   @Input()state:any;

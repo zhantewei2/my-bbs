@@ -1,12 +1,15 @@
-<div class="card" [@Pop]="show" (click)="$event.stopPropagation()">
+<div class="card text-modal parent" [@Pop]="show" (click)="$event.stopPropagation()">
   <div class="card-header">
     <span>{{containerTitle}}</span>
     <i (click)="close()" class="fa fa-close close"></i>
   </div>
-  <div class="inner">
+  <div class="inner center">
     <div>
       <ng-template #container></ng-template>
       <span>{{innerText}}</span>
     </div>
+  </div>
+  <div class="text-modal-back br">
+    <i (click)="close()" class="btn btn-sm btn-outline-info fa fa-arrow-circle-left"></i>
   </div>
 </div>

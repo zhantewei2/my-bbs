@@ -1,7 +1,8 @@
 import {Directive,Input,ElementRef,Output,EventEmitter} from '@angular/core';
 import {ztwScrollParent} from './scroll.service';
 @Directive({
-	selector:'[ztwScrollControl]'
+	selector:'[ztwScrollControl]',
+  exportAs:'ztwScrollControl'
 })
 export class ScrollBindDirective{
 	@Input('ztwScrollControl')value:any;
@@ -48,12 +49,13 @@ export class ScrollBindDirective{
         })
     }
     entrySub:any;
+	preValue:string;
 	@Input('useEntry')set useEntry(v:boolean){
 	  if(!v)return;
-	  let preValue:any,fn1=(value:any)=>{
-          if(value==preValue)return;
-          preValue=value;
-            this.entry.emit(value);
+	  let fn1=(value:any)=>{
+          if(value===this.preValue)return;
+          this.preValue=value;
+          this.entry.emit(value);
       };
 
     this.entrySub=this.scrollSelf.subscribe((val:number)=>{

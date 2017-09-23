@@ -1,21 +1,74 @@
 $screen:(
-  sm:max 768px,
   md:max 1200px,
+  sm:max 768px,
   lg:min 1200px
 );
+
 $replyW:(
-  md:80% 10%,
   sm:100% 0,
+  md:80% 10%,
   lg:50% 25%,
 );
-@each $abbrev,$val in $replyW{
-  $result:map-get($screen,$abbrev);
-  $limit:nth($result,1);
-  $size:nth($result,2);
+$replyW-child:(
+  editorH:100px
+);
+$article-img:(
+  lg:1000px,
+  md:600px,
+  sm:310px
+);
+@mixin sm-text-modal(){
+  .text-modal-container{
+    position:fixed !important;
+    z-index:200;
+    background-color:$deep-modal-bg !important;
+  }
+  .text-modal{
+    position:absolute !important;
+    top:0;
+    left:0;
+    width:100%;
+    background:white;
+    box-shadow:2px 2px 8px rgba(black,.6);
+    z-index:200;
+  }
+  .text-modal-back{
+    visibility:visible;
+  }
+}
+
+@each $abbrev,$size in $screen{
+  $screen-val:map-get($screen,$abbrev);
+  $limit:nth($screen-val,1);
+  $size:nth($screen-val,2);
+  $reply-val:map-get($replyW,$abbrev);
   @media screen and (#{$limit}-width:$size){
-    .replyWidth{
-      width:nth($val,1);
-      left:nth($val,2);
+    //article reply card -text-editor height;
+    .replyCard{
+      width:nth($reply-val,1);
+      left:nth($reply-val,2);
+      @if ($abbrev==sm) {
+        & nav{display:none}
+        & ztw-text-editor{
+          height:map-get($replyW-child,editorH)
+        }
+      }
+    }
+    //article components titleNav-header
+    @if ($abbrev == md or $abbrev == sm){
+      .titleNav-header{
+        font-size:0.7rem;
+      }
+    }
+    //text-editor modal
+    @if ($abbrev ==sm){
+      @include sm-text-modal();
+    }
+    //article img width;
+    .article{
+      & img{
+        max-width:map-get($article-img,$abbrev);
+      }
     }
   }
 }

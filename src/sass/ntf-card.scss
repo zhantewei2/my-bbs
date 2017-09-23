@@ -1,0 +1,13 @@
+.ntf-card{
+  display:block;
+  z-index:7;
+  width:350px;
+  min-height:100px;
+  position:fixed;
+  top:60px;
+  right:10px;
+  overflow:hidden;
+  box-shadow:$shd1;
+  @extend .card-1;
+  background:$bgColor;
+}

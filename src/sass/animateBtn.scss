@@ -1,21 +1,3 @@
-$color:#ddd;
-$shadowColor:$color;
-$bgColor:white;
-$lightColor:mix($color,white,20%);
-$bgColor-secondary:rgba($lightColor,.1);
-$deepColor:darken($color,30%);
-$deepColor2:darken($color,5%);
-$remindColor:rgba(indianred,.3);
-$borderRadius:5px;
-$lg:1200px;
-$smBtnPadding:6px;
-$shd1:0 0 10px 2px $shadowColor;
-$shd2:0 0 30px 2px rgba($shadowColor,.5);
-$border1:1px solid rgba($bgColor,.5);
-$extendColor:lighten(black,15%);
-$tab-color:white;
-$tab-btn-color:#ddd;
-$tab-active-color:white;
 
 @mixin transition(){
   transition:all .3s ease;
@@ -33,11 +15,8 @@ $tab-active-color:white;
 .color-dark{
   color:black;
 }
-.shadow-2{
-  box-shadow:$shd2 !important;
-}
 .shadow-1{
-  box-shadow:$shd1;
+  box-shadow:$shd1 !important;
 }
 .an_node{
   transition:all 0.3s ease;
@@ -48,6 +27,9 @@ $tab-active-color:white;
 .box-1{
   @extend .bg-1;
   @extend .borderR;
+}
+.frame{
+  border:1px solid $color;
 }
 .card-2{
   @extend .borderR;
@@ -68,9 +50,7 @@ em{color:$deepColor}
 .btn:hover{
   cursor:pointer;
 }
-.frame{
-  border:1px solid $color;
-}
+
 .card-1{
   @extend .box-1;
   @extend .frame;
@@ -82,7 +62,7 @@ em{color:$deepColor}
   box-shadow:$shd2;
 }
 .img1{
-  box-shadow:2px 2px 6px $deepColor;
+  box-shadow:$shd2;
   border:$border1;
 }
 .btn-default:hover{
@@ -179,8 +159,13 @@ kbd{
 }
 .close0{
   @extend %abs0;
-  top:0.6rem;
-  right:0.6rem;
+  top:$space;
+  right:$space;
+}
+.br{
+  @extend %abs0;
+  bottom:$space;
+  left:$space;
 }
 .tr{
   @extend %abs0;

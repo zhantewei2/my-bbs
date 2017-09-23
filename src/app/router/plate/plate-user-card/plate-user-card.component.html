@@ -1,8 +1,8 @@
-<div *ngIf="_reS.value=='lg'" class="d-flex p-2">
-  <div class="parent ">
+<div *ngIf="_reS.value=='lg'" class="d-flex lg-article">
+  <div class="parent user-msn">
     <div class="sticky-brand" >
       <div class="tpParent">
-        <img style="width:120px;" class="rounded box-1 frame" [src]="insert?user.head:putImg(user.head)">
+        <img class="box-1" [src]="insert?user.head:putImg(user.head)">
         <span (click)="_rs.navToUser(user.name)" style="right:0;bottom:0" class="ir tpShow leftFade  btn btn-default2 btn-sm">
           <i class="fa fa-eye"></i>
         </span>
@@ -10,8 +10,8 @@
       <a [innerTemplate]="Msn" [deps]="{lg:true}"></a>
     </div>
   </div>
-  <div style="flex:1" class="parent d-flex flex-column">
-      <div  class="card-block article" [innerHTML]="i.c|trustHtml">
+  <div style="flex:1" class="parent user-content d-flex flex-column">
+      <div class="card-block article" [innerHTML]="i.c|trustHtml">
       </div>
       <i class="tr text-sm text-muted sign" [hidden]="!i.rId">{{i.rId}}</i>
       <ng-container *ngIf="isHost">
@@ -51,11 +51,12 @@
     </ng-container>
     <div *ngIf="!isHost" (click)="innerReply(inner)" class="text-sm index closeBtn"><i class="fa fa-commenting-o"></i></div>
   </div>
+  <div class="dropdown-divider"></div>
 </div>
 <ng-template #inner="vcr" viewContainer></ng-template>
 <view-reply2 [_parent]="this" [newReply]="newReply" *ngIf="i.rCache?.cs||newReply"></view-reply2>
 
-<div class="dropdown-divider"></div>
+
 <ng-template #Msn let-lg="lg">
   <div style="padding:5px">
     <small>{{isMain?'楼主':'层主'}}<span (click)="_rs.navToUser(user.name)" *ngIf="_reS.value!='lg'" class="ml-1 btn btn-sm btn-outline-info"><i class="fa fa-eye"></i></span></small>

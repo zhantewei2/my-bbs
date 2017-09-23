@@ -2,11 +2,12 @@
 <i class="fa fa-file-image-o color-dark"> </i>
 
 <ng-template #tp>
+  <div class="main">
   <ztw-tab >
     <ztw-tabBtn>
       url
       <ng-template ztwTabContent>
-        <div style="text-align:center" class="p-2 main">
+        <div style="text-align:center" class="p-2 ">
           <p class="">
             <i class="fa fa-lightbulb-o"></i>输入图片网址.
           </p>
@@ -24,7 +25,7 @@
     <ztw-tabBtn [prevent]="disUpload||config?.disUpload">
       upload
       <ng-template ztwTabContent>
-        <div class="main center">
+        <div class="center">
           <ztw-loading [bind]="loading" pos="full" transparent="0.5"></ztw-loading>
           <div *ngIf="!showList;else tp2" class="center">
             <div class="upload parent center" [class.bg-warning]="imgList.length>=config.limitCount">
@@ -72,5 +73,6 @@
       </ng-template>
     </ztw-tabBtn>
   </ztw-tab>
-
+  </div>
 </ng-template>
+

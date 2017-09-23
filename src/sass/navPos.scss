@@ -7,7 +7,14 @@ $titleNav-space:5px;
 }
 .titleNav{
   height:$titleNav-height;
+  display:block;
   border-radius:$titleNav-radius;
+  & .item:first-child{
+    white-space:nowrap;
+  }
+}
+.titleNav-header{
+  font-size:1.2rem;
 }
 .navShd{
   @include NavShd()

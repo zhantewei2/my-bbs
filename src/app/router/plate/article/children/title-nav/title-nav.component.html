@@ -1,17 +1,19 @@
 <div [@TitleNav]="state"  class="h-100 w-100 text-white mb-2 between" style="overflow:hidden">
     <div class="d-inline-flex h-100">
-      <div class="animate h-100 rgBtn item" (click)="back()">
+      <div class="animate h-100 rgBtn center item" (click)="back()">
+        <span>
         {{_as.rgMsn.rgName}}
         <i class="rgBtn-icon fa fa-chevron-right"></i>
+        </span>
       </div>
-        <div class="animate d-inline-block item text-white h5 ml-3" [ztwTooltip]="share" pure="rightFade" placement="right" type="oc">
+        <div class="titleNav-header center item text-white ml-3" [ztwTooltip]="share" pure="rightFade" placement="right" type="oc">
           {{_as.title}}
         </div>
     </div>
   <span >
     <div class="hidden-sm-down mr-2">
-      <button [ngClass]="state?'btn-primary':'btn-info'" class="animate btn btn-sm">收藏</button>
-      <button [ngClass]="state?'btn-primary':'btn-info'" (click)="_as.openReply()" class="animate btn btn-sm">
+      <button [ngClass]="state?'btn1':'btn-info'" class="animate btn btn-sm">收藏</button>
+      <button [ngClass]="state?'btn1':'btn-info'" (click)="_as.openReply()" class="animate btn btn-sm">
         <i  class="fa fa-comment-o fa-flip-horizontal"></i>
         回复
       </button>

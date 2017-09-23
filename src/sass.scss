@@ -1,11 +1,17 @@
 html{
   font-size:15px;
 }
+@import 'sass/variable';
+@import 'sass/text-modal';
 @import 'sass/animateBtn';
 @import 'sass/tooltip';
+@import 'sass/user-article';
+@import 'sass/response';
+@import 'sass/ntf-card';
+@import 'sass/navPos';
 @import 'sass/screen';
 @import 'sass/spin/spinners/5-pulse';
-@import 'sass/navPos';
+
 @for $i from 1 through 4{
   .space-#{$i}{
     width:1rem*$i;
@@ -22,11 +28,7 @@ html{
   50% {background:$remindColor}
   100% {background:inherit}
 }
-.article{
-  & pre{
-    white-space:pre-wrap;
-  }
-}
+
 .remind{
   animation: Remind 2s ease-out;
 }
@@ -99,10 +101,7 @@ html{
     color:black;
   }
 }
-ztw-text-editor a[href]{
-  color:blue;
-  text-decoration:underline;
-}
+
 .opacity{
   opacity:.5;
 }
@@ -121,7 +120,8 @@ div,span{
     box-shadow:0 0 4px gray;
   }
 }
-article{
-  word-break:break-all;
-}
 
+.progress{
+  height:15px;
+  @include base-radius();
+}

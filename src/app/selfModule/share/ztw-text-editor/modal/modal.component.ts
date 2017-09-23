@@ -12,7 +12,7 @@ import {Subject} from 'rxjs/Subject';
     fadeToggle()
   ],
   host:{
-    'class':'abs center full'
+    'class':'abs center full text-modal-container'
   }
 })
 export class ModalComponent{

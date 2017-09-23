@@ -1,6 +1,6 @@
 <div (click)="clear();_as.closeReply()" [@Fade] class="full parent abs" style="background:rgba(0,0,0,0.3);z-index:1;position:fixed" *ngIf="this._as.reply.show">
 </div>
-<div class="reply card replyWidth mt-2" *ngIf="this._as.reply.show" [@SlideTopToggle]>
+<div class="card replyCard mt-2" *ngIf="this._as.reply.show" [@SlideTopToggle]>
   <nav class="card-header bg-primary">
     回复区
     <span (click)="clear();_as.closeReply()" class="close">&times;</span>
@@ -9,7 +9,7 @@
     <ztw-text-editor [limitSize]="400" #text class="text" disUpload="true"></ztw-text-editor>
   </div>
   <ztw-loading noCheck="true" [bind]="running" pos="full"></ztw-loading>
-  <div [hidden]="!nextVf" style="min-height:180px;" class="center my-2">
+  <div [hidden]="!nextVf" class="center my-2">
     <ztw-side-vf-package style="max-width:580px" #sideVf height="150px" (pass)="isPassVf=$event" [bindValid]="nextVf"></ztw-side-vf-package>
   </div>
   <div class="p-2 center">

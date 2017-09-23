@@ -1,6 +1,6 @@
 <div (click)="click()" style="overflow:hidden" class="m-3 d-flex card-3 listItem parent" (mouseenter)="isEnter=true" (mouseleave)="isEnter=false">
   <div class="center p-2">
-    <img [class.img2]="_res.value=='sm'" [class.shadow-2]="isEnter" class='an_node img1 ml-2 box-1' [src]="putImg(msn.cover.img)">
+    <img [class.img2]="_res.value=='sm'" [class.shadow-1]="isEnter" class='an_node img1 ml-2 box-1' [src]="putImg(msn.cover.img)">
     <b class="mt-1" [hidden]="_res.value!='sm'">{{msn.name}}</b>
   </div>
   <div style="flex:1" class="m-2 parent">

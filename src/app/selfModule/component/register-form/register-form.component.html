@@ -1,4 +1,4 @@
-<form class="card mt-4" [formGroup]="formGroup">
+<form class="d-block card mt-4" [formGroup]="formGroup">
   <div class="card-header bg-primary text-white">注册列表</div>
   <div class="card-block">
     <div class="form-group" [ngClass]="{'has-danger':!i.control.valid&&i.control.dirty,'has-success':i.control.valid}" *ngFor="let i of formDatas">
@@ -9,10 +9,10 @@
       <i class="fa fa-warning"> </i>两次输入的密码不相等!
     </p>
     <ztw-side-vf-package #vf height="240px" width="360px" (pass)="passVf=$event"  [bindValid]="formGroup.valid"></ztw-side-vf-package>
-    <p>
+    <div>
       <button (click)="register.emit(formGroup.value);vf.reset()" [disabled]="!formGroup.valid||!equal||equal==undefined ||!passVf" class="btn btn-outline-primary">submit </button>
       <button (click)="formGroup.reset();vf.reset()" class="btn btn-outline-primary">Reset</button>
-    </p>
+    </div>
   </div>
 </form>
 

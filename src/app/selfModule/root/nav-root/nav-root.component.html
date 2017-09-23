@@ -1,18 +1,18 @@
 <fix-container >
-    <nav #nav [@SlideTopToggle] class="bg-primary  between px-2 fixed-top navShd" fix-item>
+    <nav #nav [@SlideTopToggle] class="bg-info  between px-2 fixed-top navShd" fix-item>
       <nav class="nav">
-        <button (click)="sideNav.toggle()" class="hidden-xl-up btn btn-primary px-3 p-1"><i class="fa fa-navicon"></i></button>
+        <button (click)="sideNav.toggle()" class="hidden-xl-up btn btn-info px-3 p-1"><i class="fa fa-navicon"></i></button>
         <li  *ngIf="!_rs.isHome" (click)="_rs.goPreLevel()" class="hover nav-item nav-link"><i class="fa fa-arrow-left"></i></li>
         <li [routerLink]="['/']" class="nav-item nav-link">ZTW BBS</li>
       </nav>
       <div class="row">
-        <button [hidden]="!_ts.userMsn.name" (outClick)="_remind.closeNtf()" outclick (click)="_remind.toggleNtf()" [class.remind1]="user.ntfSelf>0" class="remind1 parent btn-primary mr-3 btn" [routerLink]="[{outlets:{popup:['ntf']}}]">
+        <button [hidden]="!_ts.userMsn.name" (outClick)="_remind.closeNtf()" outclick (click)="_remind.toggleNtf()" [class.remind1]="user.ntfSelf>0" class="remind1 parent btn-info mr-3 btn" [routerLink]="[{outlets:{popup:['ntf']}}]">
           <i class="fa fa-bell-o"> </i>
           <small [hidden]="user.ntfSelf==0" class="abs">{{_ts.userMsn.ntfSelf}}</small>
         </button>
         <div class="mr-4" *ngIf="_res.value=='lg'">
             <span ztw-dropdown>
-            <button class="btn btn-primary">
+            <button class="btn btn-info">
               <a *ngIf="(user&&user.name);else login">{{user.name|limitStr}}</a>
               <ng-template #login>LOGIN</ng-template>
             </button>

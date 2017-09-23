@@ -17,7 +17,11 @@ class History{
 @Component({
   templateUrl: './self-ntf.component.html',
   styleUrls:['./self-ntf.component.css'],
-  animations:[fade()]
+  animations:[fade()],
+  host:{
+    class:'ntf-card card',
+    '(click)':'$event.stopPropagation()'
+  }
 })
 export class SelfNtfComponent implements OnInit {
   url:string='/user/manage/ntf';

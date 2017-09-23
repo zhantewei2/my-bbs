@@ -16,12 +16,14 @@ export class ArticleCardComponent implements OnInit {
   i:any;
   isHot:boolean;
   isNew:boolean;
+  isPretty:boolean;
   @Input() set msn(val){
     this.i=val;
     const disT:any=new Date().getTime()-Date.parse(val.cd);
     const hm=1000*60*60,dm=1000*60*60*24;
-    if(val.rds>1000&&disT<dm*8)this.isHot=true;
-    if(disT<hm)this.isNew=true;
+    this.isHot=(val.rds>1000&&disT<dm*8);
+    this.isPretty=(val.rps>100&&disT<dm*30);
+    this.isNew=disT<hm*6;
   };
   @Input()rgId;
   @Input()cgId;

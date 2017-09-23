@@ -8,8 +8,9 @@
   </div>
   <div class="col-lg-4 col-6 ">{{i.t}}
     <small>
-      <i [hidden]="!isHot" class="badge badge-danger">hot!!</i>
-      <i [hidden]="!isNew" class="badge badge-success">new!!</i>
+      <i [hidden]="!isHot" class="badge badge-danger">Hot!!</i>
+      <i [hidden]="!isNew" class="badge badge-success">New!!</i>
+      <i [hidden]="!isPretty" class="badge badge-info">Pretty!</i>
       <i *ngIf="i.or&&i.or.rc" ztwTooltip="版主推荐" class="fa fa-thumbs-up text-warning">
       </i>
     </small>

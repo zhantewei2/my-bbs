@@ -1,0 +1,30 @@
+$color:#ddd;
+$shadowColor:$color;
+$bgColor:white;
+$lightColor:mix($color,white,20%);
+$bgColor-secondary:rgba($lightColor,.1);
+$deepColor:darken($color,30%);
+$deepColor2:darken($color,5%);
+$remindColor:rgba(indianred,.3);
+$borderRadius:5px;
+$lg:1200px;
+$smBtnPadding:6px;
+$shd1:0 0 10px 2px $shadowColor;
+$shd2:0 0 30px 2px rgba($shadowColor,.5);
+$border1:1px solid rgba($bgColor,.5);
+$extendColor:lighten(black,15%);
+$tab-color:white;
+$tab-btn-color:#ddd;
+$tab-active-color:white;
+$l:lighten(#ddd,10%);
+$light-modal-bg:rgba(150,150,150,0.1);
+$deep-modal-bg:rgba(black,.5);
+$space:0.6rem;
+
+@mixin base-radius{
+  border-radius:$borderRadius;
+}
+@mixin base-border{
+  border:1px solid lighten($color,8%);
+}
+

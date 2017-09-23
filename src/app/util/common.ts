@@ -1,7 +1,7 @@
 export {vfKey} from './key';
 export const val=['required','minLength(5)','maxLength(16)'];
 export const imgCount=14;   //header img count;
-export const hostUrl='';
+export const hostUrl='http://localhost:3001';
 export function putImg(name){
   return hostUrl+'/static/header/'+name;
 }

@@ -62,18 +62,13 @@ export class ArticleComponent implements OnInit,OnDestroy {
   back(){
     this._rs.navPlate(this.rgMsn.cgId,this.rgMsn.rgId);
   };
-  titleVal:any;
   scrollValue:any;
   overTitle:boolean;
-  method:any={
-    controlTitleNav:()=>{
-      const titleNav=this.titleNav;
-      if(!titleNav)return;
-      let n=this._rs.nav,
-        nav=n.node;
-      nav.style.transform=(this.overTitle=this.titleVal=='down')?'translateY(-100%)':'translateY(0)';
-    },
-    whenBound:(obj)=>{
+  _overTitle(val:string){
+    if(!this.titleNav)return;
+    this._rs.nav.node.style.transform=(this.overTitle=val=='down')?'translateY(-100%)':'translateY(0)';
+  }
+  whenBound=(obj)=>{
       let as=this._as;
       if(as.state.pageLoad||as.state.preventWhenBound)return;
       let totalH=document.querySelector('body').scrollHeight;
@@ -82,7 +77,6 @@ export class ArticleComponent implements OnInit,OnDestroy {
 
         });
       }
-    }
   };
   linkUrlPage(now){
     let msn=this.rgMsn;
@@ -90,11 +84,7 @@ export class ArticleComponent implements OnInit,OnDestroy {
         queryParams:{now:now},
         relativeTo:this.route});
   }
-  scrollEvent(obj){
-    this.method.controlTitleNav(obj);
-    this.method.whenBound(obj);
 
-  }
   getScrollValue(e){
     if(e>0&&typeof e=='number'){
       this._as.breakPage.nowPage=e;
