@@ -6,7 +6,7 @@ import {RouterService} from 'app/service/router.service';
   templateUrl: './article-card.component.html',
   styleUrls: ['./article-card.component.css'],
   host:{
-    'class':'list-group-item listItem',
+    'class':'list-group-item listItem column',
     '(click)':'!preventNav&&goto()'
   }
 })

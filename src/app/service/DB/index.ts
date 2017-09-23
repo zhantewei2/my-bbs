@@ -7,6 +7,7 @@ export class IndexDB{
     init:Function;
     destroy:Function;
     db:any;
+    storeModels:any={};
     models:any={};
     constructor(dataName:string,opts:DBOpts){
         const
@@ -28,16 +29,20 @@ export class IndexDB{
         this.init=(initItemsOpts:Array<InitItemOpts>):any=>{
             return new Promise((resolve)=>{
                 const req=indexDB.open(dataName,version);
+                //define modelObj:
+                initItemsOpts.forEach((i:InitItemOpts)=>{
+                  Object.defineProperty(this.models,i.name,{
+                    get:()=>this.storeModels[i.name]||(this.storeModels[i.name]=initModel(i.name,i.opts))
+                  })
+                });
                 req.onupgradeneeded=(e:any)=>{
                     this.db=req.result;
-                    initItemsOpts.forEach((i:InitItemOpts)=>newModel(i.name,i.opts));
-
+                    initItemsOpts.forEach((i:InitItemOpts)=>{
+                      newModel(i.name,i.opts);
+                    });
                 };
                 req.onsuccess=(e:any)=>{
                     this.db=req.result;
-                    initItemsOpts.forEach((i:InitItemOpts)=>{
-                      this.models[i.name]=initModel(i.name,i.opts);
-                    });
                     resolve(this.models);
                 };
             })

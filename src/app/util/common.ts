@@ -15,8 +15,8 @@ export const replyPs=10;
 export const replyCache=2;
 export const ntfPs=10;
 export const dbConfig={
-  name:'test',
+  name:'ZTWBBS',
   opts:{
-    version:10
+    version:1
   }
 };

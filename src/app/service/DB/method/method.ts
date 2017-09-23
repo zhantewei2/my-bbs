@@ -10,7 +10,7 @@ export function dbMethod(parentObj:any,modelName:string,keyPath:string){
         model.__proto__= parentObj.db.transaction(modelName, 'readwrite').objectStore(modelName);
         toCB(model, method, params, cb);
       }catch(e){
-        console.log('handle error')
+        console.log(e)
       }
     }
   };
