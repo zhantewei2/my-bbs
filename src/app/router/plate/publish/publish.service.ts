@@ -15,7 +15,7 @@ export class PublishService {
   selectName:String;
   set selectItem(val){
     this._selectItem=val;
-    this.selectName=val=='pay'?'支付经验'+this.useLimit.pay:(val=='rView'?'回复可见':(val=='vote'?'投票':null));
+    this.selectName=val=='pay'?'支付金币'+this.useLimit.pay:(val=='rView'?'回复可见':(val=='vote'?'投票':null));
   }
   get selectItem(){return this._selectItem}
   useLimit:UseLimit={};

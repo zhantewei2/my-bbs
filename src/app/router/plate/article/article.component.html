@@ -7,7 +7,7 @@
     </p>
 <div *ngIf="_as.replys.length">
   <fix-container (entry)="_overTitle($event)" useEntry="true" ztwScrollControl="head">
-    <title-nav [state]="overTitle" [class.title-fix]="overTitle" class="an_node titleNav bg-info" #titleNav fix-item></title-nav>
+    <title-nav [class.navLower]="overTitle&&_rs.nav.hidden" [state]="overTitle" [class.title-fix]="overTitle" class="an_node titleNav bg-info" #titleNav fix-item></title-nav>
   </fix-container>
 
 

@@ -1,5 +1,5 @@
 <fix-container >
-    <nav #nav [@SlideTopToggle] class="bg-info  between px-2 fixed-top navShd" fix-item>
+    <nav [class.navLower]="_rs.nav.hidden" #nav [@SlideTopToggle] [class.navHid]="_rs.nav.hid" class="bg-info an_node between px-2 fixed-top navShd" fix-item>
       <nav class="nav">
         <button (click)="sideNav.toggle()" class="hidden-xl-up btn btn-info px-3 p-1"><i class="fa fa-navicon"></i></button>
         <li  *ngIf="!_rs.isHome" (click)="_rs.goPreLevel()" class="hover nav-item nav-link"><i class="fa fa-arrow-left"></i></li>

@@ -8,3 +8,19 @@ ztw-text-editor a[href]{
 .text-modal-back{
   visibility:hidden;
 }
+@keyframes _TMS{
+  from {transform:scale(.5,.5)}
+  to{}
+}
+@keyframes _TTB{
+  from {transform:translate3d(0,-100%,0);opacity:0}
+  to{}
+}
+.text-modal-show{
+  animation:_TMS .3s ease;
+}
+@mixin textModal-screen-sm{
+  .text-modal-show{
+    animation:_TTB .3s ease;
+  }
+}

@@ -9,16 +9,14 @@ import {lzwService} from 'app/service/util.service';
   styleUrls: ['./rely.component.css'],
   animations:[fade(),slideTopToggle()]
 })
-export class RelyComponent implements OnInit {
+export class RelyComponent{
   show:boolean=false;
   constructor(
     public _as:ArticleService,
     public lzw:lzwService
   ) {
-
     this.user=_as._ts.userMsn;
   }
-  ngOnInit(){}
   running:boolean=false;
   user:any;
   html:string;

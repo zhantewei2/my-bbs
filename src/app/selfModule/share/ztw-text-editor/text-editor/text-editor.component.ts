@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild,forwardRef,Input} from '@angular/core';
+import { Component, OnInit,ViewChild,forwardRef,Input} from '@angular/core';
 import {parent} from '../total.service';
 import {tabKey} from '../shortcut-key/tab'
 import {FilterHTML} from '../ts/filterHTML';
@@ -21,7 +21,6 @@ interface btn{
 })
 export class TextEditorComponent implements OnInit {
   constructor(
-
   ) { };
   @Input()limitSize:number=5000;
   @ViewChild('modal')modal;
@@ -54,7 +53,6 @@ export class TextEditorComponent implements OnInit {
     const node=this.textNode=this.textarea.nativeElement;
     tabKey(node);
     this.managePaste(node);
-
   }
   resetFocus(node){
     setTimeout(()=>{
@@ -100,6 +98,7 @@ export class TextEditorComponent implements OnInit {
     })
   }
   txt2:any;
+  txt2Focus:boolean;
   cacheTxt2:any;
   txt2Begin=(title,limitNum)=>{this.txt2=null;this.txt2Open(title,limitNum)};
   txt2Open=(title,limitNum)=>{

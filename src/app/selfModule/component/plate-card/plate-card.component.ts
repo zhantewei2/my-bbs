@@ -1,18 +1,22 @@
-import { Component, OnInit,Input} from '@angular/core';
+import { Component, OnInit,Input,HostBinding} from '@angular/core';
 import {RouterService} from 'app/service/router.service';
-import {slideTopToggle} from 'app/selfModule/animations/animate';
 
+import {homeCard,slideTopToggle,xLine} from 'app/selfModule/animations/animate';
 import {ResizeService} from 'app/service/resize.service';
 @Component({
   selector: 'plate-card',
   templateUrl: './plate-card.component.html',
   styleUrls: ['./plate-card.component.css'],
   host:{
-    'class':'col-lg-6'
+    'class':'col-lg-7 homeCard m-3 d-flex parent',
+    '(mouseleave)':'isEnter=false;show="hid"',
+    '(mouseenter)':'isEnter=true;show="show"',
+    '(click)':'click()'
   },
-  animations:[slideTopToggle()]
+  animations:[slideTopToggle('0.1s ease-out'),homeCard(),xLine()]
 })
 export class PlateCardComponent implements OnInit {
+  @HostBinding('@homeCard')show:string='hid';
   @Input('plateMsn')msn;
   @Input('cg')cg;
   putImg:any=(window as any).myCommon.putImg;

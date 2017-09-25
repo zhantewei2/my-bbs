@@ -22,7 +22,8 @@ let routes=[
   {
     path:':id/publish',
     loadChildren:'./publish/publish.module#PublishModule',
-    canLoad:[userCanLoad]
+    canLoad:[userCanLoad],
+    canDeactivate:[userCanLoad]
   },
   {
     path:':id/:aId',

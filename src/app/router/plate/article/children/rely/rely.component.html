@@ -6,7 +6,7 @@
     <span (click)="clear();_as.closeReply()" class="close">&times;</span>
   </nav>
   <div class="p-2" [hidden]="nextVf">
-    <ztw-text-editor [limitSize]="400" #text class="text" disUpload="true"></ztw-text-editor>
+    <ztw-text-editor [limitSize]="400" #text class="replyEditor" disUpload="true"></ztw-text-editor>
   </div>
   <ztw-loading noCheck="true" [bind]="running" pos="full"></ztw-loading>
   <div [hidden]="!nextVf" class="center my-2">

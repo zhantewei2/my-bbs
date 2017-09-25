@@ -1,8 +1,5 @@
 html,body{
   font-size:15px;
-  overflow:auto;
-  height:100%;
-  margin:0;
 }
 body{
   position:relative;
@@ -10,12 +7,15 @@ body{
 }
 @import 'sass/variable';
 @import 'sass/text-modal';
+@import 'sass/text-editor';
+@import 'sass/fixed';
 @import 'sass/animateBtn';
 @import 'sass/tooltip';
 @import 'sass/user-article';
 @import 'sass/response';
 @import 'sass/ntf-card';
 @import 'sass/navPos';
+@import 'sass/home-card';
 @import 'sass/screen';
 @import 'sass/spin/spinners/5-pulse';
 

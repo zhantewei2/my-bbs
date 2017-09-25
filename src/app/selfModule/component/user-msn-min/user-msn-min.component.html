@@ -2,8 +2,8 @@
   <div *ngIf="user.name;else login">
     <user-card [user]="user"></user-card>
     <div class="row justify-content-around mt-4">
-      <button (click)="_rs.nav.close()" routerLink='/user' class="btn btn-sm btn-primary"> 个人信息</button>
-      <button (click)="logout()" class="btn btn-sm btn-primary">退出</button>
+      <button (click)="_rs.nav.close()" routerLink='/user' class="btn btn-sm btn-outline-info"> 个人信息</button>
+      <button (click)="logout()" class="btn btn-sm btn-outline-info">退出</button>
       <button routerLink="/admin6" *ngIf="user.type=='admin'" class="btn btn-sm btn-danger"> manage</button>
     </div>
   </div>

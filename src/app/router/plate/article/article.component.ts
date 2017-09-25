@@ -66,7 +66,7 @@ export class ArticleComponent implements OnInit,OnDestroy {
   overTitle:boolean;
   _overTitle(val:string){
     if(!this.titleNav)return;
-    this._rs.nav.node.style.transform=(this.overTitle=val=='down')?'translateY(-100%)':'translateY(0)';
+    this._rs.nav.hid=(this.overTitle=val=='down');
   }
   whenBound=(obj)=>{
       let as=this._as;
@@ -95,6 +95,6 @@ export class ArticleComponent implements OnInit,OnDestroy {
   ngOnDestroy(){
     this._as.clear();
     this._remind.isInner=false;
-    this._rs.nav.node.style.transform='translateY(0)'
+    this._rs.nav.hid=false;
   }
 }

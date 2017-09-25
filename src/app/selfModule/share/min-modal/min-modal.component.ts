@@ -1,11 +1,11 @@
 import { Component, OnInit,forwardRef} from '@angular/core';
 import{NG_VALUE_ACCESSOR} from '@angular/forms';
-import {pop} from '../../animations/share';
+import {slideRightToggle} from '../../animations/animate';
 @Component({
   selector: 'ztw-min-modal',
   templateUrl: './min-modal.component.html',
   styleUrls: ['./min-modal.component.css'],
-  animations:[pop()],
+  animations:[slideRightToggle('.3s ease-out',{transform:'translateX(-100%)',opacity:0})],
   providers:[
     { provide:NG_VALUE_ACCESSOR,
       useExisting:forwardRef(()=>MinModalComponent),

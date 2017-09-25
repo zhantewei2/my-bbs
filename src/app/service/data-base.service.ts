@@ -9,11 +9,7 @@ export class DataBaseService{
   db:any;
   models:any;
   complate:Subject<any>=new Subject();
-  useModel(name){
-    return new Promise(resolve=>{
-      this.models?resolve(this.models[name]):this.complate.subscribe(()=>resolve(this.models[name]));
-    })
-  }
+  useModel=(name)=>this.db.use(name);
   constructor(
     private _ts:TotalService
   ) {
@@ -28,7 +24,6 @@ export class DataBaseService{
      {name:'stVote',opts:{keyPath:'key'}}
    ]).then((models:any)=>{
      this.models=models;
-     this.complate.next();
    })
   }
 }

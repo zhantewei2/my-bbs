@@ -13,6 +13,13 @@ $titleNav-space:5px;
     white-space:nowrap;
   }
 }
+.navHid{
+  transform:translateY(-100%);
+}
+.navLower{
+  z-index:1;
+  opacity:.5;
+}
 .titleNav-header{
   font-size:1.2rem;
 }
@@ -26,6 +33,7 @@ $titleNav-space:5px;
   top:0;
   width:100%;
   border-radius:0;
+  @include restoreFix();
   @include NavShd()
 }
 .sticky-brand{

@@ -1,0 +1,36 @@
+ztw-text-editor{
+  & .txt2{
+    height:300px;
+  }
+}
+.txt2{
+  position:absolute !important;
+  background:$l;
+  left:0;
+  bottom:0;
+  width:100%;
+  display:flex;
+}
+.edit-container1{
+  border:1px solid #ddd;
+  padding:5px 0 5px 5px;
+  border-radius:5px;
+}
+.edit-container2{
+  outline:none;
+  border-radius:5px;
+  margin:10px;
+  background:$l;
+  padding:5px;
+  &:focus{
+   background:$bgColor;
+  }
+}
+@mixin editor-screen-sm{
+  .replyEditor .editor-nav{
+    flex-wrap:nowrap !important;
+  }
+  .edit-modal-header{
+    display:none;
+  }
+}

@@ -13,12 +13,16 @@ export class RouterService {
     private _ts:TotalService,
     private route:ActivatedRoute
   ) {}
+  deactivate:boolean=true;
+  leave_pub:()=>{};
   openLogin:any=()=>{};
   closeSide:any=()=>{};
   navInsertComp=()=>{};
   selectRgVersion:number;
   selectRgVersion2:number;
   nav:any={
+    hid:false,
+    hidden:false,
     height:null,
     hiddenTop:80,
     node:null,
@@ -30,6 +34,10 @@ export class RouterService {
       !v?this.openLogin():cb();
     })
   }
+  pub_redirect=()=>{
+    this.deactivate=false;
+    this.back();
+  };
   back=()=>!this._ts.preUrl?this.goPreLevel():window.history.back();
   navToUser(uId){
     if(!this._ts.userMsn.name)return this._ts.alert('登录后才能查看');

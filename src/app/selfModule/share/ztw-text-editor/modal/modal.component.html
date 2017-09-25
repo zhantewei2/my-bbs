@@ -1,5 +1,5 @@
-<div class="card text-modal parent" [@Pop]="show" (click)="$event.stopPropagation()">
-  <div class="card-header">
+<div class="card text-modal parent" [class.text-modal-show]="show"  (click)="$event.stopPropagation()">
+  <div class="card-header edit-modal-header">
     <span>{{containerTitle}}</span>
     <i (click)="close()" class="fa fa-close close"></i>
   </div>

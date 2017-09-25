@@ -21,6 +21,14 @@ $light-modal-bg:rgba(150,150,150,0.1);
 $deep-modal-bg:rgba(black,.5);
 $space:0.6rem;
 
+$color-primary:#0d87e9;
+$color-info:#9c27b0;
+
+$fontSize:(
+  sm:.8rem,
+  lg:1.2rem
+);
+
 @mixin base-radius{
   border-radius:$borderRadius;
 }

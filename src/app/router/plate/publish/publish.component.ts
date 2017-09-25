@@ -2,7 +2,7 @@ import { Component, OnInit,ViewChild} from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import {TotalService} from 'app/service/total.service';
 import {DataBaseService} from 'app/service/data-base.service';
-
+import {ResizeService} from 'app/service/resize.service';
 import {FormControl,Validators} from '@angular/forms';
 import {limitValidator} from 'app/util/FormData';
 import {RouterService} from 'app/service/router.service';
@@ -48,10 +48,11 @@ export class PublishComponent implements OnInit {
   showDrafts:boolean=false;
   dfListChg:boolean=true;
   dfList:Array<any>=[];
-
   @ViewChild('addDfTp')addDtTp;
   titleControl:any=new FormControl('',[Validators.required,limitValidator(3,22)]);
   dfNameControl:any=new FormControl('',[Validators.required,limitValidator(1,7)]);
+  resOrder:any;
+
   constructor(
     public _db:DataBaseService,
     private route:ActivatedRoute,
@@ -60,8 +61,13 @@ export class PublishComponent implements OnInit {
     private http:HttpService,
     public _us:UserService,
     public _ps:PublishService,
-    public _lzw:lzwService
-  ){}
+    public _lzw:lzwService,
+    public _res:ResizeService
+  ){
+    _rs.nav.hidden=_res.value=='sm';
+    this.resOrder=_res.resizeVal.subscribe(v=>_rs.nav.hidden=v=='sm');
+  };
+
   @ViewChild('textEditor')textEditor;
   cb:any=()=>{};
   modal:any;
@@ -71,7 +77,13 @@ export class PublishComponent implements OnInit {
     ps.modal=this.textEditor.modal;
     ps.textEditor=this.textEditor;
   }
+  ngOnDestroy(){
+    this._rs.nav.hidden=false;
+    this.resOrder.unsubscribe();
+  }
   ngOnInit() {
+    //hidden nav for mobile:
+    this._rs.leave_pub=()=>this.textEditor.getHTML().length>16;
     this.start=this.startCg[0];
     this.route.data.subscribe((v:any)=>{
       this.posObj=v.data;
@@ -107,6 +119,7 @@ export class PublishComponent implements OnInit {
     fix:null,
     msn:null
   };
+
   draftEdit(){
     if(!this.showDraft) {
       this._db.useModel('main').then((model:any)=> {
@@ -185,12 +198,12 @@ export class PublishComponent implements OnInit {
       if(this.mfPattern){
         this.modal(
           {content:'修改成功！确认为您返回原路径。',btnType:'double'},
-          e=>e&&this._rs.back()
+          e=>e&&this._rs.pub_redirect()
         );
       }else{
         this._us.appendExp('publish');
         this._ts.alert('您的文章已发布!');
-        this._rs.back();
+        this._rs.pub_redirect();
       }
     });
 

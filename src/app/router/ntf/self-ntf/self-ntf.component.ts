@@ -145,7 +145,7 @@ export class SelfNtfComponent implements OnInit {
 @Component({
   selector:'ntf-list',
   template:`
-      <li class="btn0 btn-block between parent" (click)="parent.navTo(i)">
+      <li class="btn0 text-sm btn-block between parent" (click)="parent.navTo(i)">
          <div class="read right text-lg">
             <i [hidden]="!i.read" class="text-primary fa fa-check-square-o"></i>
          </div>

@@ -1,4 +1,4 @@
-<nav class="d-flex flex-wrap" >
+<nav class="d-flex flex-wrap editor-nav">
   <ng-template ngFor let-i [ngForOf]="buttonArr">
     <button class="btn0 btn-icon"  (click)="i.fn()">
       <i [class]="'fa fa-'+i.name"> </i>
@@ -14,20 +14,20 @@
   <ztw-image [disUpload]="disUpload"></ztw-image>
   <ng-content select="[textEditorBtn]"></ng-content>
 </nav>
-<div class="column flex-1">
-  <div class="container1 column flex-1">
+<div class="column flex-1 parent">
+  <div class="edit-container1 column flex-1">
     <div #textarea id="ztw_textEditor" class="full flex-1" contenteditable="true">
     </div>
   </div>
-  <div class="txt2 parent"  [@SlideTopToggle2]="txt2.isOpen?'show':'hidden'"   *ngIf="txt2">
+  <div [class.opacity]="!txt2Focus" class="txt2 an_node" [@SlideTopToggle2]="txt2.isOpen?'show':'hidden'"  *ngIf="txt2">
     <div class="full" [class.blur]="!closeBg2"></div>
     <div class="abs full column" >
-      <div class="ztwBlock parent between text-muted">
-        <samp ><i class="fa fa-hand-o-down"></i>&nbsp;{{txt2.title}}</samp>
-        <i (click)="txt2Close()" class="fa fa-chevron-down hover mid"></i>
-        <span class="colorBlock frame mr-3" (click)="closeBg2=!closeBg2" [class.remindBg]="!closeBg2"></span>
+      <div class="parent between">
+        <samp>
+          <i (click)="txt2Close()" class="fa fa-chevron-down hover btn1 btn0"></i>
+          {{txt2.title}}</samp>
       </div>
-      <div contenteditable="true" class="frame container1" style="flex:1" id="ztw_textEditor2"></div>
+      <div (focus)="txt2Focus=true" (blur)="txt2Focus=false" contenteditable="true" class="edit-container2 an_node" style="flex:1" id="ztw_textEditor2"></div>
     </div>
   </div>
   <i class="fa fa-chevron-up topBtn btn0" style="opacity:0.5" (click)="txt2Open()" *ngIf="txt2&&!txt2.isOpen"></i>

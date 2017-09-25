@@ -6,6 +6,7 @@ import {RouterService} from 'app/service/router.service';
 import {BreakPage,_bk} from './article-break-page';
 import {UserService} from 'app/service/user.service';
 import {DataBaseService} from 'app/service/data-base.service';
+import {ResizeService} from 'app/service/resize.service';
 const selectParams=(window as any).myObj.selectParams,
   refer=(window as any).myRefer;
 export interface RgMsn{
@@ -38,8 +39,10 @@ export class ArticleService {
     public http:HttpService,
     public _rs:RouterService,
     public _us:UserService,
-    public _db:DataBaseService
+    public _db:DataBaseService,
+    public _res:ResizeService
   ) {}
+  resizeOrder:any;
   cacheTool:CacheArticle;
   _BK:BreakPage=new BreakPage();
   breakPage:_bk=this._BK.getBP();
@@ -81,6 +84,10 @@ export class ArticleService {
         aId:aId
       };
       this.method.getReply(this.breakPage.nowPage=nowPage,false,true).then(v=>next&&next());
+    });
+    //hidden root-nav:
+    this.resizeOrder=this._res.resizeVal.subscribe(v=>{
+      this._rs.nav.hidden=v=='sm'&&this.reply.show;
     })
   };
   state:any={
@@ -210,9 +217,15 @@ export class ArticleService {
   reply:any={
     show:false
   };
-  openReply=()=>this.reply.show=true;
+  openReply=()=>{
+    this.reply.show=true;
+    this._rs.nav.hidden=this._res.value=='sm'
+  };
 
-  closeReply=()=>this.reply.show=false;
+  closeReply=()=>{
+    this.reply.show=false;
+    this._rs.nav.hidden=false;
+  };
 
   getHomePage:any=(start,cb)=>{
     const next=()=>this.cacheTool.getPage(start,v=>cb(v));
@@ -230,7 +243,9 @@ export class ArticleService {
     this.id.pre=null;
     this.id.now=null;
     this.stg=null;
-    this._BK.reset();
+    this._BK&&this._BK.reset();
+    this._rs.nav.hidden=false;
+    this.resizeOrder&&this.resizeOrder.unsubscribe();
   }
   modifyHost(data:any){
     let msn=this.rgMsn;

@@ -1,4 +1,4 @@
-import {trigger,transition,style,animate,state,query,stagger} from '@angular/animations';
+import {trigger,transition,style,animate,state,query,stagger,animateChild} from '@angular/animations';
 let defaultT='0.3s ease-out';
 
 export function slideRightToggle(t='0.3s ease-out',style1={transform:'translateX(-100%)',opacity:0.8}):any{
@@ -116,4 +116,29 @@ export function TitleNav(t='200ms cubic-bezier(0.35, 0, 0.25, 1)'):any{
       ],{optional:true})
    ])
   ])
+}
+export function homeCard(t=defaultT):any{
+  return trigger('homeCard',[
+    transition('hid=>show',[
+      query('@XLine',[
+        stagger(150,[
+          animateChild()
+        ])
+      ]),
+      query('@SlideTopToggle',[animateChild()])
+    ])
+  ])
+}
+export function xLine(
+  t='.3s ease',
+  style1={transform:'translate3d(100%,0,0)'},
+  style2={transform:'translate3d(-100%,0,0)',opacity:0}
+):any{
+  return trigger('XLine',[
+    state('hid',style({visibility:'hidden'})),
+    transition('left=>hid',[animate(t,style(style1))]),
+    transition('right=>hid',[animate(t,style(style2))]),
+    transition('hid=>left',[style(style1),animate(t)]),
+    transition('hid=>right',[style(style2),animate(t)])
+  ]);
 }

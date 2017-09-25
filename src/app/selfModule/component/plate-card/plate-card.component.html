@@ -1,46 +1,49 @@
-<div (click)="click()" style="overflow:hidden" class="m-3 d-flex card-3 listItem parent" (mouseenter)="isEnter=true" (mouseleave)="isEnter=false">
-  <div class="center p-2">
-    <img [class.img2]="_res.value=='sm'" [class.shadow-1]="isEnter" class='an_node img1 ml-2 box-1' [src]="putImg(msn.cover.img)">
-    <b class="mt-1" [hidden]="_res.value!='sm'">{{msn.name}}</b>
+  <div class="mid" *ngIf="loading" >
+    <div class="sk-spinner-pulse bg-info"></div>
   </div>
+  <div class="center" [@XLine]="isEnter?'hid':'right'">
+    <img [class.homeCard-img2]="_res.value=='sm'" class='homeCard-img' [src]="putImg(msn.cover.img)">
+    <b class="mt-1 homeCard-title" [hidden]="_res.value!='sm'">{{msn.name}}</b>
+  </div>
+
   <div style="flex:1" class="m-2 parent">
-      <h5 [hidden]="_res.value=='sm'" class="p-2 text-center">
-        <b>{{msn.name}}</b>
+    <div [@XLine]="isEnter?'hid':'left'">
+      <h5 [hidden]="_res.value=='sm'" class="homeCard-title p-2 text-center">
+        {{msn.name}}
       </h5>
       <div class="row">
         <div *ngIf="_res.value!='sm'" class="col-4">
-          <article class="px-2 text-sm">
-            <i class="fa fa-book mr-1"></i>
-            {{msn.cover.c}}
-          </article>
         </div>
-
-        <dl class="text-sm" [ngClass]="[_res.value=='sm'?'col-12 center mt-2':'col-8']">
+        <dl  class="homeCard-msn" [ngClass]="[_res.value=='sm'?'col-12 center mt-2':'col-8']">
           <div class="px-2" >
-            <img >
-            <article *ngIf="_res.value=='sm'">
-              <i class="fa fa-book mr-1"></i>{{msn.cover.c}}
-            </article>
             <div class="mt-1">今日新贴:
-              <b class="badge badge-info">{{msn.todayA}}</b>
+              <b >{{msn.todayA}}</b>
             </div>
             <div class="mt-1">今日活跃贴:
-            <b class="badge badge-default">{{msn.todayAc}}</b>
+            <b>{{msn.todayAc}}</b>
             </div>
             <div  class="mt-1">总贴数:
-            <b class="badge badge-default">{{msn.totalA}}</b>
+            <b>{{msn.totalA}}</b>
             </div>
           </div>
         </dl>
       </div>
-      <ng-container *ngIf="_res.value=='sm'" [innerTemplate]="enter"></ng-container>
-    <ztw-loading [bind]="loading" pos="full" transparent="0.5"></ztw-loading>
+    </div>
+    <ng-container *ngIf="_res.value=='sm'" [innerTemplate]="enter"></ng-container>
+  </div>
+  <div class="homeCard-content center" [@SlideTopToggle] *ngIf="isEnter">
+    <article>
+      <h4>{{msn.name}}</h4>
+      <p>
+        <i class="fa fa-book mr-1"></i>{{msn.cover.c}}
+      </p>
+    </article>
   </div>
   <ng-container *ngIf="_res.value!='sm'" [innerTemplate]="enter"></ng-container>
-</div>
+
 <ng-template #enter>
-  <div  [ngClass]="_res.value=='sm'?'nav2':'nav1'" [class.bright]="!isEnter" class="parent center">
-    <i [@SlideTopToggle] *ngIf="!isEnter;else other" class="mid fa fa-angle-double-right"></i>
-    <ng-template #other><i [@SlideTopToggle] class="mid fa fa-arrow-circle-right"></i></ng-template>
+  <div [ngClass]="_res.value=='sm'?'nav2':'nav1'" [class.bright]="!isEnter" class="homeCard-arrow parent center">
+    <i *ngIf="!isEnter;else other" class="mid fa fa-angle-double-right"></i>
+    <ng-template #other><i class="mid fa fa-arrow-circle-right"></i></ng-template>
   </div>
 </ng-template>

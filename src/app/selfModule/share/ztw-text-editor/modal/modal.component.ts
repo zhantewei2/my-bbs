@@ -1,5 +1,4 @@
 import { Component,ViewContainerRef,TemplateRef,ViewChild,HostBinding,HostListener} from '@angular/core';
-import {pop} from '../../../animations/share';
 import {fadeToggle} from '../../../animations/animate';
 import {parent} from '../total.service';
 import {Subject} from 'rxjs/Subject';
@@ -8,7 +7,6 @@ import {Subject} from 'rxjs/Subject';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css'],
   animations:[
-    pop(),
     fadeToggle()
   ],
   host:{

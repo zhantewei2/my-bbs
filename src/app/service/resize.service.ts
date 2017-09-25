@@ -5,17 +5,15 @@ import 'rxjs/add/operator/debounceTime';
 @Injectable()
 export class ResizeService {
   resizeOb:Observable<number>=Observable.fromEvent(window,'resize').debounceTime(300);
+  resizeVal:Observable<string>;
   value:string;
   constructor(){
-    this.Extra(window.innerWidth);
-    this.resizeOb.subscribe(v=>this.Extra(window.innerWidth));
+    this.value=this.Extra(window.innerWidth);
+    this.resizeVal=this.resizeOb.map(v=>this.Extra(window.innerWidth));
+    this.resizeVal.subscribe(v=>this.value=v);
   }
   Extra(v:number){
-    let x;
-    if(v>=1200){x='lg'
-    }else if(v>=768&&v<1200){x='md'
-    }else{x='sm'}
-    this.value=x;
+    return v>1200?'lg':(v>=768&&v<1200?'md':'sm');
   }
 
 }

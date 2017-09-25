@@ -1,0 +1,18 @@
+@mixin restoreFix($val...){
+  @if(not $val){
+    transform:translateZ(0);
+  }
+  @else {
+    transform:translate3d($val)
+  }
+}
+.fixed-top{
+  transform:translateZ(0);
+}
+.boxBar{
+  z-index:1;
+  right:1rem;
+  bottom:1rem;
+  position:fixed;
+  @include restoreFix();
+}

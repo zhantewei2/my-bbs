@@ -1,0 +1,65 @@
+$homeCard:(
+  imgW:120px,
+  imgH:120px,
+  img2W:100px,
+  img2H:100px,
+  fontColor:black,
+  cColor:$bgColor,
+  hColor:$color-info,
+  borderColor:$bgColor,
+  bgColor1:$color-info,
+  bgColor2:$color-primary
+);
+@function hCard($key){
+  @return map-get($homeCard,$key);
+}
+
+
+.homeCard{
+  display:inline-block;
+  padding:5px;
+  transition:box-shadow .3s ease;
+  @include base-radius();
+  overflow:hidden;
+  background:$l;
+  border:1px solid rgba($color,.5);
+  color:hCard(fontColor);
+  box-shadow:3px 3px 8px rgba($color,.4);
+}
+
+.homeCard-img{
+  height:hCard(imgH);
+  width:hCard(imgW);
+  border-radius:10px;
+  margin:10px;
+}
+.homeCard-img2{
+  height:hCard(img2H);
+  width:hCard(img2W);
+}
+.homeCard-title{
+  color:hCard(hColor);
+}
+.homeCard-content{
+  position:absolute;
+  width:100%;
+  height:100%;
+  color:hCard(cColor);
+  top:0;
+  left:0;
+  background:rgba(hCard(fontColor),.2);
+  & h4{
+    color:hCard(cColor);
+  }
+}
+@mixin homeCard-sm(){
+  .homeCard-msn{
+    font-size:map-get($fontSize,sm);
+  }
+}
+hr{
+  height:1px;
+  outline:none;
+  border:0;
+  background-image:linear-gradient(to right,$bgColor,$color,$bgColor);
+}

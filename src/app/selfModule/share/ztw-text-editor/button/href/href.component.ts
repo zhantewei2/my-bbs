@@ -7,7 +7,6 @@ import  {parent} from '../../total.service';
 })
 export class HrefComponent{
   @ViewChild('tp')tp;
-  @HostBinding('class')hostClass='btn0 btn-icon';
   originText='http://';
   hrefText:string=this.originText;
   inputNode:any;

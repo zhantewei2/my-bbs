@@ -12,6 +12,7 @@
   background:rgba(255,255,255,.9);
 }
 
+
 .color-dark{
   color:black;
 }
@@ -50,7 +51,9 @@ em{color:$deepColor}
 .btn:hover{
   cursor:pointer;
 }
-
+.btn-round{
+  border-radius:50%;
+}
 .card-1{
   @extend .box-1;
   @extend .frame;

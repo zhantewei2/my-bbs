@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {RouterStateSnapshot,Router} from '@angular/router';
+import {RouterStateSnapshot,Router,CanDeactivate} from '@angular/router';
 import {TotalService} from './total.service';
 import {RouterService} from './router.service';
+import {PublishComponent} from '../router/plate/publish/publish.component';
 @Injectable()
-export class userCanLoad{
+export class userCanLoad implements  CanDeactivate<PublishComponent>{
   constructor(
     public _ts:TotalService,
     public router:Router,
@@ -24,5 +25,17 @@ export class userCanLoad{
   }
   canActivate():Promise<boolean>{
     return this.canLoad()
+  }
+  canDeactivate(component:PublishComponent):Promise<boolean>{
+
+      return new Promise(resolve=>{
+        if(this._rs.deactivate&&this._rs.leave_pub()){
+          this._ts.modal({content:'确认放弃编辑退出？',btnType:'double'},(result)=>{
+            resolve(result);
+          });
+        }else{
+          resolve(true)
+        }
+      })
   }
 }

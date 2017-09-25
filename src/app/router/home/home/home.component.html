@@ -1,14 +1,12 @@
  <div class="w-100" style="padding:0">
     <div class="w-100 column " *ztwFor="let i in _ts.cgs">
       <div >
-        <div style="width:250px;" class="p-2 card-1">
-          <div>
-            <i class="fa fa-bookmark"></i>
+        <h4 class="m-2 text-center mb-4">
             <span>{{i.name}}</span>
-          </div>
-        </div>
+        </h4>
+        <hr>
       </div>
-      <div class="d-flex flex-wrap">
+      <div class="center">
         <plate-card *ztwFor="let rg in i.rgs" [plateMsn]="rg" [cg]="i.id"></plate-card>
       </div>
       <hr>
