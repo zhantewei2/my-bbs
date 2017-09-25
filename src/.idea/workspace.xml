@@ -12,122 +12,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-            <file leaf-file-name="variable.scss" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/sass/variable.scss">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="221">
-                    <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="tool-box.component.ts" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/app/router/plate/article/tool-box/tool-box.component.ts">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="19">
-                    <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="tool-box.component.html" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/app/router/plate/article/tool-box/tool-box.component.html">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="304">
-                    <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-                    <folding>
-                      <element signature="n#style#0;n#div#0;n#span#0;n#!!top" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="tool-box.component.css" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/app/router/plate/article/tool-box/tool-box.component.css">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="0">
-                    <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="animateBtn.scss" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/sass/animateBtn.scss">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="630">
-                    <caret line="54" column="20" lean-forward="false" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-            <file leaf-file-name="common.ts" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/app/util/common.ts">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="57">
-                    <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="home.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/router/home/home/home.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plate-card.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/selfModule/component/plate-card/plate-card.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plate-card.component.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/selfModule/component/plate-card/plate-card.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#67#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -268,7 +155,7 @@
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ztw" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="SearchEverywhereHistoryKey" value="sass&#9;FILE&#9;file://F:/my/test4/src/sass.scss&#10;animate&#9;FILE&#9;file://F:/my/test4/src/sass/animateBtn.scss&#10;box&#9;null&#9;null&#10;screen&#9;FILE&#9;file://F:/my/test4/src/sass/_screen.scss&#10;article.html&#9;FILE&#9;file://F:/my/test4/src/app/router/plate/article/article.component.html&#10;sas&#9;FILE&#9;file://F:/my/test4/src/sass.scss&#10;nav-&#9;FILE&#9;file://F:/my/test4/src/app/selfModule/root/nav-root/nav-root.component.html&#10;home&#9;FILE&#9;file://F:/my/test4/src/app/router/home/home/home.component.html&#10;plate-card&#9;FILE&#9;file://F:/my/test4/src/app/selfModule/component/plate-card/plate-card.component.html&#10;home-card&#9;FILE&#9;file://F:/my/test4/src/sass/home-card.scss&#10;comm&#9;FILE&#9;file://F:/my/test4/src/app/util/common.ts&#10;router.ser&#9;FILE&#9;file://F:/my/test4/src/app/service/router.service.ts&#10;commo&#9;FILE&#9;file://F:/my/test4/src/app/util/common.ts&#10;router.service&#9;FILE&#9;file://F:/my/test4/src/app/service/router.service.ts&#10;publish&#9;FILE&#9;file://F:/my/test4/src/app/router/plate/publish/publish.component.ts&#10;guard.service&#9;FILE&#9;file://F:/my/test4/src/app/service/guard.service.ts&#10;ntf.com&#9;FILE&#9;file://F:/my/test4/src/app/router/ntf/self-ntf/self-ntf.component.ts&#10;guard&#9;null&#9;null&#10;plate.modul&#9;FILE&#9;file://F:/my/test4/src/app/router/plate/plate.module.ts&#10;router.&#9;FILE&#9;file://F:/my/test4/src/app/router/router.module.ts&#10;common.ts&#9;FILE&#9;file://F:/my/test4/src/app/util/common.ts&#10;text-modal&#9;null&#9;null&#10;text-modal-c&#9;null&#9;null&#10;ani&#9;FILE&#9;file://F:/my/test4/src/sass/animateBtn.scss&#10;min-modal&#9;null&#9;null&#10;rely&#9;FILE&#9;file://F:/my/test4/src/app/router/plate/article/children/rely/rely.component.ts&#10;homeCa&#9;FILE&#9;file://F:/my/test4/src/sass/home-card.scss&#10;ztw-modal&#9;null&#9;null&#10;article.co&#9;FILE&#9;file://F:/my/test4/src/app/router/plate/article/article.component.ts&#10;tot&#9;null&#9;null&#10;title&#9;FILE&#9;file://F:/my/test4/src/app/router/plate/article/children/title-nav/title-nav.component.html&#10;plate-user&#9;null&#9;null&#10;article-card&#9;null&#9;null&#10;resize&#9;null&#9;null&#10;article.serv&#9;FILE&#9;file://F:/my/test4/src/app/router/plate/article/children/article.service.ts&#10;router&#9;FILE&#9;file://F:/my/test4/src/app/service/router.service.ts&#10;nav&#9;FILE&#9;file://F:/my/test4/src/app/selfModule/root/nav-root/nav-root.component.html&#10;reply&#9;null&#9;null&#10;text&#9;FILE&#9;file://F:/my/test4/src/sass/text-editor.scss&#10;text-editor&#9;FILE&#9;file://F:/my/test4/src/app/selfModule/share/ztw-text-editor/text-editor/text-editor.component.html&#10;load&#9;null&#9;null&#10;HOME&#9;FILE&#9;file://F:/my/test4/src/app/router/home/home/home.component.html&#10;va&#9;FILE&#9;file://F:/my/test4/src/sass/variable.scss&#10;var&#9;FILE&#9;file://F:/my/test4/src/sass/variable.scss&#10;strate&#9;FILE&#9;file://F:/my/test4/src/app/router/plate/publish/strategy/strategy.component.html&#10;publish.&#9;FILE&#9;file://F:/my/test4/src/app/router/plate/publish/publish.component.html&#10;sa&#9;FILE&#9;file://F:/my/test4/src/sass.scss&#10;resp&#9;FILE&#9;file://F:/my/test4/src/sass/response.scss&#10;publishse&#9;FILE&#9;file://F:/my/test4/src/app/router/plate/publish/publish.service.ts&#10;publish-t&#9;FILE&#9;file://F:/my/test4/src/app/router/self/publish-statistics/publish-statistics.component.ts" />
     <property name="typescript-compiler-editor-notification" value="false" />
@@ -376,16 +263,15 @@
       <workItem from="1506053269263" duration="46709000" />
       <workItem from="1506163327963" duration="24360000" />
       <workItem from="1506245960266" duration="23842000" />
-      <workItem from="1506279707022" duration="8599000" />
+      <workItem from="1506279707022" duration="9233000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="275871000" />
+    <option name="totallyTimeSpent" value="276505000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="561" y="315" width="1184" height="819" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2490024" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -686,26 +572,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/router/home/home/home.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/selfModule/component/plate-card/plate-card.component.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/selfModule/component/plate-card/plate-card.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -782,16 +652,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/selfModule/component/plate-card/plate-card.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#67#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/router/plate/article/tool-box/tool-box.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -822,6 +682,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/selfModule/component/plate-card/plate-card.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/selfModule/component/plate-card/plate-card.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/router/home/home/home.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
           <folding />
         </state>
       </provider>
